@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    {{> head}}
+  </head>
+  <body>
+    <a href="#content" class="kern-btn kern-btn--primary skip-to-content">
+      <span class="kern-label">Skip to content</span>
+      <span
+        class="kern-icon kern-icon--arrow-forward"
+        aria-hidden="true"
+      ></span>
+    </a>
+    {{> header}}
+    <div class="kern-container kern-py-xl">
+      <main id="content">{{{body}}}</main>
+    </div>
+    {{> footer}}
+  </body>
+</html>

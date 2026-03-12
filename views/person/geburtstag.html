@@ -1,0 +1,48 @@
+<div class="kern-stack">
+  {{> progress step=3 max=7}}
+  <div>
+    <h2 class="kern-heading-x-large">Wann wurden Sie geboren?</h2>
+  </div>
+  <form class="kern-stack" action="/person/geburtsort" method="post">
+    <div class="kern-fieldset__body kern-fieldset__body--horizontal">
+      <div class="kern-form-input">
+        <label class="kern-label" for="tag">Tag</label>
+        <input
+          class="kern-form-input__input kern-form-input__input--width-2"
+          id="tag"
+          name="tag"
+          type="text"
+          inputmode="numeric"
+          value="{{session.tag}}"
+        />
+      </div>
+      <div class="kern-form-input">
+        <label class="kern-label" for="monat">Monat</label>
+        <input
+          class="kern-form-input__input kern-form-input__input--width-2"
+          id="monat"
+          name="monat"
+          type="text"
+          inputmode="numeric"
+          value="{{session.monat}}"
+        />
+      </div>
+      <div class="kern-form-input">
+        <label class="kern-label" for="jahr">Jahr</label>
+        <input
+          class="kern-form-input__input kern-form-input__input--width-4"
+          id="jahr"
+          name="jahr"
+          type="text"
+          inputmode="numeric"
+          value="{{session.jahr}}"
+        />
+      </div>
+    </div>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
+    </div>
+  </form>
+</div>

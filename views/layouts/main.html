@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    {{> head}}
+  </head>
+  <body>
+    <a href="#content" class="kern-btn kern-btn--primary skip-to-content">
+      <span class="kern-label">Skip to content</span>
+      <span
+        class="kern-icon kern-icon--arrow-forward"
+        aria-hidden="true"
+      ></span>
+    </a>
+    {{> header}}
+    <div class="kern-flex-lg kern-container kern-gap-xl kern-py-xl">
+      <aside class="kern-basis-full kern-flex-grow-3-md kern-basis-0-md">
+        {{> tasklist}}
+      </aside>
+      <main
+        id="content"
+        class="kern-basis-full kern-flex-grow-7-md kern-basis-0-md"
+      >
+        {{{body}}}
+      </main>
+    </div>
+    {{> footer}}
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<div class="kern-stack">
+  {{> progress step=1 max=7}}
+  <div>
+    <h2 class="kern-heading-x-large">Wie heißen Sie?</h2>
+    <p class="kern-body">
+      Geben Sie Ihren Namen so ein, wie er in Ihrem Ausweisdokument steht,
+      sofern Sie eines haben.
+    </p>
+  </div>
+  <form action="/person/geburtsname" method="post">
+    <div class="kern-fieldset__body">
+      <div class="kern-form-input">
+        <label class="kern-label" for="vorname">Vorname</label>
+        <input
+          class="kern-form-input__input"
+          id="vorname"
+          name="vorname"
+          type="text"
+          value="{{ session.vorname }}"
+        />
+      </div>
+      <div class="kern-form-input">
+        <label class="kern-label" for="nachname">Familienname</label>
+        <input
+          class="kern-form-input__input"
+          id="nachname"
+          name="nachname"
+          type="text"
+          value="{{ session.nachname }}"
+        />
+      </div>
+      <div class="kern-btn-wrapper">
+        <button class="kern-btn kern-btn--primary">
+          <span class="kern-label">Weiter</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

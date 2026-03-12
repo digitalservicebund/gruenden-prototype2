@@ -1,0 +1,31 @@
+<div class="kern-stack">
+  {{> progress step=2 max=4}}
+  <div>
+    <h2 class="kern-heading-x-large">
+      Womit wird sich Ihr neues Unternehmen beschäftigen?
+    </h2>
+    <p class="kern-body">Beschreiben Sie ihre Tätigkeit möglichst genau.</p>
+  </div>
+  <form action="/unternehmen/taetigkeit-begonnen" method="post">
+    <div class="kern-fieldset__body">
+      <div class="kern-form-input">
+        <label class="kern-label" for="taetigkeit">Tätigkeit</label>
+        <div class="kern-hint" id="textarea-hint">
+          Beschreiben Sie ihre Tätigkeit möglichst genau.
+        </div>
+        <textarea
+          class="kern-form-input__input"
+          id="taetigkeit"
+          name="taetigkeit"
+          type="text"
+          value="{{ session.taetigkeit }}"
+        ></textarea>
+      </div>
+      <div class="kern-btn-wrapper">
+        <button class="kern-btn kern-btn--primary">
+          <span class="kern-label">Weiter</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

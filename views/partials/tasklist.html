@@ -1,0 +1,97 @@
+<div class="kern-task-list">
+  <!-- <div class="kern-task-list__header"> -->
+  <!--   <h2 class="kern-heading-medium">Kombi-Antrag Gewerbe &amp; Steuern</h2> -->
+  <!-- </div> -->
+
+  <ul class="kern-task-list__list">
+    <li class="kern-task-list__item">
+      <span class="kern-number">1</span>
+      <div class="kern-task-list__title" id="task1-title">
+        <a
+          href="/person/start"
+          class="kern-link kern-link--stretched"
+          aria-describedby="task1-status"
+        >
+          Angaben zur Person
+        </a>
+
+        {{#if session.personalStarted}} {{#unless session.personalDone}}
+        <div class="kern-task-list__status" id="task2-status">
+          <span class="kern-badge kern-badge--warning">
+            <span class="kern-label kern-label--small">Unvollständig</span>
+          </span>
+        </div>
+        {{/unless}} {{/if}} {{#if session.personalDone}}
+        <div class="kern-task-list__status" id="task1-status">
+          <span class="kern-badge kern-badge--success">
+            <span
+              class="kern-icon kern-icon--success kern-icon--sm"
+              aria-hidden="true"
+            ></span>
+            <span class="kern-label kern-label--small">Erledigt</span>
+          </span>
+        </div>
+        {{/if}}
+      </div>
+    </li>
+    <li class="kern-task-list__item">
+      <span class="kern-number">2</span>
+      <div class="kern-task-list__title" id="task2-title">
+        <a
+          href="/unternehmen/start"
+          class="kern-link kern-link--stretched"
+          aria-describedby="task2-status"
+        >
+          Unternehmen / Tätigkeit
+        </a>
+        {{#if session.unternehmenStarted}} {{#unless session.unternehmenDone}}
+        <div class="kern-task-list__status" id="task2-status">
+          <span class="kern-badge kern-badge--warning">
+            <span class="kern-label kern-label--small">Unvollständig</span>
+          </span>
+        </div>
+        {{/unless}} {{/if}} {{#if session.unternehmenDone}}
+        <div class="kern-task-list__status" id="task1-status">
+          <span class="kern-badge kern-badge--success">
+            <span
+              class="kern-icon kern-icon--success kern-icon--sm"
+              aria-hidden="true"
+            ></span>
+            <span class="kern-label kern-label--small">Erledigt</span>
+          </span>
+        </div>
+        {{/if}}
+      </div>
+    </li>
+    <li class="kern-task-list__item">
+      <span class="kern-number">3</span>
+      <div class="kern-task-list__title" id="task2-title">
+        <a
+          href="#"
+          class="kern-link kern-link--stretched"
+          aria-describedby="task2-status"
+        >
+          Steuerliche Angaben
+        </a>
+      </div>
+    </li>
+    <li class="kern-task-list__item">
+      <span class="kern-number">4</span>
+      <div class="kern-task-list__title" id="task2-title">
+        <a
+          href="#"
+          class="kern-link kern-link--stretched"
+          aria-describedby="task2-status"
+        >
+          Kontaktdaten
+        </a>
+      </div>
+    </li>
+    <li class="kern-task-list__item">
+      <span class="kern-number">6</span>
+      <div class="kern-task-list__title">
+        <p class="kern-body">Angaben überprüfen</p>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,45 @@
+<div class="kern-stack">
+  {{> progress step=7 max=7}}
+  <div>
+    <h2 class="kern-heading-x-large">Wo wohnen Sie?</h2>
+  </div>
+  <form action="/person/angaben" method="post">
+    <div class="kern-fieldset__body">
+      <div class="kern-form-input">
+        <label class="kern-label" for="strasse">Straße</label>
+        <input
+          class="kern-form-input__input"
+          id="strasse"
+          name="strasse"
+          type="text"
+          value="{{ session.strasse }}"
+        />
+      </div>
+      <div class="kern-form-input">
+        <label class="kern-label" for="hausnummer">Hausnummer</label>
+        <input
+          class="kern-form-input__input"
+          id="hausnummer"
+          name="hausnummer"
+          type="text"
+          value="{{ session.hausnummer }}"
+        />
+      </div>
+      <div class="kern-form-input">
+        <label class="kern-label" for="ort">Ort</label>
+        <input
+          class="kern-form-input__input"
+          id="ort"
+          name="ort"
+          type="text"
+          value="{{ session.ort }}"
+        />
+      </div>
+      <div class="kern-btn-wrapper">
+        <button class="kern-btn kern-btn--primary">
+          <span class="kern-label">Weiter</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
