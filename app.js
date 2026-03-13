@@ -44,6 +44,17 @@ app.get("/person/start", (req, res) => {
   });
 });
 
+app.post("/person/bundid", (req, res) => {
+  res.redirect("/person/bundid");
+});
+
+app.get("/person/bundid", (req, res) => {
+  res.render("person/bundid", {
+    pageName: "Persönliche Daten",
+    session: req.session,
+  });
+});
+
 app.post("/person/name", (req, res) => {
   res.redirect("/person/name");
 });

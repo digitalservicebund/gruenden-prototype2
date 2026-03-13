@@ -1,0 +1,43 @@
+<div class="kern-stack">
+  <div>
+    <h2 class="kern-heading-x-large">
+      Persönliche Daten automatisch ausfüllen
+    </h2>
+    <p class="kern-body">
+      Für die Anmeldung und Authentifizierung können Sie Ihre BundID verwenden.
+      Dadurch werden Ihre hinterlegten Daten automatisch in den Online-Antrag
+      übernommen.
+    </p>
+  </div>
+
+  <form action="/person/name" method="post">
+    <div class="kern-fieldset__body">
+      <div class="kern-form-check">
+        <input
+          class="kern-form-check__radio"
+          id="bundid-ja"
+          type="radio"
+          value="ja"
+          name="bundidbool"
+        /><label class="kern-label" for="bundid-ja">Mit BundID anmelden</label>
+      </div>
+      <div class="kern-form-check">
+        <input
+          class="kern-form-check__radio"
+          id="bundid-nein"
+          type="radio"
+          value="nein"
+          name="bundidbool"
+          checked
+        /><label class="kern-label" for="bundid-nein"
+          >Ohne Anmeldung fortfahren</label
+        >
+      </div>
+      <div class="kern-btn-wrapper">
+        <button class="kern-btn kern-btn--primary">
+          <span class="kern-label">Weiter</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
