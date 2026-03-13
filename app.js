@@ -4,7 +4,8 @@ import bodyParser from "body-parser";
 import { engine } from "express-handlebars";
 
 const app = express();
-const port = 7000;
+const port = Number.parseInt(process.env.PORT ?? "7070", 10);
+const host = process.env.HOST ?? "localhost";
 
 app.locals.serviceName = "Schneller Gründen";
 app.locals.serviceUrl = "/";
@@ -238,5 +239,12 @@ app.get("/unternehmen/angaben", (req, res) => {
   });
 });
 
-app.listen(port);
-console.log("Server is running at http://localhost:" + port);
+app.listen(port, host, () => {
+  console.log("Server is running at http://" + host + ":" + port);
+});
+
+["SIGINT", "SIGTERM"].forEach((signal) => {
+  process.on(signal, () => {
+    process.exit(0);
+  });
+});
