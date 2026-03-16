@@ -27,7 +27,6 @@ app.use(bodyParser.urlencoded());
 
 app.get("/", (req, res) => {
   res.render("index", {
-    layout: "single",
     pageName: "Kombi-Antrag Steuer und Gewerbe",
     session: req.session,
   });
@@ -127,17 +126,8 @@ app.get("/person/staatsangehoerigkeit", (req, res) => {
   res.render("person/staatsangehoerigkeit", { session: req.session });
 });
 
-app.post("/person/plz", (req, res) => {
-  req.session.staatsangehoerigkeit = req.body.staatsangehoerigkeit;
-  res.redirect("/person/plz");
-});
-
-app.get("/person/plz", (req, res) => {
-  res.render("person/plz", { session: req.session });
-});
-
 app.post("/person/adresse", (req, res) => {
-  req.session.plz = req.body.plz;
+  req.session.staatsangehoerigkeit = req.body.staatsangehoerigkeit;
   res.redirect("/person/adresse");
 });
 
@@ -148,6 +138,7 @@ app.get("/person/adresse", (req, res) => {
 app.post("/person/angaben", (req, res) => {
   req.session.strasse = req.body.strasse;
   req.session.hausnummer = req.body.hausnummer;
+  req.session.plz = req.body.plz;
   req.session.ort = req.body.ort;
 
   req.session.personalDone = true;
@@ -248,6 +239,14 @@ app.get("/unternehmen/angaben", (req, res) => {
     pageName: "Eingaben überprüfen",
     session: req.session,
   });
+});
+
+app.post("/steuer/start", (req, res) => {
+  res.redirect("/steuer/start");
+});
+
+app.get("/steuer/start", (req, res) => {
+  res.render("steuer/start", { session: req.session });
 });
 
 app.listen(port, host, () => {

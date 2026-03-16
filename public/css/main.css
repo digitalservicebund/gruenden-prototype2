@@ -34,9 +34,9 @@ header {
 
 main {
   padding-block: var(--kern-metric-space-default);
+  max-width: 80ch;
 }
 
 footer {
   background: var(--kern-color-layout-background-hued);
-  padding: var(--kern-metric-space-default);
 }

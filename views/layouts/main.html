@@ -12,16 +12,8 @@
       ></span>
     </a>
     {{> header}}
-    <div class="kern-flex-lg kern-container kern-gap-xl kern-py-xl">
-      <aside class="kern-basis-full kern-flex-grow-3-md kern-basis-0-md">
-        {{> tasklist}}
-      </aside>
-      <main
-        id="content"
-        class="kern-basis-full kern-flex-grow-7-md kern-basis-0-md"
-      >
-        {{{body}}}
-      </main>
+    <div class="kern-container kern-py-xl">
+      <main id="content">{{{body}}}</main>
     </div>
     {{> footer}}
   </body>
