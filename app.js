@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded());
 app.get("/", (req, res) => {
   res.render("index", {
     pageName: "Kombi-Antrag Steuer und Gewerbe",
+    start: true,
     session: req.session,
   });
 });
@@ -241,12 +242,12 @@ app.get("/unternehmen/angaben", (req, res) => {
   });
 });
 
-app.post("/steuer/start", (req, res) => {
-  res.redirect("/steuer/start");
+app.post("/umsatz/start", (req, res) => {
+  res.redirect("/umsatz/start");
 });
 
-app.get("/steuer/start", (req, res) => {
-  res.render("steuer/start", { session: req.session });
+app.get("/umsatz/start", (req, res) => {
+  res.render("umsatz/start", { session: req.session });
 });
 
 app.listen(port, host, () => {

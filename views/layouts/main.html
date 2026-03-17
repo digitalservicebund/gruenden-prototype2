@@ -13,7 +13,12 @@
     </a>
     {{> header}}
     <div class="kern-container kern-py-xl">
-      <main id="content">{{{body}}}</main>
+      <div class="kern-stack kern-gap-lg">
+        {{#unless start}}
+        <div>{{> back url=url}}</div>
+        {{/unless}}
+        <main id="content">{{{body}}}</main>
+      </div>
     </div>
     {{> footer}}
   </body>
