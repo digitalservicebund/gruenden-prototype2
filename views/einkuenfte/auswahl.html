@@ -1,0 +1,91 @@
+<div class="kern-stack">
+  {{> progress step=2 max=2}}
+  <div>
+    <h2 class="kern-heading-x-large">Welche weiteren Einkünfte haben Sie?</h2>
+    <p class="kern-body">
+      Anhand ihrer weiteren Einkünfte wird festgelegt wie viel Einkommenssteuer
+      Sie zahlen müssen.
+    </p>
+  </div>
+
+  <form class="kern-stack" action="/kontakt/start" method="post">
+    <fieldset class="kern-fieldset">
+      <legend class="kern-label kern-sr-only">
+        Welche weiteren Einkünfte haben Sie?
+      </legend>
+      <div class="kern-fieldset__body">
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__checkbox"
+            id="landwirtschaft"
+            name="einkuenfte"
+            type="checkbox"
+          />
+          <label class="kern-label" for="landwirtschaft"
+            >Land- und Forstwirtschaft</label
+          >
+        </div>
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__checkbox"
+            id="vermietung"
+            name="einkuenfte"
+            type="checkbox"
+          />
+          <label class="kern-label" for="vermietung"
+            >Vermietung und Verpachtung</label
+          >
+        </div>
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__checkbox"
+            id="selbststaendig"
+            name="einkuenfte"
+            type="checkbox"
+          />
+          <label class="kern-label" for="selbststaendig"
+            >Selbstständige Arbeit</label
+          >
+        </div>
+
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__checkbox"
+            id="nichtselbststaendig"
+            name="einkuenfte"
+            type="checkbox"
+          />
+          <label class="kern-label" for="nichtselbststaendig"
+            >Nichtselbstständige Arbeit</label
+          >
+        </div>
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__checkbox"
+            id="kapital"
+            name="einkuenfte"
+            type="checkbox"
+          />
+          <label class="kern-label" for="kapital">Kapitalvermögen</label>
+        </div>
+
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__checkbox"
+            id="sonstige"
+            name="einkuenfte"
+            type="checkbox"
+          />
+          <label class="kern-label" for="sonstige"
+            >Sonstige Einkünfte (z.B. Renten)</label
+          >
+        </div>
+      </div>
+    </fieldset>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
+    </div>
+  </form>
+</div>

@@ -413,6 +413,71 @@ app.get("/gewinn/start", (req, res) => {
   res.render("gewinn/start", { session: req.session });
 });
 
+app.post("/gewinn/eingabe", (req, res) => {
+  res.redirect("/gewinn/eingabe");
+});
+
+app.get("/gewinn/eingabe", (req, res) => {
+  res.render("gewinn/eingabe", { session: req.session });
+});
+
+app.post("/einkuenfte/start", (req, res) => {
+  res.redirect("/einkuenfte/start");
+});
+
+app.get("/einkuenfte/start", (req, res) => {
+  res.render("einkuenfte/start", { session: req.session });
+});
+
+app.post("/einkuenfte/auswahl", (req, res) => {
+  res.redirect("/einkuenfte/auswahl");
+});
+
+app.get("/einkuenfte/auswahl", (req, res) => {
+  res.render("einkuenfte/auswahl", { session: req.session });
+});
+
+app.post("/kontakt/start", (req, res) => {
+  res.redirect("/kontakt/start");
+});
+
+app.get("/kontakt/start", (req, res) => {
+  res.render("kontakt/start", { session: req.session });
+});
+app.post("/kontakt/telefon", (req, res) => {
+  res.redirect("/kontakt/telefon");
+});
+
+app.get("/kontakt/telefon", (req, res) => {
+  res.render("kontakt/telefon", { session: req.session });
+});
+
+app.post("/kontakt/email", (req, res) => {
+  res.redirect("/kontakt/email");
+});
+
+app.get("/kontakt/email", (req, res) => {
+  res.render("kontakt/email", { session: req.session });
+});
+
+app.post("/antrag-ueberpruefen", (req, res) => {
+  res.redirect("/antrag-ueberpruefen");
+});
+
+app.get("/antrag-ueberpruefen", (req, res) => {
+  res.render("antrag-ueberpruefen", {
+    pageName: "Antrag gesendet",
+    session: req.session,
+  });
+});
+
+app.get("/antrag-gesendet", (req, res) => {
+  res.render("antrag-gesendet", {
+    pageName: "Antrag gesendet",
+    session: req.session,
+  });
+});
+
 app.listen(port, host, () => {
   console.log("Server is running at http://" + host + ":" + port);
 });

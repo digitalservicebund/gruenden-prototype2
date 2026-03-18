@@ -1,0 +1,55 @@
+<div class="kern-stack">
+  {{> progress step=1 max=2}}
+  <div>
+    <h2 class="kern-heading-x-large">
+      Wie hoch wird Ihr geschätzter Gewinn sein?
+    </h2>
+    <p class="kern-body">
+      Den Gewinn Ihres Unternehmens errechnen Sie aus Ihren Betriebseinnahmen
+      und -ausgaben. Bei Verlusten können Sie einen negativen Gewinn eintragen.
+    </p>
+  </div>
+  <form action="/einkuenfte/auswahl" method="post">
+    <div class="kern-fieldset__body">
+      <div class="kern-form-input">
+        <label class="kern-label" for="gewinn-dieses-jahr"
+          >Gewinn dieses Jahr</label
+        >
+        <div class="kern-input-group">
+          <input
+            class="kern-form-input__input"
+            id="gewinn-dieses-jahr"
+            name="gewinnDiesesJahr"
+            type="text"
+            inputmode="numeric"
+            value="{{ session.gewinnDiesesJahr }}"
+          />
+          <span class="kern-input-group-text">Euro</span>
+        </div>
+      </div>
+
+      <div class="kern-form-input">
+        <label class="kern-label" for="gewinn-naechstes-jahr"
+          >Gewinn nächstes Jahr</label
+        >
+        <div class="kern-input-group">
+          <input
+            class="kern-form-input__input"
+            id="gewinn-naechstes-jahr"
+            name="gewinnNaechstesJahr"
+            type="text"
+            inputmode="numeric"
+            value="{{ session.gewinnNaechstesJahr }}"
+          />
+          <span class="kern-input-group-text">Euro</span>
+        </div>
+      </div>
+
+      <div class="kern-btn-wrapper">
+        <button class="kern-btn kern-btn--primary">
+          <span class="kern-label">Weiter</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

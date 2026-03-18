@@ -1,0 +1,29 @@
+<div class="kern-stack">
+  {{> progress step=1 max=2}}
+  <div>
+    <h2 class="kern-heading-x-large">Wie lautet Ihre Telefonnummer?</h2>
+    <p class="kern-body">
+      Bitte nennen Sie uns ihre Telefonnummer, damit das Gewerbe- und Finanzamt
+      sich bei Rückfragen melden können.
+    </p>
+  </div>
+  <form action="/kontakt/email" method="post">
+    <div class="kern-fieldset__body">
+      <div class="kern-form-input">
+        <label class="kern-label" for="steuerid">Telefon</label>
+        <input
+          class="kern-form-input__input"
+          id="kontakt-telefon"
+          name="kontaktTelefon"
+          type="text"
+          value="{{ session.kontaktTelefon }}"
+        />
+      </div>
+      <div class="kern-btn-wrapper">
+        <button class="kern-btn kern-btn--primary">
+          <span class="kern-label">Weiter</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
