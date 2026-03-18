@@ -398,7 +398,7 @@ app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
 app.post("/umsatz/umsatzsteuer", (req, res) => {
   req.session.kleinunternehmerBool = req.body.kleinunternehmerBool;
 
-  res.redirect("/umsatz/umsatzsteuer");
+  var kleinunternehmerVerwenden = res.redirect("/umsatz/umsatzsteuer");
 });
 
 app.get("/umsatz/umsatzsteuer", (req, res) => {
@@ -441,11 +441,22 @@ app.get("/einkuenfte/start", (req, res) => {
 });
 
 app.post("/einkuenfte/auswahl", (req, res) => {
+  req.session.gewinnDiesesJahr = req.body.gewinnDiesesJahr;
+  req.session.gewinnNaechstesJahr = req.body.gewinnNaechstesJahr;
   res.redirect("/einkuenfte/auswahl");
 });
 
 app.get("/einkuenfte/auswahl", (req, res) => {
   res.render("einkuenfte/auswahl", { session: req.session });
+});
+
+app.post("/gewinn/angaben", (req, res) => {
+  req.session.einkuenfte = req.body.einkuenfte;
+  res.redirect("/gewinn/angaben");
+});
+
+app.get("/gewinn/angaben", (req, res) => {
+  res.render("gewinn/angaben", { session: req.session });
 });
 
 app.post("/kontakt/start", (req, res) => {
