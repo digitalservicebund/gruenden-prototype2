@@ -1,0 +1,40 @@
+<div class="kern-stack">
+  <div>
+    <h2 class="kern-heading-x-large">
+      Möchten Sie die Kleinunternehmerregelung nutzen?
+    </h2>
+    <p class="kern-body"></p>
+  </div>
+
+  <form action="/umsatz/weitere-unternehmen" method="post">
+    <fieldset class="kern-fieldset">
+      <legend class="kern-label">Wie möchten Sie fortfahren?</legend>
+      <div class="kern-fieldset__body">
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__radio"
+            id="kleinunternehmen-ja"
+            type="radio"
+            value="ja"
+            checked
+            name="kleinunternehmenbool"
+          /><label class="kern-label" for="kleinunternehmen-ja">Ja</label>
+        </div>
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__radio"
+            id="kleinunternehmen-nein"
+            type="radio"
+            value="nein"
+            name="kleinunternehmenbool"
+          /><label class="kern-label" for="kleinunternehmen-nein">Nein</label>
+        </div>
+        <div class="kern-btn-wrapper">
+          <button class="kern-btn kern-btn--primary">
+            <span class="kern-label">Weiter</span>
+          </button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

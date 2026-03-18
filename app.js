@@ -311,6 +311,56 @@ app.get("/umsatz/start", (req, res) => {
   res.render("umsatz/start", { session: req.session });
 });
 
+app.post("/umsatz/eingabe", (req, res) => {
+  res.redirect("/umsatz/eingabe");
+});
+
+app.get("/umsatz/eingabe", (req, res) => {
+  res.render("umsatz/eingabe", { session: req.session });
+});
+
+app.post("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
+  res.redirect("/umsatz/kleinunternehmerregelung-moeglich");
+});
+
+app.get("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
+  res.render("umsatz/kleinunternehmerregelung-moeglich", {
+    session: req.session,
+  });
+});
+
+app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
+  res.redirect("/umsatz/kleinunternehmerregelung");
+});
+
+app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
+  res.render("umsatz/kleinunternehmerregelung", { session: req.session });
+});
+
+app.post("/umsatz/weitere-unternehmen", (req, res) => {
+  res.redirect("/umsatz/weitere-unternehmen");
+});
+
+app.get("/umsatz/weitere-unternehmen", (req, res) => {
+  res.render("umsatz/weitere-unternehmen", { session: req.session });
+});
+
+app.post("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
+  res.redirect("/umsatz/weitere-unternehmen-gesamt");
+});
+
+app.get("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
+  res.render("umsatz/weitere-unternehmen-gesamt", { session: req.session });
+});
+
+app.post("/umsatz/umsatzsteuer", (req, res) => {
+  res.redirect("/umsatz/umsatzsteuer");
+});
+
+app.get("/umsatz/umsatzsteuer", (req, res) => {
+  res.render("umsatz/umsatzsteuer", { session: req.session });
+});
+
 app.listen(port, host, () => {
   console.log("Server is running at http://" + host + ":" + port);
 });
