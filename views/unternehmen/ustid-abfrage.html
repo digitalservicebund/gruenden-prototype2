@@ -1,0 +1,49 @@
+<div class="kern-stack">
+  {{> progress step=5 max=5}}
+  <div>
+    <h2 class="kern-heading-x-large">
+      Haben Sie bereits eine Umsatzsteuer-Identifikationsnummer?
+    </h2>
+    <p class="kern-body">
+      Eine Umsatzsteuer-Identifikationsnummer sieht so aus: DE1234556789.
+    </p>
+    <p class="kern-body">
+      Die Umsatzsteuer-Identifikationsnummer ist unabhängig von Ihren
+      Unternehmen und kann wiederverwendet werden.
+    </p>
+  </div>
+
+  <form action="/unternehmen/ustid-wiederverwenden" method="post">
+    <fieldset class="kern-fieldset">
+      <legend class="kern-label kern-sr-only">
+        Haben Sie bereits eine Umsatzsteuer-Identifikationsnummer?
+      </legend>
+      <div class="kern-fieldset__body">
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__radio"
+            id="ustidexisting-ja"
+            type="radio"
+            value="ja"
+            checked
+            name="ustidexistingbool"
+          /><label class="kern-label" for="ustidexisting-ja">Ja</label>
+        </div>
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__radio"
+            id="ustidexisting-nein"
+            type="radio"
+            value="nein"
+            name="ustidexistingbool"
+          /><label class="kern-label" for="ustidexisting-nein">Nein</label>
+        </div>
+        <div class="kern-btn-wrapper">
+          <button class="kern-btn kern-btn--primary">
+            <span class="kern-label">Weiter</span>
+          </button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
