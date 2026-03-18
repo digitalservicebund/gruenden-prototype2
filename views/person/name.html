@@ -3,11 +3,10 @@
     <div>
       <h2 class="kern-heading-x-large">Wie heißen Sie?</h2>
       <p class="kern-body">
-        Geben Sie Ihren Namen so ein, wie er in Ihrem Ausweisdokument steht,
-        sofern Sie eines haben.
+      Geben Sie Ihren Namen so ein, wie er in Ihrem Ausweisdokument steht.
       </p>
     </div>
-    <form action="/person/geburtsname" method="post">
+    <form action="/person/geburtstag" method="post">
       <div class="kern-fieldset__body">
         <div class="kern-form-input">
           <label class="kern-label" for="vorname">Vorname</label>
@@ -27,6 +26,17 @@
             name="nachname"
             type="text"
             value="{{ session.nachname }}"
+          />
+        </div>
+        <div class="kern-form-input">
+          <label class="kern-label" for="geburtsname">Geburtsname
+          <span class="kern-label__optional">- Optional</span></label>
+          <input
+            class="kern-form-input__input"
+            id="geburtsname"
+            name="geburtsname"
+            type="text"
+            value="{{ session.geburtsname }}"
           />
         </div>
         <div class="kern-btn-wrapper">

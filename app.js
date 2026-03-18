@@ -66,39 +66,35 @@ app.get("/person/name", (req, res) => {
   });
 });
 
-app.post("/person/geburtsname", (req, res) => {
-  req.session.vorname = req.body.vorname;
-  req.session.nachname = req.body.nachname;
-
-  req.session.personalStarted = true;
-  res.redirect("/person/geburtsname");
-});
-
-app.get("/person/geburtsname", (req, res) => {
-  res.render("person/geburtsname", { session: req.session });
-});
-
-app.post("/person/geburtsname", (req, res) => {
-  res.redirect("/person/geburtsname");
-});
-
-app.post("/person/geburtsname/eingabe", function (req, res) {
-  req.session.geburtsnamebool = req.body.geburtsnamebool;
-  var hasGeburtsname = req.session.geburtsnamebool;
-
-  if (hasGeburtsname == "ja") {
-    res.redirect("/person/geburtsname/eingabe");
-  } else {
-    res.redirect("/person/geburtstag");
-  }
-});
-
-app.get("/person/geburtsname/eingabe", (req, res) => {
-  res.render("person/geburtsname-eingabe", { session: req.session });
-});
+// app.get("/person/geburtsname", (req, res) => {
+//   res.render("person/geburtsname", { session: req.session });
+// });
+//
+// app.post("/person/geburtsname", (req, res) => {
+//   res.redirect("/person/geburtsname");
+// });
+//
+// app.post("/person/geburtsname/eingabe", function (req, res) {
+//   req.session.geburtsnamebool = req.body.geburtsnamebool;
+//   var hasGeburtsname = req.session.geburtsnamebool;
+//
+//   if (hasGeburtsname == "ja") {
+//     res.redirect("/person/geburtsname/eingabe");
+//   } else {
+//     res.redirect("/person/geburtstag");
+//   }
+// });
+//
+// app.get("/person/geburtsname/eingabe", (req, res) => {
+//   res.render("person/geburtsname-eingabe", { session: req.session });
+// });
 
 app.post("/person/geburtstag", (req, res) => {
+  req.session.vorname = req.body.vorname;
+  req.session.nachname = req.body.nachname;
   req.session.geburtsname = req.body.geburtsname;
+
+  req.session.personalStarted = true;
   res.redirect("/person/geburtstag");
 });
 
@@ -136,12 +132,21 @@ app.get("/person/adresse", (req, res) => {
   res.render("person/adresse", { session: req.session });
 });
 
-app.post("/person/angaben", (req, res) => {
+app.post("/person/steuer-id", (req, res) => {
   req.session.strasse = req.body.strasse;
   req.session.hausnummer = req.body.hausnummer;
   req.session.plz = req.body.plz;
   req.session.ort = req.body.ort;
 
+  res.redirect("/person/steuer-id");
+});
+
+app.get("/person/steuer-id", (req, res) => {
+  res.render("person/steuer-id", { session: req.session });
+});
+
+app.post("/person/angaben", (req, res) => {
+  req.session.steuerid = req.body.steuerid;
   req.session.personalDone = true;
   res.redirect("/person/angaben");
 });

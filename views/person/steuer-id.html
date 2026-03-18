@@ -1,0 +1,35 @@
+<div class="kern-stack">
+  {{> progress step=7 max=7}}
+  <div>
+    <h2 class="kern-heading-x-large">
+      Wie lautet ihre Steuer-Identifikationsnummer?
+    </h2>
+    <p class="kern-body">
+      Eine Steuer-Identifikationsnummer sieht so aus: 1234567890
+    </p>
+    <p class="kern-body">
+      Sie ist leicht zu verwechseln mit der Steuernummer (mit Schrägstrichen).
+    </p>
+  </div>
+  <form action="/person/angaben" method="post">
+    <div class="kern-fieldset__body">
+      <div class="kern-form-input">
+        <label class="kern-label" for="steuerid"
+          >Steuer-Identifikationsnummer</label
+        >
+        <input
+          class="kern-form-input__input"
+          id="steuerid"
+          name="steuerid"
+          type="text"
+          value="{{ session.steuerid }}"
+        />
+      </div>
+      <div class="kern-btn-wrapper">
+        <button class="kern-btn kern-btn--primary">
+          <span class="kern-label">Weiter</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

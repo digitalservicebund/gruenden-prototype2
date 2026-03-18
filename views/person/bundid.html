@@ -11,33 +11,38 @@
   </div>
 
   <form action="/person/name" method="post">
-    <div class="kern-fieldset__body">
-      <div class="kern-form-check">
-        <input
-          class="kern-form-check__radio"
-          id="bundid-ja"
-          type="radio"
-          value="ja"
-          checked
-          name="bundidbool"
-        /><label class="kern-label" for="bundid-ja">Mit BundID anmelden</label>
+    <fieldset class="kern-fieldset">
+      <legend class="kern-label">Wie möchten Sie fortfahren?</legend>
+      <div class="kern-fieldset__body">
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__radio"
+            id="bundid-ja"
+            type="radio"
+            value="ja"
+            checked
+            name="bundidbool"
+          /><label class="kern-label" for="bundid-ja"
+            >mit BundID anmelden</label
+          >
+        </div>
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__radio"
+            id="bundid-nein"
+            type="radio"
+            value="nein"
+            name="bundidbool"
+          /><label class="kern-label" for="bundid-nein"
+            >ohne Anmeldung fortfahren</label
+          >
+        </div>
+        <div class="kern-btn-wrapper">
+          <button class="kern-btn kern-btn--primary">
+            <span class="kern-label">Weiter</span>
+          </button>
+        </div>
       </div>
-      <div class="kern-form-check">
-        <input
-          class="kern-form-check__radio"
-          id="bundid-nein"
-          type="radio"
-          value="nein"
-          name="bundidbool"
-        /><label class="kern-label" for="bundid-nein"
-          >Ohne Anmeldung fortfahren</label
-        >
-      </div>
-      <div class="kern-btn-wrapper">
-        <button class="kern-btn kern-btn--primary">
-          <span class="kern-label">Weiter</span>
-        </button>
-      </div>
-    </div>
+    </fieldset>
   </form>
 </div>
