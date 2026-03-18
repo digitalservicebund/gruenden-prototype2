@@ -534,6 +534,7 @@ app.get("/kontakt/email", (req, res) => {
 });
 
 app.post("/kontakt/status", (req, res) => {
+  req.session.kontaktDone = true;
   res.redirect("/kontakt/status");
 });
 
@@ -542,7 +543,6 @@ app.get("/kontakt/status", (req, res) => {
 });
 
 app.post("/antrag-ueberpruefen", (req, res) => {
-  req.session.kontaktDone = true;
   res.redirect("/antrag-ueberpruefen");
 });
 
