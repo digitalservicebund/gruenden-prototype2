@@ -145,17 +145,27 @@ app.get("/person/steuer-id", (req, res) => {
   res.render("person/steuer-id", { session: req.session });
 });
 
-app.post("/person/angaben", (req, res) => {
+// app.post("/person/angaben", (req, res) => {
+//   req.session.steuerid = req.body.steuerid;
+//   req.session.personalDone = true;
+//   res.redirect("/person/angaben");
+// });
+//
+// app.get("/person/angaben", (req, res) => {
+//   res.render("person/angaben", {
+//     pageName: "Eingaben überprüfen",
+//     session: req.session,
+//   });
+// });
+
+app.post("/person/status", (req, res) => {
   req.session.steuerid = req.body.steuerid;
   req.session.personalDone = true;
-  res.redirect("/person/angaben");
+  res.redirect("/person/status");
 });
 
-app.get("/person/angaben", (req, res) => {
-  res.render("person/angaben", {
-    pageName: "Eingaben überprüfen",
-    session: req.session,
-  });
+app.get("/person/status", (req, res) => {
+  res.render("person/status", { session: req.session });
 });
 
 app.post("/unternehmen/start", (req, res) => {
@@ -249,7 +259,7 @@ app.post("/unternehmen/ustid-abfrage", (req, res) => {
   if (ustid == "ja") {
     res.redirect("/unternehmen/ustid-abfrage");
   } else {
-    res.redirect("/unternehmen/angaben");
+    res.redirect("/unternehmen/status");
   }
 });
 
@@ -290,15 +300,28 @@ app.get("/unternehmen/ustid-antrag", (req, res) => {
   res.render("unternehmen/ustid-antrag", { session: req.session });
 });
 
-app.post("/unternehmen/angaben", (req, res) => {
+// app.post("/unternehmen/angaben", (req, res) => {
+//   req.session.ustid = req.body.ustid;
+//   req.session.unternehmenDone = true;
+//   res.redirect("/unternehmen/angaben");
+// });
+//
+// app.get("/unternehmen/angaben", (req, res) => {
+//   res.render("unternehmen/angaben", {
+//     pageName: "Eingaben überprüfen",
+//     session: req.session,
+//   });
+// });
+
+app.post("/unternehmen/status", (req, res) => {
   req.session.ustid = req.body.ustid;
   req.session.unternehmenDone = true;
-  res.redirect("/unternehmen/angaben");
+  res.redirect("/unternehmen/status");
 });
 
-app.get("/unternehmen/angaben", (req, res) => {
-  res.render("unternehmen/angaben", {
-    pageName: "Eingaben überprüfen",
+app.get("/unternehmen/status", (req, res) => {
+  res.render("unternehmen/status", {
+    pageName: "Status Antrag",
     session: req.session,
   });
 });
@@ -406,16 +429,28 @@ app.get("/umsatz/umsatzsteuer", (req, res) => {
   res.render("umsatz/umsatzsteuer", { session: req.session });
 });
 
-app.post("/umsatz/angaben", (req, res) => {
+// app.post("/umsatz/angaben", (req, res) => {
+//   req.session.ustDiesesJahr = req.body.ustDiesesJahr;
+//   req.session.ustNaechstesJahr = req.body.NaechstesJahr;
+//   req.session.umsatzDone = true;
+//
+//   res.redirect("/umsatz/angaben");
+// });
+//
+// app.get("/umsatz/angaben", (req, res) => {
+//   res.render("umsatz/angaben", { session: req.session });
+// });
+
+app.post("/umsatz/status", (req, res) => {
   req.session.ustDiesesJahr = req.body.ustDiesesJahr;
   req.session.ustNaechstesJahr = req.body.NaechstesJahr;
   req.session.umsatzDone = true;
 
-  res.redirect("/umsatz/angaben");
+  res.redirect("/umsatz/status");
 });
 
-app.get("/umsatz/angaben", (req, res) => {
-  res.render("umsatz/angaben", { session: req.session });
+app.get("/umsatz/status", (req, res) => {
+  res.render("umsatz/status", { session: req.session });
 });
 
 app.post("/gewinn/start", (req, res) => {
@@ -453,14 +488,24 @@ app.get("/einkuenfte/auswahl", (req, res) => {
   res.render("einkuenfte/auswahl", { session: req.session });
 });
 
-app.post("/gewinn/angaben", (req, res) => {
+// app.post("/gewinn/angaben", (req, res) => {
+//   req.session.gewinnDone = true;
+//   req.session.einkuenfte = req.body.einkuenfte;
+//   res.redirect("/gewinn/angaben");
+// });
+//
+// app.get("/gewinn/angaben", (req, res) => {
+//   res.render("gewinn/angaben", { session: req.session });
+// });
+
+app.post("/gewinn/status", (req, res) => {
   req.session.gewinnDone = true;
   req.session.einkuenfte = req.body.einkuenfte;
-  res.redirect("/gewinn/angaben");
+  res.redirect("/gewinn/status");
 });
 
-app.get("/gewinn/angaben", (req, res) => {
-  res.render("gewinn/angaben", { session: req.session });
+app.get("/gewinn/status", (req, res) => {
+  res.render("gewinn/status", { session: req.session });
 });
 
 app.post("/kontakt/start", (req, res) => {
@@ -488,6 +533,14 @@ app.get("/kontakt/email", (req, res) => {
   res.render("kontakt/email", { session: req.session });
 });
 
+app.post("/kontakt/status", (req, res) => {
+  res.redirect("/kontakt/status");
+});
+
+app.get("/kontakt/status", (req, res) => {
+  res.render("kontakt/status", { session: req.session });
+});
+
 app.post("/antrag-ueberpruefen", (req, res) => {
   req.session.kontaktDone = true;
   res.redirect("/antrag-ueberpruefen");
@@ -495,7 +548,18 @@ app.post("/antrag-ueberpruefen", (req, res) => {
 
 app.get("/antrag-ueberpruefen", (req, res) => {
   res.render("antrag-ueberpruefen", {
-    pageName: "Antrag gesendet",
+    pageName: "Antrag überprüfen",
+    session: req.session,
+  });
+});
+
+app.post("/antrag-absenden", (req, res) => {
+  res.redirect("/antrag-absenden");
+});
+
+app.get("/antrag-absenden", (req, res) => {
+  res.render("antrag-absenden", {
+    pageName: "Antrag absenden",
     session: req.session,
   });
 });
