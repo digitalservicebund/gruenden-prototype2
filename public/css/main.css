@@ -24,7 +24,7 @@
 }
 
 header {
-  padding-block-start: var(--kern-metric-space-default);
+  padding-block: var(--kern-metric-space-default);
   border-bottom: 1px solid var(--kern-color-layout-border);
 }
 
@@ -33,7 +33,6 @@ header {
 }
 
 main {
-  padding-block: var(--kern-metric-space-default);
   max-width: 80ch;
 }
 
