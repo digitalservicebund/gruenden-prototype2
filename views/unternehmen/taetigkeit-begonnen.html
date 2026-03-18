@@ -1,7 +1,9 @@
 <div class="kern-stack">
   {{> progress step=3 max=5}}
   <div>
-    <h2 class="kern-heading-x-large">Haben Sie die Tätigkeit bereits begonnen?</h2>
+    <h2 class="kern-heading-x-large">
+      Haben Sie die Tätigkeit bereits begonnen?
+    </h2>
   </div>
   <form action="/unternehmen/taetigkeit-beginn" method="post">
     <div class="kern-fieldset__body">
@@ -12,7 +14,6 @@
           type="radio"
           value="ja"
           name="taetigkeitBegonnen"
-          {{#if taetigkeitBegonnen}}checked{{/if}}
         /><label class="kern-label" for="taetigkeit-begonnen-ja">Ja</label>
       </div>
       <div class="kern-form-check">
@@ -22,7 +23,6 @@
           type="radio"
           value="nein"
           name="taetigkeitBegonnen"
-          {{#unless taetigkeitBegonnen}}checked{{/unless}}
         /><label class="kern-label" for="taetigkeit-begonnen-nein">Nein</label>
       </div>
       <div class="kern-btn-wrapper">

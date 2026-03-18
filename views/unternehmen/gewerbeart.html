@@ -12,7 +12,6 @@
           type="radio"
           value="nebengewerbe"
           name="gewerbeart"
-          {{#if nebengewerbe}}checked{{/if}}
         /><label class="kern-label" for="nebengewerbe">Ja</label>
       </div>
       <div class="kern-form-check">
@@ -22,7 +21,6 @@
           type="radio"
           value="hauptgewerbe"
           name="gewerbeart"
-          {{#unless nebengewerbe}}checked{{/unless}}
         /><label class="kern-label" for="hauptgewerbe">Nein</label>
       </div>
       <div class="kern-btn-wrapper">

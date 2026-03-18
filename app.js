@@ -312,6 +312,7 @@ app.get("/umsatz/start", (req, res) => {
 });
 
 app.post("/umsatz/eingabe", (req, res) => {
+  req.session.umsatzStarted = true;
   res.redirect("/umsatz/eingabe");
 });
 
@@ -408,6 +409,7 @@ app.get("/umsatz/umsatzsteuer", (req, res) => {
 app.post("/umsatz/angaben", (req, res) => {
   req.session.ustDiesesJahr = req.body.ustDiesesJahr;
   req.session.ustNaechstesJahr = req.body.NaechstesJahr;
+  req.session.umsatzDone = true;
 
   res.redirect("/umsatz/angaben");
 });
@@ -443,6 +445,7 @@ app.get("/einkuenfte/start", (req, res) => {
 app.post("/einkuenfte/auswahl", (req, res) => {
   req.session.gewinnDiesesJahr = req.body.gewinnDiesesJahr;
   req.session.gewinnNaechstesJahr = req.body.gewinnNaechstesJahr;
+  req.session.gewinnStarted = true;
   res.redirect("/einkuenfte/auswahl");
 });
 
@@ -451,6 +454,7 @@ app.get("/einkuenfte/auswahl", (req, res) => {
 });
 
 app.post("/gewinn/angaben", (req, res) => {
+  req.session.gewinnDone = true;
   req.session.einkuenfte = req.body.einkuenfte;
   res.redirect("/gewinn/angaben");
 });
@@ -466,6 +470,7 @@ app.post("/kontakt/start", (req, res) => {
 app.get("/kontakt/start", (req, res) => {
   res.render("kontakt/start", { session: req.session });
 });
+
 app.post("/kontakt/telefon", (req, res) => {
   res.redirect("/kontakt/telefon");
 });
@@ -475,6 +480,7 @@ app.get("/kontakt/telefon", (req, res) => {
 });
 
 app.post("/kontakt/email", (req, res) => {
+  req.session.kontaktStarted = true;
   res.redirect("/kontakt/email");
 });
 
@@ -483,6 +489,7 @@ app.get("/kontakt/email", (req, res) => {
 });
 
 app.post("/antrag-ueberpruefen", (req, res) => {
+  req.session.kontaktDone = true;
   res.redirect("/antrag-ueberpruefen");
 });
 
