@@ -6,7 +6,7 @@
     </h2>
     <p class="kern-body">TBD erklärung</p>
   </div>
-  <form action="/gewinn/start" method="post">
+  <form action="/umsatz/angaben" method="post">
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
         <label class="kern-label" for="ust-dieses-jahr"
@@ -16,7 +16,7 @@
           <input
             class="kern-form-input__input"
             id="ust-dieses-jahr"
-            name="ust-dieses-jahr"
+            name="ustDiesesJahr"
             type="text"
             inputmode="numeric"
             value="{{ session.ustDiesesJahr }}"
@@ -33,7 +33,7 @@
           <input
             class="kern-form-input__input"
             id="ust-naechstes-jahr"
-            name="ust-naechstes-jahr"
+            name="ustNaechstesJahr"
             type="text"
             inputmode="numeric"
             value="{{ session.ustNaechstesJahr }}"

@@ -405,6 +405,17 @@ app.get("/umsatz/umsatzsteuer", (req, res) => {
   res.render("umsatz/umsatzsteuer", { session: req.session });
 });
 
+app.post("/umsatz/angaben", (req, res) => {
+  req.session.ustDiesesJahr = req.body.ustDiesesJahr;
+  req.session.ustNaechstesJahr = req.body.NaechstesJahr;
+
+  res.redirect("/umsatz/angaben");
+});
+
+app.get("/umsatz/angaben", (req, res) => {
+  res.render("umsatz/angaben", { session: req.session });
+});
+
 app.post("/gewinn/start", (req, res) => {
   res.redirect("/gewinn/start");
 });
