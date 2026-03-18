@@ -218,6 +218,286 @@
     </div>
   </div>
 
+  <div class="kern-summary__header">
+    <span class="kern-number">2</span>
+    <h3 class="kern-title kern-title--small" id="title">
+      Unternehmen &amp; Tätigkeit
+    </h3>
+  </div>
+
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Straße</dt>
+            <dd class="kern-description-list-item__value">
+              {{session.strasse}} {{session.hausnummer}}
+            </dd>
+          </div>
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Ort</dt>
+            <dd class="kern-description-list-item__value">
+              {{session.plz}} {{session.ort}}
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a
+            href="/unternehmen/adresse-abweichend"
+            class="kern-link"
+            aria-describedby="title"
+          >
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Tätigkeit</dt>
+            <dd class="kern-description-list-item__value">
+              {{session.taetigkeit}}
+            </dd>
+          </div>
+          <div class="kern-summary__actions">
+            <a
+              href="/unternehmen/taetigkeit"
+              class="kern-link"
+              aria-describedby="title"
+            >
+              <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+              Bearbeiten
+            </a>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">
+              Beginn der Tätigkeit:
+            </dt>
+            <dd class="kern-description-list-item__value">
+              {{session.taetigkeitBeginnTag}}.
+              {{session.taetigkeitBeginnMonat}}.
+              {{session.taetigkeitBeginnJahr}}
+            </dd>
+          </div>
+          <div class="kern-summary__actions">
+            <a
+              href="/unternehmen/taetigkeit-begonnen"
+              class="kern-link"
+              aria-describedby="title"
+            >
+              <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+              Bearbeiten
+            </a>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">
+              Umsatzsteuer-Identifikationsnummer
+            </dt>
+            <dd class="kern-description-list-item__value">{{session.ustid}}</dd>
+          </div>
+          <div class="kern-summary__actions">
+            <a
+              href="/unternehmen/taetigkeit"
+              class="kern-link"
+              aria-describedby="title"
+            >
+              <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+              Bearbeiten
+            </a>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary__header">
+    <span class="kern-number">3</span>
+    <h3 class="kern-title kern-title--small" id="title">Umsätze</h3>
+  </div>
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Umsätze dieses Jahr</dt>
+            <dd class="kern-description-list-item__value">
+              {{session.umsatzDiesesJahr}}
+            </dd>
+          </div>
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">
+              Umsätze nächstes Jahr
+            </dt>
+            <dd class="kern-description-list-item__value">
+              {{session.umsatzNaechstesJahr}}
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a href="/umsatz/eingabe" class="kern-link" aria-describedby="title">
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">
+              Kleinunternehmerregelung
+            </dt>
+            <dd class="kern-description-list-item__value">
+              {{#if session.kleinunternehmerVerwenden}} Ja {{else}} Nein {{/if}}
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a
+            href="/umsatz/umsatzsteuer"
+            class="kern-link"
+            aria-describedby="title"
+          >
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Umsätze dieses Jahr</dt>
+            <dd class="kern-description-list-item__value">
+              {{session.ustDiesesJahr}}
+            </dd>
+          </div>
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">
+              Umsätze nächstes Jahr
+            </dt>
+            <dd class="kern-description-list-item__value">
+              {{session.ustNaechstesJahr}}
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a
+            href="/umsatz/umsatzsteuer"
+            class="kern-link"
+            aria-describedby="title"
+          >
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary__header">
+    <span class="kern-number">4</span>
+    <h3 class="kern-title kern-title--small" id="title">
+      Gewinn &amp; Einkünfte
+    </h3>
+  </div>
+
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Gewinn dieses Jahr</dt>
+            <dd class="kern-description-list-item__value">
+              {{session.gewinnDiesesJahr}}
+            </dd>
+          </div>
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">
+              Gewinn nächstes Jahr
+            </dt>
+            <dd class="kern-description-list-item__value">
+              {{session.gewinnNaechstesJahr}}
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a href="/gewinn/eingabe" class="kern-link" aria-describedby="title">
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Sonstige Einkünfte</dt>
+            <dd class="kern-description-list-item__value">
+              <ul class="kern-list kern-list-bullet">
+                {{#each session.einkuenfte}}
+                <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a
+            href="/einkuenfte/auswahl"
+            class="kern-link"
+            aria-describedby="title"
+          >
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kern-summary__header">
+    <span class="kern-number">5</span>
+    <h3 class="kern-title kern-title--small" id="title">Kontaktdaten</h3>
+  </div>
+
   <div class="kern-btn-wrapper">
     <a href="/antrag-gesendet" class="kern-btn kern-btn--primary">
       <span class="kern-label">Antrag absenden</span>
