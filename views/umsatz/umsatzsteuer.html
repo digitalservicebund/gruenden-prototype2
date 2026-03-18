@@ -1,16 +1,16 @@
 <div class="kern-stack">
-  {{> progress step=1 max=7}}
+  {{> progress step=2 max=2}}
   <div>
     <h2 class="kern-heading-x-large">
       Bitte schätzen Sie ihre voraussichtliche Umsatzsteuer
     </h2>
     <p class="kern-body">TBD erklärung</p>
   </div>
-  <form action="/umsatz/kleinunternehmerregelung-moeglich" method="post">
+  <form action="/gewinn/start" method="post">
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
         <label class="kern-label" for="ust-dieses-jahr"
-          >Umsätze dieses Jahr</label
+          >Umsatzsteuer dieses Jahr</label
         >
         <div class="kern-input-group">
           <input
@@ -27,7 +27,7 @@
 
       <div class="kern-form-input">
         <label class="kern-label" for="ust-naechstes-jahr"
-          >Umsätze naechstes Jahr</label
+          >Umsatzsteuer nächstes Jahr</label
         >
         <div class="kern-input-group">
           <input

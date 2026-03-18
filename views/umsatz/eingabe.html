@@ -1,5 +1,5 @@
 <div class="kern-stack">
-  {{> progress step=1 max=7}}
+  {{> progress step=1 max=2}}
   <div>
     <h2 class="kern-heading-x-large">
       Wie hoch wird Ihr geschätzter Umsatz sein?
@@ -19,7 +19,7 @@
           <input
             class="kern-form-input__input"
             id="umsatz-dieses-jahr"
-            name="umsatz-dieses-jahr"
+            name="umsatzDiesesJahr"
             type="text"
             inputmode="numeric"
             value="{{ session.umsatzDiesesJahr }}"
@@ -36,7 +36,7 @@
           <input
             class="kern-form-input__input"
             id="umsatz-naechstes-jahr"
-            name="umsatz-naechstes-jahr"
+            name="umsatzNaechstesJahr"
             type="text"
             inputmode="numeric"
             value="{{ session.umsatzNaechstesJahr }}"
