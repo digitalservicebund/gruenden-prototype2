@@ -1,7 +1,9 @@
 <div class="kern-stack">
   {{> progress step=4 max=7}}
   <div>
-    <h2 class="kern-heading-x-large">Haben Sie eine deutsche Staatsangehörigkeit?</h2>
+    <h2 class="kern-heading-x-large">
+      Haben Sie eine deutsche Staatsangehörigkeit?
+    </h2>
   </div>
   <form action="/person/adresse" method="post">
     <div class="kern-fieldset__body">
@@ -12,7 +14,7 @@
           type="radio"
           value="ja"
           name="staatsangehoerigkeitbool"
-          {{#if hasName}}checked{{/if}}
+          checked
         /><label class="kern-label" for="staatsangehoerigkeit-ja">Ja</label>
       </div>
       <div class="kern-form-check">
@@ -22,7 +24,6 @@
           type="radio"
           value="nein"
           name="staatsangehoerigkeitbool"
-          {{#unless hasName}}checked{{/unless}}
         /><label class="kern-label" for="staatsangehoerigkeit-nein">Nein</label>
       </div>
       <div class="kern-btn-wrapper">
