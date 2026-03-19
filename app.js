@@ -525,6 +525,7 @@ app.get("/kontakt/telefon", (req, res) => {
 });
 
 app.post("/kontakt/email", (req, res) => {
+  req.session.kontaktTelefon = req.body.kontaktTelefon;
   req.session.kontaktStarted = true;
   res.redirect("/kontakt/email");
 });
@@ -534,6 +535,7 @@ app.get("/kontakt/email", (req, res) => {
 });
 
 app.post("/kontakt/status", (req, res) => {
+  req.session.kontaktEmail = req.body.kontaktEmail;
   req.session.kontaktDone = true;
   res.redirect("/kontakt/status");
 });

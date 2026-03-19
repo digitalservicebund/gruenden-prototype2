@@ -498,6 +498,47 @@
     <h3 class="kern-title kern-title--small" id="title">Kontaktdaten</h3>
   </div>
 
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Telefon</dt>
+            <dd class="kern-description-list-item__value">
+              {{ session.kontaktTelefon}}
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a href="/kontakt/telefon" class="kern-link" aria-describedby="title">
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Email</dt>
+            <dd class="kern-description-list-item__value">
+              {{ session.kontaktEmail}}
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a href="/kontakt/email" class="kern-link" aria-describedby="title">
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="kern-btn-wrapper">
     <a href="/antrag-gesendet" class="kern-btn kern-btn--primary">
       <span class="kern-label">Antrag absenden</span>
