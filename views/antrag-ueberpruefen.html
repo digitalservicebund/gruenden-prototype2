@@ -165,20 +165,19 @@
         <div class="kern-summary__body">
           <dl class="kern-description-list">
             <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Straße</dt>
+              <dt class="kern-description-list-item__key">Adresse</dt>
               <dd class="kern-description-list-item__value">
-                {{session.strasse}} {{session.hausnummer}}
-              </dd>
-            </div>
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Ort</dt>
-              <dd class="kern-description-list-item__value">
+                {{session.strasse}} {{session.hausnummer}} <br />
                 {{session.plz}} {{session.ort}}
               </dd>
             </div>
           </dl>
           <div class="kern-summary__actions">
-            <a href="/person/plz" class="kern-link" aria-describedby="title">
+            <a
+              href="/person/adresse"
+              class="kern-link"
+              aria-describedby="title"
+            >
               <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
               Bearbeiten
             </a>
@@ -225,19 +224,15 @@
     </h3>
   </div>
 
+  {{#unless adresseAbweichend}}
   <div class="kern-summary-group">
     <div class="kern-summary">
       <div class="kern-summary__body">
         <dl class="kern-description-list">
           <div class="kern-description-list-item">
-            <dt class="kern-description-list-item__key">Straße</dt>
+            <dt class="kern-description-list-item__key">Adresse</dt>
             <dd class="kern-description-list-item__value">
-              {{session.strasse}} {{session.hausnummer}}
-            </dd>
-          </div>
-          <div class="kern-description-list-item">
-            <dt class="kern-description-list-item__key">Ort</dt>
-            <dd class="kern-description-list-item__value">
+              {{session.strasse}} {{session.hausnummer}} <br />
               {{session.plz}} {{session.ort}}
             </dd>
           </div>
@@ -255,6 +250,34 @@
       </div>
     </div>
   </div>
+  {{else}}
+  <div class="kern-summary-group">
+    <div class="kern-summary">
+      <div class="kern-summary__body">
+        <dl class="kern-description-list">
+          <div class="kern-description-list-item">
+            <dt class="kern-description-list-item__key">Adresse</dt>
+            <dd class="kern-description-list-item__value">
+              {{session.unternehmenStrasse}} {{session.unternehmenHausnummer}}
+              <br />
+              {{session.unternehmenPlz}} {{session.unternehmenOrt}}
+            </dd>
+          </div>
+        </dl>
+        <div class="kern-summary__actions">
+          <a
+            href="/unternehmen/adresse-abweichend"
+            class="kern-link"
+            aria-describedby="title"
+          >
+            <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+            Bearbeiten
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/unless}}
 
   <div class="kern-summary-group">
     <div class="kern-summary">

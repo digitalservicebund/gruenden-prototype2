@@ -187,11 +187,10 @@ app.get("/unternehmen/adresse-abweichend", (req, res) => {
 app.post("/unternehmen/adresse-eingabe", function (req, res) {
   req.session.adresseAbweichend = req.body.adresseAbweichend;
   req.session.unternehmenStarted = true;
-  var adresseAbweichend = req.session.adresseAbweichend;
+  var adresseAbweichend = req.session.adresseAbweichend == "ja";
 
-  if (adresseAbweichend == "ja") {
-    res.redirect("/unternehmen/taetigkeit");
-    // res.redirect("/unternehmen/adresse-eingabe");
+  if (adresseAbweichend) {
+    res.redirect("/unternehmen/adresse-eingabe");
   } else {
     res.redirect("/unternehmen/taetigkeit");
   }
@@ -202,6 +201,11 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
 });
 
 app.post("/unternehmen/taetigkeit", (req, res) => {
+  req.session.unternehmenStrasse = req.body.unternehmenStrasse;
+  req.session.unternehmenHausnummer = req.body.unternehmenHausnummer;
+  req.session.unternehmenPlz = req.body.unternehmenPlz;
+  req.session.unternehmenOrt = req.body.unternehmenOrt;
+
   res.redirect("/unternehmen/taetigkeit");
 });
 
@@ -549,8 +553,11 @@ app.post("/antrag-ueberpruefen", (req, res) => {
 });
 
 app.get("/antrag-ueberpruefen", (req, res) => {
+  var adresseAbweichend = req.session.adresseAbweichend == "ja";
+
   res.render("antrag-ueberpruefen", {
     pageName: "Antrag überprüfen",
+    adresseAbweichend: adresseAbweichend,
     session: req.session,
   });
 });
