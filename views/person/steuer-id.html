@@ -5,13 +5,18 @@
       Wie lautet Ihre Steuer-Identifikationsnummer?
     </h2>
     <p class="kern-body">
-      Eine Steuer-Identifikationsnummer sieht so aus: 1234567890
+      Eine Steuer-Identifikationsnummer ist eine elfstellige Nummer und ist
+      dauerhaft gültig. Sie finden Ihre Steuer-Identifikationsnummer in der
+      Regel im Einkommensteuerbescheid oder auf Ihrer Lohnsteuerbescheinigung.
     </p>
-    <p class="kern-body">
-      Sie ist leicht zu verwechseln mit der Steuernummer (mit Schrägstrichen).
-    </p>
+    <a
+      class="kern-link"
+      href="https://www.bzst.de/DE/Privatpersonen/SteuerlicheIdentifikationsnummer/steuerlicheidentifikationsnummer_node.html"
+    >
+      Mehr Informationen
+    </a>
   </div>
-  <form action="/person/status" method="post">
+  <form class="kern-stack kern-gap-lg" action="/person/status" method="post">
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
         <label class="kern-label" for="steuerid"
@@ -22,14 +27,15 @@
           id="steuerid"
           name="steuerid"
           type="text"
+          inputmode="numeric"
           value="{{ session.steuerid }}"
         />
       </div>
-      <div class="kern-btn-wrapper">
-        <button class="kern-btn kern-btn--primary">
-          <span class="kern-label">Weiter</span>
-        </button>
-      </div>
+    </div>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
     </div>
   </form>
 </div>
