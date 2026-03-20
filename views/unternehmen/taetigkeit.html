@@ -4,6 +4,7 @@
     <h2 class="kern-heading-x-large">
       Womit wird sich Ihr neues Unternehmen beschäftigen?
     </h2>
+    <p class="kern-body">Beschreiben Sie Ihre Tätigkeit möglichst genau.</p>
   </div>
   <form
     class="kern-stack kern-gap-xl"
@@ -13,9 +14,6 @@
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
         <label class="kern-label" for="taetigkeit">Tätigkeit</label>
-        <div class="kern-hint" id="textarea-hint">
-          Beschreiben Sie Ihre Tätigkeit möglichst genau.
-        </div>
         <textarea
           class="kern-form-input__input"
           id="taetigkeit"
@@ -24,11 +22,11 @@
           value="{{ session.taetigkeit }}"
         ></textarea>
       </div>
-      <div class="kern-btn-wrapper">
-        <button class="kern-btn kern-btn--primary">
-          <span class="kern-label">Weiter</span>
-        </button>
-      </div>
+    </div>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
     </div>
   </form>
 </div>
