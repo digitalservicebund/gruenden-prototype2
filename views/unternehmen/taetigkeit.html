@@ -1,11 +1,15 @@
 <div class="kern-stack">
-  {{> progress step=2 max=5}}
+  {{> progress step=2 max=5 section="Unternehmen und Tätigkeit"}}
   <div>
     <h2 class="kern-heading-x-large">
       Womit wird sich Ihr neues Unternehmen beschäftigen?
     </h2>
   </div>
-  <form class="kern-stack kern-gap-xl" action="/unternehmen/taetigkeit-begonnen" method="post">
+  <form
+    class="kern-stack kern-gap-xl"
+    action="/unternehmen/taetigkeit-begonnen"
+    method="post"
+  >
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
         <label class="kern-label" for="taetigkeit">Tätigkeit</label>

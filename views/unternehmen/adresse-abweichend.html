@@ -1,9 +1,13 @@
 <div class="kern-stack">
-  {{> progress step=1 max=5}}
+  {{> progress step=1 max=5 section="Unternehmen und Tätigkeit"}}
   <div>
     <h2 class="kern-heading-x-large">Wo ist der Sitz Ihres Unternehmens?</h2>
   </div>
-  <form class="kern-stack kern-gap-xl" action="/unternehmen/adresse-eingabe" method="post">
+  <form
+    class="kern-stack kern-gap-xl"
+    action="/unternehmen/adresse-eingabe"
+    method="post"
+  >
     <div class="kern-fieldset__body">
       <div class="kern-form-check">
         <input
@@ -11,6 +15,7 @@
           id="adresse-abweichend-nein"
           type="radio"
           value="nein"
+          checked
           name="adresseAbweichend"
         /><label class="kern-label" for="adresse-abweichend-nein"
           >mein Unternehmen sitzt an meiner privaten Adresse</label
@@ -23,7 +28,6 @@
           type="radio"
           value="ja"
           name="adresseAbweichend"
-          checked
         /><label class="kern-label" for="adresse-abweichend-ja"
           >mein Unternehmen hat eine andere Adresse</label
         >

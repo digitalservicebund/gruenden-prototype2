@@ -1,5 +1,5 @@
 <div class="kern-stack">
-  {{> progress step=5 max=5}}
+  {{> progress step=5 max=5 section="Unternehmen und Tätigkeit"}}
   <div>
     <h2 class="kern-heading-x-large">
       Haben Sie bereits eine Umsatzsteuer-Identifikationsnummer?
@@ -16,7 +16,11 @@
     </p>
   </div>
 
-  <form class="kern-stack kern-gap-xl" action="/unternehmen/status" method="post">
+  <form
+    class="kern-stack kern-gap-xl"
+    action="/unternehmen/status"
+    method="post"
+  >
     <fieldset class="kern-fieldset">
       <legend class="kern-label">
         Haben Sie bereits eine Umsatzsteuer-Identifikationsnummer?

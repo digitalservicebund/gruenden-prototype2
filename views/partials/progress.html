@@ -1,13 +1,6 @@
 <div class="kern-progress">
-  <div
-    class="kern-flex kern-flex-wrap kern-align-items-center kern-gap-sm kern-w-full"
-  >
-    {{#if section}}
-    <div class="kern-body">{{ section }}:</div>
-    {{/if}}
-    <label class="kern-label" for="progress1"
-      >Schritt {{ step }} von {{ max }}</label
-    >
-  </div>
   <progress id="progress1" value="{{ step }}" max="{{ max }}"></progress>
+  {{#if section}}
+  <label class="kern-body" for="progress1">{{ section }}</label>
+  {{/if}}
 </div>

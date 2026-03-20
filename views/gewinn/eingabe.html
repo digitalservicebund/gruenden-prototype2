@@ -1,5 +1,5 @@
 <div class="kern-stack">
-  {{> progress step=1 max=2}}
+  {{> progress step=1 max=2 section="Gewinne und Einkünfte"}}
   <div>
     <h2 class="kern-heading-x-large">
       Wie hoch wird Ihr geschätzter Gewinn sein?
@@ -9,7 +9,11 @@
       und -ausgaben. Bei Verlusten können Sie einen negativen Gewinn eintragen.
     </p>
   </div>
-  <form class="kern-stack kern-gap-xl" action="/einkuenfte/auswahl" method="post">
+  <form
+    class="kern-stack kern-gap-xl"
+    action="/einkuenfte/auswahl"
+    method="post"
+  >
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
         <label class="kern-label" for="gewinn-dieses-jahr"

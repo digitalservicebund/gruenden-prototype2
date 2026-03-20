@@ -1,11 +1,15 @@
 <div class="kern-stack">
-  {{> progress step=1 max=5}}
+  {{> progress step=1 max=5 section="Unternehmen und Tätigkeit"}}
   <div>
     <h2 class="kern-heading-x-large">
       Wie lautet die Adresse Ihres Unternehmens?
     </h2>
   </div>
-  <form class="kern-stack kern-gap-xl" action="/unternehmen/taetigkeit" method="post">
+  <form
+    class="kern-stack kern-gap-xl"
+    action="/unternehmen/taetigkeit"
+    method="post"
+  >
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
         <label class="kern-label" for="strasse">Straße</label>
