@@ -358,7 +358,7 @@ app.post("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
   if (kleinunternehmerMoeglich) {
     res.redirect("/umsatz/kleinunternehmerregelung-moeglich");
   } else {
-    res.redirect("/umsatz/umsatzsteuer");
+    res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
   }
 });
 
@@ -373,13 +373,42 @@ app.post("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
 });
 
 app.get("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
+  var hintUmsatz = Number(req.session.umsatzDiesesJahr) >= 25000;
+  var hintVerzicht =
+    req.session.verzichtBool && req.session.verzichtBool == "ja";
+
+  var hintGesamt =
+    req.session.weitereUnternehmenGesamtBool &&
+    req.session.weitereUnternehmenGesamtBool == "nein";
+
   res.render("umsatz/kleinunternehmerregelung-nicht-moeglich", {
+    session: req.session,
+    hintUmsatz: hintUmsatz,
+    hintVerzicht: hintVerzicht,
+    hintGesamt: hintGesamt,
+  });
+});
+
+app.post("/umsatz/kleinunternehmerregelung/verzicht", (req, res) => {
+  res.redirect("/umsatz/kleinunternehmerregelung/verzicht");
+});
+
+app.get("/umsatz/kleinunternehmerregelung/verzicht", (req, res) => {
+  res.render("umsatz/kleinunternehmerregelung/verzicht", {
     session: req.session,
   });
 });
 
 app.post("/umsatz/weitere-unternehmen", (req, res) => {
-  res.redirect("/umsatz/weitere-unternehmen");
+  req.session.verzichtBool = req.body.verzichtBool;
+
+  var verzicht = req.session.verzichtBool && req.session.verzichtBool == "ja";
+
+  if (verzicht) {
+    res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
+  } else {
+    res.redirect("/umsatz/weitere-unternehmen");
+  }
 });
 
 app.get("/umsatz/weitere-unternehmen", (req, res) => {

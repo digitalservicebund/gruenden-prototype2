@@ -1,0 +1,51 @@
+<div class="kern-stack">
+  <div>
+    <h2 class="kern-heading-x-large">
+      Haben Sie in den letzten 5 Jahren auf die Kleinunternehmerregelung
+      verzichtet?
+    </h2>
+    <p class="kern-body">
+      Falls Sie bereits ein Unternehmen führen oder geführt haben und sich dort
+      aktiv gegen die Kleinunternehmerregelung entschieden haben, sind Sie für 5
+      Jahre an diese Wahl gebunden.
+    </p>
+  </div>
+
+  <form
+    class="kern-stack kern-gap-xl"
+    action="/umsatz/weitere-unternehmen"
+    method="post"
+  >
+    <fieldset class="kern-fieldset">
+      <legend class="kern-label kern-sr-only">
+        In den letzten 5 Jahren auf Kleinunternehmerregelung verzichtet
+      </legend>
+      <div class="kern-fieldset__body">
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__radio"
+            id="verzicht-ja"
+            type="radio"
+            value="ja"
+            checked
+            name="verzichtBool"
+          /><label class="kern-label" for="verzicht-ja">Ja</label>
+        </div>
+        <div class="kern-form-check">
+          <input
+            class="kern-form-check__radio"
+            id="verzicht-nein"
+            type="radio"
+            value="nein"
+            name="verzichtBool"
+          /><label class="kern-label" for="verzicht-nein">Nein</label>
+        </div>
+      </div>
+    </fieldset>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
+    </div>
+  </form>
+</div>
