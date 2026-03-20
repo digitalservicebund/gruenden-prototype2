@@ -492,6 +492,26 @@ app.get("/einkuenfte/auswahl", (req, res) => {
   res.render("einkuenfte/auswahl", { session: req.session });
 });
 
+app.post("/einkuenfte/landwirtschaft", (req, res) => {
+  req.session.einkuenfte = req.body.einkuenfte;
+  res.redirect("/einkuenfte/landwirtschaft");
+});
+
+app.get("/einkuenfte/landwirtschaft", (req, res) => {
+  res.render("einkuenfte/landwirtschaft", { session: req.session });
+});
+
+app.post("/einkuenfte/vermietung", (req, res) => {
+  req.session.landwirtschaftDiesesJahr = req.body.landwirtschaftDiesesJahr;
+  req.session.landwirtschaftNaechstesJahr =
+    req.body.landwirtschaftNaechstesJahr;
+  res.redirect("/einkuenfte/vermietung");
+});
+
+app.get("/einkuenfte/vermietung", (req, res) => {
+  res.render("einkuenfte/vermietung", { session: req.session });
+});
+
 // app.post("/gewinn/angaben", (req, res) => {
 //   req.session.gewinnDone = true;
 //   req.session.einkuenfte = req.body.einkuenfte;
@@ -503,8 +523,9 @@ app.get("/einkuenfte/auswahl", (req, res) => {
 // });
 
 app.post("/gewinn/status", (req, res) => {
+  req.session.vermietungDiesesJahr = req.body.vermietungDiesesJahr;
+  req.session.vermietungNaechstesJahr = req.body.vermietungNaechstesJahr;
   req.session.gewinnDone = true;
-  req.session.einkuenfte = req.body.einkuenfte;
   res.redirect("/gewinn/status");
 });
 
