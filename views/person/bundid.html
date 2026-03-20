@@ -1,15 +1,27 @@
 <div class="kern-stack">
+  <img
+    src="/images/bundid-adaptive.svg"
+    alt=""
+    width="134"
+    height="36"
+    loading="eager"
+  />
   <div>
-    <h2 class="kern-heading-x-large">
-      Persönliche Daten automatisch ausfüllen
-    </h2>
+    <h2 class="kern-heading-x-large">Mit BundID anmelden?</h2>
     <p class="kern-body">
-      Für die Anmeldung können Sie Ihre BundID verwenden. Dadurch werden Ihre
-      hinterlegten Daten automatisch in den Online-Antrag übernommen.
+      Wenn Sie sich mit Ihrer BundID anmelden können wir einige Daten für Sie
+      vorausfüllen.
+    </p>
+    <p class="kern-body">
+      Für die Anmeldung brauchen Sie einen Online-Ausweis (mit PIN) oder ein
+      ELSTER-Zertifikat.
+    </p>
+    <p class="kern-body">
+      Sie können diesen Schritt auch später noch nachholen.
     </p>
   </div>
 
-  <form action="/person/name" method="post">
+  <form class="kern-stack kern-gap-lg" action="/person/name" method="post">
     <fieldset class="kern-fieldset">
       <legend class="kern-label">Wie möchten Sie fortfahren?</legend>
       <div class="kern-fieldset__body">
@@ -32,16 +44,14 @@
             type="radio"
             value="nein"
             name="bundidbool"
-          /><label class="kern-label" for="bundid-nein"
-            >ohne Anmeldung fortfahren</label
-          >
-        </div>
-        <div class="kern-btn-wrapper">
-          <button class="kern-btn kern-btn--primary">
-            <span class="kern-label">Weiter</span>
-          </button>
+          /><label class="kern-label" for="bundid-nein">später anmelden</label>
         </div>
       </div>
     </fieldset>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
+    </div>
   </form>
 </div>

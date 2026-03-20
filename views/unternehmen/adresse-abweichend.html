@@ -1,10 +1,21 @@
 <div class="kern-stack">
   {{> progress step=1 max=5}}
   <div>
-    <h2 class="kern-heading-x-large">Hat Ihr Betrieb eine andere Adresse?</h2>
+    <h2 class="kern-heading-x-large">Wo ist der Sitz Ihres Unternehmens?</h2>
   </div>
   <form action="/unternehmen/adresse-eingabe" method="post">
     <div class="kern-fieldset__body">
+      <div class="kern-form-check">
+        <input
+          class="kern-form-check__radio"
+          id="adresse-abweichend-nein"
+          type="radio"
+          value="nein"
+          name="adresseAbweichend"
+        /><label class="kern-label" for="adresse-abweichend-nein"
+          >mein Unternehmen sitzt an meiner privaten Adresse</label
+        >
+      </div>
       <div class="kern-form-check">
         <input
           class="kern-form-check__radio"
@@ -13,16 +24,9 @@
           value="ja"
           name="adresseAbweichend"
           checked
-        /><label class="kern-label" for="adresse-abweichend-ja">Ja</label>
-      </div>
-      <div class="kern-form-check">
-        <input
-          class="kern-form-check__radio"
-          id="adresse-abweichend-nein"
-          type="radio"
-          value="nein"
-          name="adresseAbweichend"
-        /><label class="kern-label" for="adresse-abweichend-nein">Nein</label>
+        /><label class="kern-label" for="adresse-abweichend-ja"
+          >mein Unternehmen hat eine andere Adresse</label
+        >
       </div>
       <div class="kern-btn-wrapper">
         <button class="kern-btn kern-btn--primary">

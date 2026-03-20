@@ -1,33 +1,50 @@
 <div class="kern-stack">
   {{> progress step=4 max=5}}
   <div>
-    <h2 class="kern-heading-x-large">Wollen Sie nebenberuflich gründen?</h2>
+    <h2 class="kern-heading-x-large">Möchten Sie nebenberuflich gründen?</h2>
+    <p class="kern-body">
+      Dann bleiben Sie über Ihren Hauptberuf weiter krankenversichert.
+    </p>
+    <p class="kern-body kern-body--bold">Vorraussetzungen:</p>
+    <ul class="kern-list kern-list--bullet">
+      <li>
+        Ihr Hauptjob muss zeitlich und finanziell Ihre wichtigste Tätigkeit
+        bleiben.
+      </li>
+      <li>Sie arbeiten maximal 20 Stunden pro Woche selbstständig.</li>
+      <li>Ihr Gewinn ist niedriger als Ihr Gehalt im Hauptberuf.</li>
+    </ul>
   </div>
-  <form action="/unternehmen/ustid" method="post">
-    <div class="kern-fieldset__body">
-      <div class="kern-form-check">
-        <input
-          class="kern-form-check__radio"
-          id="nebengewerbe"
-          type="radio"
-          value="nebengewerbe"
-          name="gewerbeart"
-        /><label class="kern-label" for="nebengewerbe">Ja</label>
-      </div>
-      <div class="kern-form-check">
-        <input
-          class="kern-form-check__radio"
-          id="hauptgewerbe"
-          type="radio"
-          value="hauptgewerbe"
-          name="gewerbeart"
-        /><label class="kern-label" for="hauptgewerbe">Nein</label>
-      </div>
-      <div class="kern-btn-wrapper">
-        <button class="kern-btn kern-btn--primary">
-          <span class="kern-label">Weiter</span>
-        </button>
-      </div>
+  <form  class="kern-stack kern-gap-lg" action="/unternehmen/ustid" method="post">
+    <fieldset class="kern-fieldset">
+      <legend class="kern-label">
+Möchten Sie nebenberuflich gründen?
+      </legend>
+        <div class="kern-fieldset__body">
+          <div class="kern-form-check">
+            <input
+              class="kern-form-check__radio"
+              id="nebengewerbe"
+              type="radio"
+              value="nebengewerbe"
+              name="gewerbeart"
+            /><label class="kern-label" for="nebengewerbe">Ja, ich möchte nebenberuflich gründen</label>
+          </div>
+          <div class="kern-form-check">
+            <input
+              class="kern-form-check__radio"
+              id="hauptgewerbe"
+              type="radio"
+              value="hauptgewerbe"
+              name="gewerbeart"
+            /><label class="kern-label" for="hauptgewerbe">Nein, ich gründe hauptberuflich</label>
+          </div>
+        <div>
+    </fieldset> 
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
     </div>
   </form>
 </div>
