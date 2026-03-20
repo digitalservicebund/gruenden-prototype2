@@ -4,18 +4,21 @@
     <h2 class="kern-heading-x-large">
       Haben Sie bereits eine Umsatzsteuer-Identifikationsnummer?
     </h2>
+    <p class="kern-body">Dann müssen Sie keine neue beantragen.</p>
     <p class="kern-body">
-      Eine Umsatzsteuer-Identifikationsnummer sieht so aus: DE1234556789.
+      Wenn Sie bereits eine Umsatzsteuer-Identifikationsnummer aus einem
+      Einzelunternehmen oder einer freiberuflichen Tätigkeit besitzen benötigen
+      Sie keine weitere.
     </p>
     <p class="kern-body">
-      Die Umsatzsteuer-Identifikationsnummer ist unabhängig von Ihren
-      Unternehmen und kann wiederverwendet werden.
+      Da die Umsatzsteuer-Identifikationsnummer fest mit Ihnen als Privatperson
+      verknüpft ist, gilt sie für alle Ihre Tätigkeiten.
     </p>
   </div>
 
-  <form action="/unternehmen/ustid-wiederverwenden" method="post">
+  <form class="kern-stack kern-gap-xl" action="/unternehmen/status" method="post">
     <fieldset class="kern-fieldset">
-      <legend class="kern-label kern-sr-only">
+      <legend class="kern-label">
         Haben Sie bereits eine Umsatzsteuer-Identifikationsnummer?
       </legend>
       <div class="kern-fieldset__body">
@@ -27,7 +30,9 @@
             value="ja"
             checked
             name="ustidexistingbool"
-          /><label class="kern-label" for="ustidexisting-ja">Ja</label>
+          /><label class="kern-label" for="ustidexisting-ja"
+            >Ja, ich habe bereits eine Umsatzsteuer-Identifikationsnummer</label
+          >
         </div>
         <div class="kern-form-check">
           <input
@@ -36,7 +41,10 @@
             type="radio"
             value="nein"
             name="ustidexistingbool"
-          /><label class="kern-label" for="ustidexisting-nein">Nein</label>
+          /><label class="kern-label" for="ustidexisting-nein"
+            >Nein, ich möchte eine Umsatzsteuer-Identifikationsnummer
+            beantragen</label
+          >
         </div>
         <div class="kern-btn-wrapper">
           <button class="kern-btn kern-btn--primary">

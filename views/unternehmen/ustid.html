@@ -5,16 +5,30 @@
       Möchten Sie eine Umsatzsteuer-Identifikationsnummer beantragen?
     </h2>
     <p class="kern-body">
-      Sobald Sie Leistungen oder Waren über das Internet oder an Unternehmen in
-      anderen EU-Ländern verkaufen, benötigen Sie eine
-      Umsatzsteuer-Identifikationsnummer.
+      Während Ihre Steuernummer für Geschäfte innerhalb Deutschlands ausreicht,
+      benötigen Sie die Umsatzsteuer-Identifikationsnummer für den Handel
+      innerhalb der EU:
     </p>
+    <ul class="kern-list kern-list--bullet">
+      <li>
+        Sie kaufen oder verkaufen Waren und Dienstleistungen in anderen
+        EU-Ländern oder über das Internet
+      </li>
+      <li>
+        Sie nutzen digitale Dienste aus dem EU-Ausland (z. B. Software-Abos,
+        Werbeanzeigen oder Hosting-Dienste)
+      </li>
+    </ul>
   </div>
 
-  <form action="/unternehmen/ustid-abfrage" method="post">
+  <form
+    class="kern-stack kern-gap-xl"
+    action="/unternehmen/ustid-abfrage"
+    method="post"
+  >
     <fieldset class="kern-fieldset">
       <legend class="kern-label">
-        Umsatzsteuer-Identifikationsnummer beantragen?
+        Möchten Sie eine Umsatzsteuer-Identifikationsnummer beantragen?
       </legend>
       <div class="kern-fieldset__body">
         <div class="kern-form-check">
@@ -36,12 +50,12 @@
             name="ustidbool"
           /><label class="kern-label" for="ustid-nein">Nein</label>
         </div>
-        <div class="kern-btn-wrapper">
-          <button class="kern-btn kern-btn--primary">
-            <span class="kern-label">Weiter</span>
-          </button>
-        </div>
       </div>
     </fieldset>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
+    </div>
   </form>
 </div>
