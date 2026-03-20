@@ -2,9 +2,16 @@
   {{> progress step=2 max=2 section="Umsätze"}}
   <div>
     <h2 class="kern-heading-x-large">
-      Bitte schätzen Sie Ihre voraussichtliche Umsatzsteuer
+      Schätzen Sie jetzt Ihre Umsatzsteuer für dieses Jahr
     </h2>
-    <p class="kern-body">TBD erklärung</p>
+    <p class="kern-body">
+      Mit dieser Angabe legt das Finanzamt fest, wie oft Sie Ihre
+      Umsatzsteuer-Voranmeldung abgeben müssen.
+    </p>
+    <p class="kern-body">
+      Liegt Ihre geschätzte Steuer im Jahr unter 9.000 €, reicht eine Abgabe
+      alle drei Monate. Sonst müssen Sie die Meldung monatlich einreichen.
+    </p>
   </div>
   <form class="kern-stack kern-gap-xl" action="/umsatz/status" method="post">
     <div class="kern-fieldset__body">
@@ -25,22 +32,22 @@
         </div>
       </div>
 
-      <div class="kern-form-input">
-        <label class="kern-label" for="ust-naechstes-jahr"
-          >Umsatzsteuer nächstes Jahr</label
-        >
-        <div class="kern-input-group">
-          <input
-            class="kern-form-input__input"
-            id="ust-naechstes-jahr"
-            name="ustNaechstesJahr"
-            type="text"
-            inputmode="numeric"
-            value="{{ session.ustNaechstesJahr }}"
-          />
-          <span class="kern-input-group-text">Euro</span>
-        </div>
-      </div>
+      <!-- <div class="kern-form-input"> -->
+      <!--   <label class="kern-label" for="ust-naechstes-jahr" -->
+      <!--     >Umsatzsteuer nächstes Jahr</label -->
+      <!--   > -->
+      <!--   <div class="kern-input-group"> -->
+      <!--     <input -->
+      <!--       class="kern-form-input__input" -->
+      <!--       id="ust-naechstes-jahr" -->
+      <!--       name="ustNaechstesJahr" -->
+      <!--       type="text" -->
+      <!--       inputmode="numeric" -->
+      <!--       value="{{ session.ustNaechstesJahr }}" -->
+      <!--     /> -->
+      <!--     <span class="kern-input-group-text">Euro</span> -->
+      <!--   </div> -->
+      <!-- </div> -->
     </div>
     <div class="kern-btn-wrapper">
       <button class="kern-btn kern-btn--primary">

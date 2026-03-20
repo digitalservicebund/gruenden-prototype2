@@ -1,12 +1,17 @@
-<div class="kern-stack">
+<div class="kern-stack kern-gap-xl">
   {{> progress step=1 max=2 section="Gewinne und Einkünfte"}}
-  <div>
+  <div class="kern-stack">
     <h2 class="kern-heading-x-large">
-      Wie hoch wird Ihr geschätzter Gewinn sein?
+      Wie hoch sind Ihre voraussichtliche Gewinne?
     </h2>
     <p class="kern-body">
-      Den Gewinn Ihres Unternehmens errechnen Sie aus Ihren Betriebseinnahmen
-      und -ausgaben. Bei Verlusten können Sie einen negativen Gewinn eintragen.
+      Der Gewinn ist der Betrag, der nach Abzug aller Ausgaben von Ihrem Umsatz
+      übrig bleibt. Bei Verlusten tragen Sie bitte einen Minusbetrag ein.
+    </p>
+    <p class="kern-body">
+      <span class="kern-body--bold">Beispiel</span>: Sie stellen eine Rechnung
+      über 100 € aus und haben gleichzeitig 40 € Ausgaben für Ihr Unternehmen.
+      Ihr Gewinn beträgt in diesem Fall 60 €.
     </p>
   </div>
   <form
@@ -48,12 +53,11 @@
           <span class="kern-input-group-text">Euro</span>
         </div>
       </div>
-
-      <div class="kern-btn-wrapper">
-        <button class="kern-btn kern-btn--primary">
-          <span class="kern-label">Weiter</span>
-        </button>
-      </div>
+    </div>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
     </div>
   </form>
 </div>
