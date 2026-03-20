@@ -26,24 +26,6 @@
                 {{session.nachname}}
               </dd>
             </div>
-            <div class="kern-summary__actions">
-              <a href="/person/name" class="kern-link" aria-describedby="title">
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
             <div class="kern-description-list-item">
               <dt class="kern-description-list-item__key">Geburtsname</dt>
               <dd class="kern-description-list-item__value">
@@ -51,11 +33,7 @@
               </dd>
             </div>
             <div class="kern-summary__actions">
-              <a
-                href="/person/geburtsname"
-                class="kern-link"
-                aria-describedby="title"
-              >
+              <a href="/person/name" class="kern-link" aria-describedby="title">
                 <span
                   class="kern-icon kern-icon--edit"
                   aria-hidden="true"
@@ -423,14 +401,16 @@
       <div class="kern-summary__body">
         <dl class="kern-description-list">
           <div class="kern-description-list-item">
-            <dt class="kern-description-list-item__key">Umsätze dieses Jahr</dt>
+            <dt class="kern-description-list-item__key">
+              Umsatzsteuer dieses Jahr
+            </dt>
             <dd class="kern-description-list-item__value">
               {{session.ustDiesesJahr}}
             </dd>
           </div>
           <div class="kern-description-list-item">
             <dt class="kern-description-list-item__key">
-              Umsätze nächstes Jahr
+              Umsatzsteuer nächstes Jahr
             </dt>
             <dd class="kern-description-list-item__value">
               {{session.ustNaechstesJahr}}
