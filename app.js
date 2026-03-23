@@ -60,6 +60,9 @@ app.post("/person/name", (req, res) => {
 });
 
 app.get("/person/name", (req, res) => {
+  req.session.vorname = "Kim";
+  req.session.nachname = "Beyer";
+
   res.render("person/name", {
     pageName: "Wie heißen Sie?",
     session: req.session,

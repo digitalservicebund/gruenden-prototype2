@@ -11,51 +11,61 @@
     method="post"
   >
     <div class="kern-fieldset__body">
-      <div class="kern-form-input">
-        <label class="kern-label" for="strasse">Straße</label>
-        <input
-          class="kern-form-input__input"
-          id="strasse"
-          name="unternehmenStrasse"
-          type="text"
-          value="{{ session.unternehmenStrasse }}"
-        />
+      <div class="kern-flex kern-flex-wrap kern-gap-md">
+        <div class="kern-form-input kern-flex-grow">
+          <label class="kern-label" for="strasse">Straße</label>
+          <input
+            class="kern-form-input__input"
+            id="strasse"
+            name="unternehmenStrasse"
+            type="text"
+            value="{{ session.unternehmenStrasse }}"
+          />
+        </div>
+        <div
+          class="kern-form-input kern-flex-shrink-0 kern-w-"
+          style="width: 8rem"
+        >
+          <label class="kern-label" for="hausnummer">Hausnummer</label>
+          <input
+            class="kern-form-input__input"
+            id="hausnummer"
+            name="unternehmenHausnummer"
+            type="text"
+            value="{{ session.unternehmenHausnummer }}"
+          />
+        </div>
       </div>
-      <div class="kern-form-input">
-        <label class="kern-label" for="hausnummer">Hausnummer</label>
-        <input
-          class="kern-form-input__input"
-          id="hausnummer"
-          name="unternehmenHausnummer"
-          type="text"
-          value="{{ session.unternehmenHausnummer }}"
-        />
+      <div class="kern-flex kern-flex-wrap kern-gap-md">
+        <div
+          class="kern-form-input kern-flex-shrink-0 kern-w-"
+          style="width: 12rem"
+        >
+          <label class="kern-label" for="plz">Postleitzahl</label>
+          <input
+            class="kern-form-input__input"
+            id="plz"
+            name="unternehmenPlz"
+            type="text"
+            value="{{ session.unternehmenPlz }}"
+          />
+        </div>
+        <div class="kern-form-input kern-flex-grow">
+          <label class="kern-label" for="ort">Ort</label>
+          <input
+            class="kern-form-input__input"
+            id="ort"
+            name="unternehmenOrt"
+            type="text"
+            value="{{ session.unternehmenOrt }}"
+          />
+        </div>
       </div>
-      <div class="kern-form-input">
-        <label class="kern-label" for="plz">Postleitzahl</label>
-        <input
-          class="kern-form-input__input"
-          id="plz"
-          name="unternehmenPlz"
-          type="text"
-          value="{{ session.unternehmenPlz }}"
-        />
-      </div>
-      <div class="kern-form-input">
-        <label class="kern-label" for="ort">Ort</label>
-        <input
-          class="kern-form-input__input"
-          id="ort"
-          name="unternehmenOrt"
-          type="text"
-          value="{{ session.unternehmenOrt }}"
-        />
-      </div>
-      <div class="kern-btn-wrapper">
-        <button class="kern-btn kern-btn--primary">
-          <span class="kern-label">Weiter</span>
-        </button>
-      </div>
+    </div>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
     </div>
   </form>
 </div>
