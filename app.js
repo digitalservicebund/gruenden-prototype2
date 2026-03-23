@@ -148,10 +148,9 @@ app.post("/person/adresse", (req, res) => {
 });
 
 app.get("/person/adresse", (req, res) => {
-  req.session.strasse = "Prinzessinnenstraße";
-  req.session.hausnummer = "11-17";
-  req.session.plz = "10967";
-  req.session.ort = "Berlin";
+  // req.session.strasse = "Prinzessinnenstraße 17";
+  // req.session.plz = "10967";
+  // req.session.ort = "Berlin";
 
   res.render("person/adresse", {
     session: req.session,
@@ -161,7 +160,7 @@ app.get("/person/adresse", (req, res) => {
 
 app.post("/person/steuer-id", (req, res) => {
   req.session.strasse = req.body.strasse;
-  req.session.hausnummer = req.body.hausnummer;
+  // req.session.hausnummer = req.body.hausnummer;
   req.session.plz = req.body.plz;
   req.session.ort = req.body.ort;
 
@@ -235,7 +234,7 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
 
 app.post("/unternehmen/taetigkeit", (req, res) => {
   req.session.unternehmenStrasse = req.body.unternehmenStrasse;
-  req.session.unternehmenHausnummer = req.body.unternehmenHausnummer;
+  // req.session.unternehmenHausnummer = req.body.unternehmenHausnummer;
   req.session.unternehmenPlz = req.body.unternehmenPlz;
   req.session.unternehmenOrt = req.body.unternehmenOrt;
 

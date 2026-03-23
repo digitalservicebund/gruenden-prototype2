@@ -1,7 +1,9 @@
 <div class="kern-stack">
   {{> progress step=1 max=5 section="Unternehmen und Tätigkeit"}}
   <div>
-    <h2 class="kern-heading-x-large">Wo ist der Sitz Ihres Unternehmens?</h2>
+    <h2 class="kern-heading-x-large">
+      Ist der Sitz Ihres Unternehmens an ihrer privaten Adresse?
+    </h2>
   </div>
   <form
     class="kern-stack kern-gap-xl"
@@ -17,9 +19,7 @@
           value="nein"
           checked
           name="adresseAbweichend"
-        /><label class="kern-label" for="adresse-abweichend-nein"
-          >An meiner privaten Adresse</label
-        >
+        /><label class="kern-label" for="adresse-abweichend-nein">Ja</label>
       </div>
       <div class="kern-form-check">
         <input
@@ -29,7 +29,7 @@
           value="ja"
           name="adresseAbweichend"
         /><label class="kern-label" for="adresse-abweichend-ja"
-          >Mein Unternehmen hat eine andere Adresse</label
+          >Nein, mein Unternehmen hat eine andere Adresse</label
         >
       </div>
     </div>

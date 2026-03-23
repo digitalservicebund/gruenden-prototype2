@@ -7,7 +7,7 @@
     <div class="kern-fieldset__body">
       <div class="kern-flex kern-flex-wrap kern-gap-md">
         <div class="kern-form-input kern-flex-grow">
-          <label class="kern-label" for="strasse">Straße</label>
+          <label class="kern-label" for="strasse">Straße und Hausnummer</label>
           <input
             class="kern-form-input__input"
             id="strasse"
@@ -16,19 +16,19 @@
             value="{{ session.strasse }}"
           />
         </div>
-        <div
-          class="kern-form-input kern-flex-shrink-0 kern-w-"
-          style="width: 8rem"
-        >
-          <label class="kern-label" for="hausnummer">Hausnummer</label>
-          <input
-            class="kern-form-input__input"
-            id="hausnummer"
-            name="hausnummer"
-            type="text"
-            value="{{ session.hausnummer }}"
-          />
-        </div>
+        <!-- <div -->
+        <!--   class="kern-form-input kern-flex-shrink-0 kern-w-" -->
+        <!--   style="width: 8rem" -->
+        <!-- > -->
+        <!--   <label class="kern-label" for="hausnummer">Hausnummer</label> -->
+        <!--   <input -->
+        <!--     class="kern-form-input__input" -->
+        <!--     id="hausnummer" -->
+        <!--     name="hausnummer" -->
+        <!--     type="text" -->
+        <!--     value="{{ session.hausnummer }}" -->
+        <!--   /> -->
+        <!-- </div> -->
       </div>
 
       <div class="kern-flex kern-flex-wrap kern-gap-md">
