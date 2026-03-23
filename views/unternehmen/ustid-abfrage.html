@@ -4,21 +4,17 @@
     <h2 class="kern-heading-x-large">
       Haben Sie bereits eine Umsatzsteuer-Identifikationsnummer?
     </h2>
-    <p class="kern-body">Dann müssen Sie keine neue beantragen.</p>
     <p class="kern-body">
       Wenn Sie bereits eine Umsatzsteuer-Identifikationsnummer aus einem
-      Einzelunternehmen oder einer freiberuflichen Tätigkeit besitzen benötigen
-      Sie keine weitere.
-    </p>
-    <p class="kern-body">
-      Da die Umsatzsteuer-Identifikationsnummer fest mit Ihnen als Privatperson
-      verknüpft ist, gilt sie für alle Ihre Tätigkeiten.
+      Einzelunternehmen oder einer freiberuflichen Tätigkeit besitzen müssen Sie
+      keine neue beantragen. Sie ist fest mit Ihnen als Privatperson verknüpft
+      und gilt für alle Ihre Tätigkeiten.
     </p>
   </div>
 
   <form
     class="kern-stack kern-gap-xl"
-    action="/unternehmen/status"
+    action="/unternehmen/ustid"
     method="post"
   >
     <fieldset class="kern-fieldset">
@@ -34,9 +30,7 @@
             value="ja"
             checked
             name="ustidexistingbool"
-          /><label class="kern-label" for="ustidexisting-ja"
-            >Ja, ich habe bereits eine Umsatzsteuer-Identifikationsnummer</label
-          >
+          /><label class="kern-label" for="ustidexisting-ja">Ja</label>
         </div>
         <div class="kern-form-check">
           <input
@@ -45,10 +39,7 @@
             type="radio"
             value="nein"
             name="ustidexistingbool"
-          /><label class="kern-label" for="ustidexisting-nein"
-            >Nein, ich möchte eine Umsatzsteuer-Identifikationsnummer
-            beantragen</label
-          >
+          /><label class="kern-label" for="ustidexisting-nein">Nein</label>
         </div>
         <div class="kern-btn-wrapper">
           <button class="kern-btn kern-btn--primary">

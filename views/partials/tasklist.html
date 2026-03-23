@@ -163,8 +163,19 @@
     </li>
     <li class="kern-task-list__item">
       <span class="kern-number">6</span>
+
       <div class="kern-task-list__title">
+        {{#if interactive}}
+        <a
+          href="/antrag-ueberpruefen"
+          class="kern-link kern-link--stretched"
+          aria-describedby="task2-status"
+        >
+          Angaben überprüfen</a
+        >
+        {{else}}
         <p class="kern-body">Angaben überprüfen</p>
+        {{/if}}
       </div>
     </li>
   </ul>

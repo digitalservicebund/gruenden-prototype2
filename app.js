@@ -259,30 +259,6 @@ app.get("/unternehmen/gewerbeart", (req, res) => {
   res.render("unternehmen/gewerbeart", { session: req.session });
 });
 
-app.post("/unternehmen/ustid", (req, res) => {
-  req.session.gewerbeart = req.body.gewerbeart;
-  res.redirect("/unternehmen/ustid");
-});
-
-app.get("/unternehmen/ustid", (req, res) => {
-  res.render("unternehmen/ustid", { session: req.session });
-});
-
-app.post("/unternehmen/ustid-abfrage", (req, res) => {
-  req.session.ustidbool = req.body.ustidbool;
-  var ustid = req.session.ustidbool;
-
-  if (ustid == "ja") {
-    res.redirect("/unternehmen/ustid-abfrage");
-  } else {
-    res.redirect("/unternehmen/status");
-  }
-});
-
-app.get("/unternehmen/ustid-abfrage", (req, res) => {
-  res.render("unternehmen/ustid-abfrage", { session: req.session });
-});
-
 app.post("/unternehmen/ustid-abfrage", (req, res) => {
   req.session.ustidbool = req.body.ustidbool;
   res.redirect("/unternehmen/ustid-abfrage");
@@ -292,28 +268,19 @@ app.get("/unternehmen/ustid-abfrage", (req, res) => {
   res.render("unternehmen/ustid-abfrage", { session: req.session });
 });
 
-app.post("/unternehmen/ustid-wiederverwenden", (req, res) => {
+app.post("/unternehmen/ustid", (req, res) => {
   req.session.ustidexistingbool = req.body.ustidexistingbool;
   var existingUstid = req.session.ustidexistingbool;
 
   if (existingUstid == "ja") {
-    res.redirect("/unternehmen/ustid-wiederverwenden");
+    res.redirect("/unternehmen/status");
   } else {
-    res.redirect("/unternehmen/ustid-antrag");
+    res.redirect("/unternehmen/ustid");
   }
 });
 
-app.get("/unternehmen/ustid-wiederverwenden", (req, res) => {
-  res.render("unternehmen/ustid-wiederverwenden", { session: req.session });
-});
-
-app.post("/unternehmen/ustid-antrag", (req, res) => {
-  req.session.ustidbool = req.body.ustidbool;
-  res.redirect("/unternehmen/ustid-antrag");
-});
-
-app.get("/unternehmen/ustid-antrag", (req, res) => {
-  res.render("unternehmen/ustid-antrag", { session: req.session });
+app.get("/unternehmen/ustid", (req, res) => {
+  res.render("unternehmen/ustid", { session: req.session });
 });
 
 // app.post("/unternehmen/angaben", (req, res) => {
