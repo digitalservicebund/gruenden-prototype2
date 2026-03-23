@@ -50,7 +50,7 @@ app.post("/person/bundid", (req, res) => {
 
 app.get("/person/bundid", (req, res) => {
   res.render("person/bundid", {
-    pageName: "Persönliche Daten",
+    pageName: "Mit BundID anmelden",
     session: req.session,
   });
 });
@@ -106,7 +106,10 @@ app.get("/person/geburtstag", (req, res) => {
   req.session.monat = 10;
   req.session.jahr = 1997;
 
-  res.render("person/geburtstag", { session: req.session });
+  res.render("person/geburtstag", {
+    session: req.session,
+    pageName: "Wann wurden Sie geboren?",
+  });
 });
 
 app.post("/person/geburtsort", (req, res) => {
@@ -117,7 +120,13 @@ app.post("/person/geburtsort", (req, res) => {
 });
 
 app.get("/person/geburtsort", (req, res) => {
-  res.render("person/geburtsort", { session: req.session });
+  req.session.geburtsort = "Hamburg";
+  req.session.geburtsland = "Deutschland";
+
+  res.render("person/geburtsort", {
+    session: req.session,
+    pageName: "Wo wurden Sie geboren?",
+  });
 });
 
 app.post("/person/staatsangehoerigkeit", (req, res) => {
@@ -127,7 +136,10 @@ app.post("/person/staatsangehoerigkeit", (req, res) => {
 });
 
 app.get("/person/staatsangehoerigkeit", (req, res) => {
-  res.render("person/staatsangehoerigkeit", { session: req.session });
+  res.render("person/staatsangehoerigkeit", {
+    session: req.session,
+    pageName: "Haben Sie eine deutsche Staatsangehörigkeit?",
+  });
 });
 
 app.post("/person/adresse", (req, res) => {
@@ -141,7 +153,10 @@ app.get("/person/adresse", (req, res) => {
   req.session.plz = "10967";
   req.session.ort = "Berlin";
 
-  res.render("person/adresse", { session: req.session });
+  res.render("person/adresse", {
+    session: req.session,
+    pageName: "Wo wohnen Sie?",
+  });
 });
 
 app.post("/person/steuer-id", (req, res) => {
@@ -154,7 +169,10 @@ app.post("/person/steuer-id", (req, res) => {
 });
 
 app.get("/person/steuer-id", (req, res) => {
-  res.render("person/steuer-id", { session: req.session });
+  res.render("person/steuer-id", {
+    session: req.session,
+    pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
+  });
 });
 
 // app.post("/person/angaben", (req, res) => {
@@ -177,7 +195,10 @@ app.post("/person/status", (req, res) => {
 });
 
 app.get("/person/status", (req, res) => {
-  res.render("person/status", { session: req.session });
+  res.render("person/status", {
+    session: req.session,
+    pageName: "Ihr Kombi-Antrag Status",
+  });
 });
 
 app.post("/unternehmen/start", (req, res) => {
@@ -304,7 +325,7 @@ app.post("/unternehmen/status", (req, res) => {
 
 app.get("/unternehmen/status", (req, res) => {
   res.render("unternehmen/status", {
-    pageName: "Status Antrag",
+    pageName: "Ihr Kombi-Antrag Status",
     session: req.session,
   });
 });
@@ -432,9 +453,17 @@ app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
 });
 
 app.post("/umsatz/umsatzsteuer", (req, res) => {
-  req.session.kleinunternehmerBool = req.body.kleinunternehmerBool;
+  req.session.kleinunternehmenBool = req.body.kleinunternehmenBool;
 
-  var kleinunternehmerVerwenden = res.redirect("/umsatz/umsatzsteuer");
+  var kleinunternehmenVerwenden =
+    req.session.kleinunternehmenBool &&
+    req.session.kleinunternehmenBool == "ja";
+
+  if (kleinunternehmenVerwenden) {
+    res.redirect("/umsatz/status");
+  } else {
+    res.redirect("/umsatz/umsatzsteuer");
+  }
 });
 
 app.get("/umsatz/umsatzsteuer", (req, res) => {
@@ -462,7 +491,10 @@ app.post("/umsatz/status", (req, res) => {
 });
 
 app.get("/umsatz/status", (req, res) => {
-  res.render("umsatz/status", { session: req.session });
+  res.render("umsatz/status", {
+    pageName: "Ihr Kombi-Antrag Status",
+    session: req.session,
+  });
 });
 
 app.post("/gewinn/start", (req, res) => {
@@ -538,7 +570,10 @@ app.post("/gewinn/status", (req, res) => {
 });
 
 app.get("/gewinn/status", (req, res) => {
-  res.render("gewinn/status", { session: req.session });
+  res.render("gewinn/status", {
+    pageName: "Ihr Kombi-Antrag Status",
+    session: req.session,
+  });
 });
 
 app.post("/kontakt/start", (req, res) => {
@@ -574,7 +609,10 @@ app.post("/kontakt/status", (req, res) => {
 });
 
 app.get("/kontakt/status", (req, res) => {
-  res.render("kontakt/status", { session: req.session });
+  res.render("kontakt/status", {
+    pageName: "Ihr Kombi-Antrag Status",
+    session: req.session,
+  });
 });
 
 app.post("/antrag-ueberpruefen", (req, res) => {
