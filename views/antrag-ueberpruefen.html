@@ -108,35 +108,35 @@
       </div>
     </div>
 
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">
-                Staatsangehörigkeit
-              </dt>
-              <dd class="kern-description-list-item__value">
-                {{session.staatsangehoerigkeit}}
-              </dd>
-            </div>
-            <!-- <div class="kern-summary__actions"> -->
-            <!--   <a -->
-            <!--     href="/person/staatsangehoerigkeit" -->
-            <!--     class="kern-link" -->
-            <!--     aria-describedby="title" -->
-            <!--   > -->
-            <!--     <span -->
-            <!--       class="kern-icon kern-icon--edit" -->
-            <!--       aria-hidden="true" -->
-            <!--     ></span> -->
-            <!--     Bearbeiten -->
-            <!--   </a> -->
-            <!-- </div> -->
-          </dl>
-        </div>
-      </div>
-    </div>
+    <!-- <div class="kern-summary-group"> -->
+    <!--   <div class="kern-summary"> -->
+    <!--     <div class="kern-summary__body"> -->
+    <!--       <dl class="kern-description-list"> -->
+    <!--         <div class="kern-description-list-item"> -->
+    <!--           <dt class="kern-description-list-item__key"> -->
+    <!--             Staatsangehörigkeit -->
+    <!--           </dt> -->
+    <!--           <dd class="kern-description-list-item__value"> -->
+    <!--             {{session.staatsangehoerigkeit}} -->
+    <!--           </dd> -->
+    <!--         </div> -->
+    <!--         <div class="kern-summary__actions"> -->
+    <!--           <a -->
+    <!--             href="/person/staatsangehoerigkeit" -->
+    <!--             class="kern-link" -->
+    <!--             aria-describedby="title" -->
+    <!--           > -->
+    <!--             <span -->
+    <!--               class="kern-icon kern-icon--edit" -->
+    <!--               aria-hidden="true" -->
+    <!--             ></span> -->
+    <!--             Bearbeiten -->
+    <!--           </a> -->
+    <!--         </div> -->
+    <!--       </dl> -->
+    <!--     </div> -->
+    <!--   </div> -->
+    <!-- </div> -->
 
     <div class="kern-summary-group">
       <div class="kern-summary">
@@ -378,7 +378,7 @@
               Kleinunternehmerregelung
             </dt>
             <dd class="kern-description-list-item__value">
-              {{#if session.kleinunternehmerVerwenden}} Ja {{else}} Nein {{/if}}
+              {{#if kleinunternehmenVerwenden}}Ja{{else}}Nein{{/if}}
             </dd>
           </div>
         </dl>
@@ -396,6 +396,7 @@
     </div>
   </div>
 
+  {{#unless kleinunternehmenVerwenden}}
   <div class="kern-summary-group">
     <div class="kern-summary">
       <div class="kern-summary__body">
@@ -430,6 +431,7 @@
       </div>
     </div>
   </div>
+  {{/unless}}
 
   <div class="kern-summary__header">
     <span class="kern-number">4</span>

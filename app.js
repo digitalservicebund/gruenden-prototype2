@@ -460,6 +460,10 @@ app.post("/umsatz/umsatzsteuer", (req, res) => {
     req.session.kleinunternehmenBool == "ja";
 
   if (kleinunternehmenVerwenden) {
+    req.session.umsatzDone = true;
+  }
+
+  if (kleinunternehmenVerwenden) {
     res.redirect("/umsatz/status");
   } else {
     res.redirect("/umsatz/umsatzsteuer");
@@ -621,10 +625,12 @@ app.post("/antrag-ueberpruefen", (req, res) => {
 
 app.get("/antrag-ueberpruefen", (req, res) => {
   var adresseAbweichend = req.session.adresseAbweichend == "ja";
+  var kleinunternehmenVerwenden = req.session.kleinunternehmenBool == "ja";
 
   res.render("antrag-ueberpruefen", {
     pageName: "Antrag überprüfen",
     adresseAbweichend: adresseAbweichend,
+    kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     session: req.session,
   });
 });
