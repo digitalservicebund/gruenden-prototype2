@@ -102,6 +102,10 @@ app.post("/person/geburtstag", (req, res) => {
 });
 
 app.get("/person/geburtstag", (req, res) => {
+  req.session.tag = 17;
+  req.session.monat = 10;
+  req.session.jahr = 1997;
+
   res.render("person/geburtstag", { session: req.session });
 });
 
@@ -132,6 +136,11 @@ app.post("/person/adresse", (req, res) => {
 });
 
 app.get("/person/adresse", (req, res) => {
+  req.session.strasse = "Prinzessinnenstraße";
+  req.session.hausnummer = "11-17";
+  req.session.plz = "10967";
+  req.session.ort = "Berlin";
+
   res.render("person/adresse", { session: req.session });
 });
 
