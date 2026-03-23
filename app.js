@@ -234,7 +234,7 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
 
 app.post("/unternehmen/taetigkeit", (req, res) => {
   req.session.unternehmenStrasse = req.body.unternehmenStrasse;
-  // req.session.unternehmenHausnummer = req.body.unternehmenHausnummer;
+  req.session.unternehmenHausnummer = req.body.unternehmenHausnummer;
   req.session.unternehmenPlz = req.body.unternehmenPlz;
   req.session.unternehmenOrt = req.body.unternehmenOrt;
 
@@ -521,7 +521,9 @@ app.post("/einkuenfte/start", (req, res) => {
 });
 
 app.get("/einkuenfte/start", (req, res) => {
-  res.render("einkuenfte/start", { session: req.session });
+  res.render("einkuenfte/start", {
+    session: req.session,
+  });
 });
 
 app.post("/einkuenfte/auswahl", (req, res) => {
@@ -532,12 +534,32 @@ app.post("/einkuenfte/auswahl", (req, res) => {
 });
 
 app.get("/einkuenfte/auswahl", (req, res) => {
-  res.render("einkuenfte/auswahl", { session: req.session });
+  res.render("einkuenfte/auswahl", {
+    pageName: "Weitere Einkünfte",
+    session: req.session,
+  });
 });
 
 app.post("/einkuenfte/landwirtschaft", (req, res) => {
   req.session.einkuenfte = req.body.einkuenfte;
-  res.redirect("/einkuenfte/landwirtschaft");
+
+  var einkuenfte = req.session.einkuenfte;
+
+  if (einkuenfte.includes("landwirtschaft")) {
+    res.redirect("/einkuenfte/landwirtschaft");
+  } else if (einkuenfte.includes("vermietung")) {
+    res.redirect("/einkuenfte/vermietung");
+  } else if (einkuenfte.includes("selbststaendig")) {
+    res.redirect("/einkuenfte/selbststaendig");
+  } else if (einkuenfte.includes("nichtselbst")) {
+    res.redirect("/einkuenfte/nicht-selbststaendig");
+  } else if (einkuenfte.includes("kapital")) {
+    res.redirect("/einkuenfte/kapital");
+  } else if (einkuenfte.includes("sonstige")) {
+    res.redirect("/einkuenfte/sonstige");
+  } else {
+    res.redirect("/gewinn/status");
+  }
 });
 
 app.get("/einkuenfte/landwirtschaft", (req, res) => {
@@ -548,26 +570,112 @@ app.post("/einkuenfte/vermietung", (req, res) => {
   req.session.landwirtschaftDiesesJahr = req.body.landwirtschaftDiesesJahr;
   req.session.landwirtschaftNaechstesJahr =
     req.body.landwirtschaftNaechstesJahr;
-  res.redirect("/einkuenfte/vermietung");
+
+  var einkuenfte = req.session.einkuenfte;
+
+  if (einkuenfte.includes("vermietung")) {
+    res.redirect("/einkuenfte/vermietung");
+  } else if (einkuenfte.includes("selbststaendig")) {
+    res.redirect("/einkuenfte/selbststaendig");
+  } else if (einkuenfte.includes("nichtselbst")) {
+    res.redirect("/einkuenfte/nicht-selbststaendig");
+  } else if (einkuenfte.includes("kapital")) {
+    res.redirect("/einkuenfte/kapital");
+  } else if (einkuenfte.includes("sonstige")) {
+    res.redirect("/einkuenfte/sonstige");
+  } else {
+    res.redirect("/gewinn/status");
+  }
 });
 
 app.get("/einkuenfte/vermietung", (req, res) => {
   res.render("einkuenfte/vermietung", { session: req.session });
 });
 
-// app.post("/gewinn/angaben", (req, res) => {
-//   req.session.gewinnDone = true;
-//   req.session.einkuenfte = req.body.einkuenfte;
-//   res.redirect("/gewinn/angaben");
-// });
-//
-// app.get("/gewinn/angaben", (req, res) => {
-//   res.render("gewinn/angaben", { session: req.session });
-// });
-
-app.post("/gewinn/status", (req, res) => {
+app.post("/einkuenfte/selbststaendig", (req, res) => {
   req.session.vermietungDiesesJahr = req.body.vermietungDiesesJahr;
   req.session.vermietungNaechstesJahr = req.body.vermietungNaechstesJahr;
+
+  var einkuenfte = req.session.einkuenfte;
+
+  if (einkuenfte.includes("selbststaendig")) {
+    res.redirect("/einkuenfte/selbststaendig");
+  } else if (einkuenfte.includes("nichtselbst")) {
+    res.redirect("/einkuenfte/nicht-selbststaendig");
+  } else if (einkuenfte.includes("kapital")) {
+    res.redirect("/einkuenfte/kapital");
+  } else if (einkuenfte.includes("sonstige")) {
+    res.redirect("/einkuenfte/sonstige");
+  } else {
+    res.redirect("/gewinn/status");
+  }
+});
+
+app.get("/einkuenfte/selbststaendig", (req, res) => {
+  res.render("einkuenfte/selbststaendig", { session: req.session });
+});
+
+app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
+  req.session.selbststaendigDiesesJahr = req.body.selbststaendigDiesesJahr;
+  req.session.selbststaendigNaechstesJahr =
+    req.body.selbststaendigNaechstesJahr;
+
+  var einkuenfte = req.session.einkuenfte;
+
+  if (einkuenfte.includes("kapital")) {
+    res.redirect("/einkuenfte/kapital");
+  } else if (einkuenfte.includes("sonstige")) {
+    res.redirect("/einkuenfte/sonstige");
+  } else {
+    res.redirect("/gewinn/status");
+  }
+});
+
+app.get("/einkuenfte/nicht-selbststaendig", (req, res) => {
+  res.render("einkuenfte/nicht-selbststaendig", { session: req.session });
+});
+
+app.post("/einkuenfte/kapital", (req, res) => {
+  req.session.nichtSelbststaendigDiesesJahr =
+    req.body.nichtSelbststaendigDiesesJahr;
+  req.session.nichtSelbststaendigNaechstesJahr =
+    req.body.nichtSelbststaendigNaechstesJahr;
+
+  var einkuenfte = req.session.einkuenfte;
+
+  if (einkuenfte.includes("kapital")) {
+    res.redirect("/einkuenfte/kapital");
+  } else if (einkuenfte.includes("sonstige")) {
+    res.redirect("/einkuenfte/sonstige");
+  } else {
+    res.redirect("/gewinn/status");
+  }
+});
+
+app.get("/einkuenfte/kapital", (req, res) => {
+  res.render("einkuenfte/kapital", { session: req.session });
+});
+
+app.post("/einkuenfte/sonstige", (req, res) => {
+  req.session.kapitalDiesesJahr = req.body.sonstigeDiesesJahr;
+  req.session.kapitalNaechstesJahr = req.body.sonstigeNaechstesJahr;
+
+  var einkuenfte = req.session.einkuenfte;
+
+  if (einkuenfte.includes("sonstige")) {
+    res.redirect("/einkuenfte/sonstige");
+  } else {
+    res.redirect("/gewinn/status");
+  }
+});
+
+app.get("/einkuenfte/sonstige", (req, res) => {
+  res.render("einkuenfte/sonstige", { session: req.session });
+});
+
+app.post("/gewinn/status", (req, res) => {
+  req.session.sonstigeDiesesJahr = req.body.sonstigeDiesesJahr;
+  req.session.sonstigeNaechstesJahr = req.body.sonstigeNaechstesJahr;
   req.session.gewinnDone = true;
   res.redirect("/gewinn/status");
 });

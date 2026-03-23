@@ -2,44 +2,40 @@
   {{> progress step=2 max=2 section="Gewinne und Einkünfte"}}
   <div>
     <h2 class="kern-heading-x-large">
-      Wie hoch sind Ihre Einkünfte aus Vermietung und Verpachtung?
+      Wie hoch sind Ihre sonstigen Einkünfte?
     </h2>
   </div>
-  <form
-    class="kern-stack kern-gap-xl"
-    action="/einkuenfte/selbststaendig"
-    method="post"
-  >
+  <form class="kern-stack kern-gap-xl" action="/gewinn/status" method="post">
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
-        <label class="kern-label" for="vermietung-dieses-jahr"
+        <label class="kern-label" for="sonstige-dieses-jahr"
           >Einkünfte dieses Jahr</label
         >
         <div class="kern-input-group">
           <input
             class="kern-form-input__input"
-            id="vermietung-dieses-jahr"
-            name="vermietungDiesesJahr"
+            id="sonstige-dieses-jahr"
+            name="sonstigeDiesesJahr"
             type="text"
             inputmode="numeric"
-            value="{{ session.vermietungDiesesJahr }}"
+            value="{{ session.sonstigeDiesesJahr }}"
           />
           <span class="kern-input-group-text">Euro</span>
         </div>
       </div>
 
       <div class="kern-form-input">
-        <label class="kern-label" for="vermietung-naechstes-jahr"
+        <label class="kern-label" for="sonstige-naechstes-jahr"
           >Einkünfte nächstes Jahr</label
         >
         <div class="kern-input-group">
           <input
             class="kern-form-input__input"
-            id="vermietung-naechstes-jahr"
-            name="vermietungNaechstesJahr"
+            id="sonstige-naechstes-jahr"
+            name="sonstigeNaechstesJahr"
             type="text"
             inputmode="numeric"
-            value="{{ session.vermietungNaechstesJahr }}"
+            value="{{ session.sonstigeNaechstesJahr }}"
           />
           <span class="kern-input-group-text">Euro</span>
         </div>
