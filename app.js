@@ -69,6 +69,17 @@ app.get("/person/name", (req, res) => {
   });
 });
 
+app.post("/person/name/edit", (req, res) => {
+  res.redirect("/person/name-edit");
+});
+
+app.get("/person/name/edit", (req, res) => {
+  res.render("person/name-edit", {
+    pageName: "Wie heißen Sie?",
+    session: req.session,
+  });
+});
+
 app.post("/person/geburtstag", (req, res) => {
   req.session.vorname = req.body.vorname;
   req.session.nachname = req.body.nachname;
@@ -672,6 +683,10 @@ app.get("/kontakt/status", (req, res) => {
 });
 
 app.post("/antrag-ueberpruefen", (req, res) => {
+  req.session.vorname = req.body.vorname;
+  req.session.nachname = req.body.nachname;
+  req.session.geburtsname = req.body.geburtsname;
+
   res.redirect("/antrag-ueberpruefen");
 });
 

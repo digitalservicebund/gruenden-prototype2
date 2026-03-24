@@ -1,0 +1,51 @@
+<div class="kern-stack">
+  <div>
+    <h2 class="kern-heading-x-large">Wie heißen Sie?</h2>
+  </div>
+  <form
+    class="kern-stack kern-gap-xl"
+    action="/antrag-ueberpruefen"
+    method="post"
+  >
+    <div class="kern-fieldset__body">
+      <div class="kern-form-input">
+        <label class="kern-label" for="vorname">Vorname</label>
+        <input
+          class="kern-form-input__input"
+          id="vorname"
+          name="vorname"
+          type="text"
+          value="{{ session.vorname }}"
+        />
+      </div>
+      <div class="kern-form-input">
+        <label class="kern-label" for="nachname">Nachname</label>
+        <input
+          class="kern-form-input__input"
+          id="nachname"
+          name="nachname"
+          type="text"
+          value="{{ session.nachname }}"
+        />
+      </div>
+      <div class="kern-form-input">
+        <label class="kern-label" for="geburtsname"
+          >Geburtsname
+          <span class="kern-label__optional">- Optional</span></label
+        >
+        <input
+          class="kern-form-input__input"
+          id="geburtsname"
+          name="geburtsname"
+          type="text"
+          value="{{ session.geburtsname }}"
+        />
+      </div>
+    </div>
+    <div class="kern-btn-wrapper">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Speichern</span>
+      </button>
+    </div>
+  </form>
+</div>
