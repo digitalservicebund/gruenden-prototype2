@@ -622,7 +622,9 @@ app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
 
   var einkuenfte = req.session.einkuenfte;
 
-  if (einkuenfte.includes("kapital")) {
+  if (einkuenfte.includes("nichtselbst")) {
+    res.redirect("/einkuenfte/nicht-selbststaendig");
+  } else if (einkuenfte.includes("kapital")) {
     res.redirect("/einkuenfte/kapital");
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
