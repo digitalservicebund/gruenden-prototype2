@@ -69,29 +69,6 @@ app.get("/person/name", (req, res) => {
   });
 });
 
-// app.get("/person/geburtsname", (req, res) => {
-//   res.render("person/geburtsname", { session: req.session });
-// });
-//
-// app.post("/person/geburtsname", (req, res) => {
-//   res.redirect("/person/geburtsname");
-// });
-//
-// app.post("/person/geburtsname/eingabe", function (req, res) {
-//   req.session.geburtsnamebool = req.body.geburtsnamebool;
-//   var hasGeburtsname = req.session.geburtsnamebool;
-//
-//   if (hasGeburtsname == "ja") {
-//     res.redirect("/person/geburtsname/eingabe");
-//   } else {
-//     res.redirect("/person/geburtstag");
-//   }
-// });
-//
-// app.get("/person/geburtsname/eingabe", (req, res) => {
-//   res.render("person/geburtsname-eingabe", { session: req.session });
-// });
-
 app.post("/person/geburtstag", (req, res) => {
   req.session.vorname = req.body.vorname;
   req.session.nachname = req.body.nachname;
@@ -173,19 +150,6 @@ app.get("/person/steuer-id", (req, res) => {
     pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
   });
 });
-
-// app.post("/person/angaben", (req, res) => {
-//   req.session.steuerid = req.body.steuerid;
-//   req.session.personalDone = true;
-//   res.redirect("/person/angaben");
-// });
-//
-// app.get("/person/angaben", (req, res) => {
-//   res.render("person/angaben", {
-//     pageName: "Eingaben überprüfen",
-//     session: req.session,
-//   });
-// });
 
 app.post("/person/status", (req, res) => {
   req.session.steuerid = req.body.steuerid;
@@ -302,19 +266,6 @@ app.post("/unternehmen/ustid", (req, res) => {
 app.get("/unternehmen/ustid", (req, res) => {
   res.render("unternehmen/ustid", { session: req.session });
 });
-
-// app.post("/unternehmen/angaben", (req, res) => {
-//   req.session.ustid = req.body.ustid;
-//   req.session.unternehmenDone = true;
-//   res.redirect("/unternehmen/angaben");
-// });
-//
-// app.get("/unternehmen/angaben", (req, res) => {
-//   res.render("unternehmen/angaben", {
-//     pageName: "Eingaben überprüfen",
-//     session: req.session,
-//   });
-// });
 
 app.post("/unternehmen/status", (req, res) => {
   req.session.ustid = req.body.ustid;
@@ -473,18 +424,6 @@ app.get("/umsatz/umsatzsteuer", (req, res) => {
   res.render("umsatz/umsatzsteuer", { session: req.session });
 });
 
-// app.post("/umsatz/angaben", (req, res) => {
-//   req.session.ustDiesesJahr = req.body.ustDiesesJahr;
-//   req.session.ustNaechstesJahr = req.body.NaechstesJahr;
-//   req.session.umsatzDone = true;
-//
-//   res.redirect("/umsatz/angaben");
-// });
-//
-// app.get("/umsatz/angaben", (req, res) => {
-//   res.render("umsatz/angaben", { session: req.session });
-// });
-
 app.post("/umsatz/status", (req, res) => {
   req.session.ustDiesesJahr = req.body.ustDiesesJahr;
   req.session.ustNaechstesJahr = req.body.NaechstesJahr;
@@ -545,18 +484,22 @@ app.post("/einkuenfte/landwirtschaft", (req, res) => {
 
   var einkuenfte = req.session.einkuenfte;
 
-  if (einkuenfte.includes("landwirtschaft")) {
-    res.redirect("/einkuenfte/landwirtschaft");
-  } else if (einkuenfte.includes("vermietung")) {
-    res.redirect("/einkuenfte/vermietung");
-  } else if (einkuenfte.includes("selbststaendig")) {
-    res.redirect("/einkuenfte/selbststaendig");
-  } else if (einkuenfte.includes("nichtselbst")) {
-    res.redirect("/einkuenfte/nicht-selbststaendig");
-  } else if (einkuenfte.includes("kapital")) {
-    res.redirect("/einkuenfte/kapital");
-  } else if (einkuenfte.includes("sonstige")) {
-    res.redirect("/einkuenfte/sonstige");
+  if (einkuenfte) {
+    if (einkuenfte.includes("landwirtschaft")) {
+      res.redirect("/einkuenfte/landwirtschaft");
+    } else if (einkuenfte.includes("vermietung")) {
+      res.redirect("/einkuenfte/vermietung");
+    } else if (einkuenfte.includes("selbststaendig")) {
+      res.redirect("/einkuenfte/selbststaendig");
+    } else if (einkuenfte.includes("nichtselbst")) {
+      res.redirect("/einkuenfte/nicht-selbststaendig");
+    } else if (einkuenfte.includes("kapital")) {
+      res.redirect("/einkuenfte/kapital");
+    } else if (einkuenfte.includes("sonstige")) {
+      res.redirect("/einkuenfte/sonstige");
+    } else {
+      res.redirect("/gewinn/status");
+    }
   } else {
     res.redirect("/gewinn/status");
   }
