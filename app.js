@@ -509,9 +509,11 @@ app.post("/einkuenfte/landwirtschaft", (req, res) => {
     } else if (einkuenfte.includes("sonstige")) {
       res.redirect("/einkuenfte/sonstige");
     } else {
+      req.session.gewinnDone = true;
       res.redirect("/gewinn/status");
     }
   } else {
+    req.session.gewinnDone = true;
     res.redirect("/gewinn/status");
   }
 });
@@ -538,6 +540,7 @@ app.post("/einkuenfte/vermietung", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
+    req.session.gewinnDone = true;
     res.redirect("/gewinn/status");
   }
 });
@@ -561,6 +564,7 @@ app.post("/einkuenfte/selbststaendig", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
+    req.session.gewinnDone = true;
     res.redirect("/gewinn/status");
   }
 });
@@ -583,6 +587,7 @@ app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
+    req.session.gewinnDone = true;
     res.redirect("/gewinn/status");
   }
 });
@@ -604,6 +609,7 @@ app.post("/einkuenfte/kapital", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
+    req.session.gewinnDone = true;
     res.redirect("/gewinn/status");
   }
 });
@@ -621,6 +627,7 @@ app.post("/einkuenfte/sonstige", (req, res) => {
   if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
+    req.session.gewinnDone = true;
     res.redirect("/gewinn/status");
   }
 });
