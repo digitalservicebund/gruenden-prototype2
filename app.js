@@ -25,9 +25,57 @@ app.use(
 );
 app.use(bodyParser.urlencoded());
 
+const links = [
+  {
+    name: "Persönliche Angaben",
+    href: "/person/start",
+    started: true,
+    items: [
+      {
+        name: "Name",
+        href: "/person/name",
+        done: true,
+      },
+      {
+        name: "Geburtstag",
+        href: "/person/geburtstag",
+      },
+      {
+        name: "Geburtsort",
+        href: "/person/geburtsort",
+      },
+      {
+        name: "Staatsangehörigkeit",
+        href: "/person/staatsangehoerigkeit",
+      },
+      {
+        name: "Adresse",
+        href: "/person/adresse",
+      },
+      {
+        name: "Steuer-Identifikationsnummer",
+        href: "/person/steuer-id",
+      },
+    ],
+  },
+  { name: "Unternehmen und Tätigkeit", href: "/unternehmen/start" },
+  { name: "Umsätze", href: "/umsatz/start" },
+  { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+  { name: "Kontakt", href: "/kontakt/start" },
+  { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+];
+
 app.get("/", (req, res) => {
   res.render("index", {
     pageName: "Kombi-Antrag Steuer und Gewerbe",
+    start: true,
+    session: req.session,
+  });
+});
+
+app.get("/antrag", (req, res) => {
+  res.render("antrag", {
+    pageName: "Ihr Kombi-Antrag",
     start: true,
     session: req.session,
   });
@@ -40,6 +88,7 @@ app.post("/person/start", (req, res) => {
 app.get("/person/start", (req, res) => {
   res.render("person/start", {
     pageName: "Persönliche Daten",
+    start: true,
     session: req.session,
   });
 });
@@ -51,6 +100,7 @@ app.post("/person/bundid", (req, res) => {
 app.get("/person/bundid", (req, res) => {
   res.render("person/bundid", {
     pageName: "Mit BundID anmelden",
+    start: true,
     session: req.session,
   });
 });
@@ -63,8 +113,49 @@ app.get("/person/name", (req, res) => {
   req.session.vorname = "Kim";
   req.session.nachname = "Beyer";
 
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      active: true,
+      items: [
+        {
+          name: "Name",
+          href: "/person/name",
+          active: true,
+        },
+        {
+          name: "Geburtstag",
+          href: "/person/geburtstag",
+        },
+        {
+          name: "Geburtsort",
+          href: "/person/geburtsort",
+        },
+        {
+          name: "Staatsangehörigkeit",
+          href: "/person/staatsangehoerigkeit",
+        },
+        {
+          name: "Adresse",
+          href: "/person/adresse",
+        },
+        {
+          name: "Steuer-Identifikationsnummer",
+          href: "/person/steuer-id",
+        },
+      ],
+    },
+    { name: "Unternehmen und Tätigkeit", href: "/unternehmen/start" },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+  ];
+
   res.render("person/name", {
     pageName: "Wie heißen Sie?",
+    links: links,
     session: req.session,
   });
 });
@@ -76,6 +167,7 @@ app.post("/person/name/edit", (req, res) => {
 app.get("/person/name/edit", (req, res) => {
   res.render("person/name-edit", {
     pageName: "Wie heißen Sie?",
+    start: true,
     session: req.session,
   });
 });
@@ -94,8 +186,51 @@ app.get("/person/geburtstag", (req, res) => {
   req.session.monat = 10;
   req.session.jahr = 1997;
 
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      active: true,
+      started: true,
+      items: [
+        {
+          name: "Name",
+          href: "/person/name",
+          done: true,
+        },
+        {
+          name: "Geburtstag",
+          href: "/person/geburtstag",
+          active: true,
+        },
+        {
+          name: "Geburtsort",
+          href: "/person/geburtsort",
+        },
+        {
+          name: "Staatsangehörigkeit",
+          href: "/person/staatsangehoerigkeit",
+        },
+        {
+          name: "Adresse",
+          href: "/person/adresse",
+        },
+        {
+          name: "Steuer-Identifikationsnummer",
+          href: "/person/steuer-id",
+        },
+      ],
+    },
+    { name: "Unternehmen und Tätigkeit", href: "/unternehmen/start" },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+  ];
+
   res.render("person/geburtstag", {
     session: req.session,
+    links: links,
     pageName: "Wann wurden Sie geboren?",
   });
 });
@@ -111,7 +246,51 @@ app.get("/person/geburtsort", (req, res) => {
   req.session.geburtsort = "Hamburg";
   req.session.geburtsland = "Deutschland";
 
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      active: true,
+      started: true,
+      items: [
+        {
+          name: "Name",
+          href: "/person/name",
+          done: true,
+        },
+        {
+          name: "Geburtstag",
+          href: "/person/geburtstag",
+          done: true,
+        },
+        {
+          name: "Geburtsort",
+          href: "/person/geburtsort",
+          active: true,
+        },
+        {
+          name: "Staatsangehörigkeit",
+          href: "/person/staatsangehoerigkeit",
+        },
+        {
+          name: "Adresse",
+          href: "/person/adresse",
+        },
+        {
+          name: "Steuer-Identifikationsnummer",
+          href: "/person/steuer-id",
+        },
+      ],
+    },
+    { name: "Unternehmen und Tätigkeit", href: "/unternehmen/start" },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+  ];
+
   res.render("person/geburtsort", {
+    links: links,
     session: req.session,
     pageName: "Wo wurden Sie geboren?",
   });
@@ -124,8 +303,53 @@ app.post("/person/staatsangehoerigkeit", (req, res) => {
 });
 
 app.get("/person/staatsangehoerigkeit", (req, res) => {
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      active: true,
+      started: true,
+      items: [
+        {
+          name: "Name",
+          href: "/person/name",
+          done: true,
+        },
+        {
+          name: "Geburtstag",
+          href: "/person/geburtstag",
+          done: true,
+        },
+        {
+          name: "Geburtsort",
+          href: "/person/geburtsort",
+          done: true,
+        },
+        {
+          name: "Staatsangehörigkeit",
+          href: "/person/staatsangehoerigkeit",
+          active: true,
+        },
+        {
+          name: "Adresse",
+          href: "/person/adresse",
+        },
+        {
+          name: "Steuer-Identifikationsnummer",
+          href: "/person/steuer-id",
+        },
+      ],
+    },
+    { name: "Unternehmen und Tätigkeit", href: "/unternehmen/start" },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+  ];
+
   res.render("person/staatsangehoerigkeit", {
     session: req.session,
+    links: links,
     pageName: "Haben Sie eine deutsche Staatsangehörigkeit?",
   });
 });
@@ -140,8 +364,54 @@ app.get("/person/adresse", (req, res) => {
   // req.session.plz = "10967";
   // req.session.ort = "Berlin";
 
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      active: true,
+      started: true,
+      items: [
+        {
+          name: "Name",
+          href: "/person/name",
+          done: true,
+        },
+        {
+          name: "Geburtstag",
+          href: "/person/geburtstag",
+          done: true,
+        },
+        {
+          name: "Geburtsort",
+          href: "/person/geburtsort",
+          done: true,
+        },
+        {
+          name: "Staatsangehörigkeit",
+          href: "/person/staatsangehoerigkeit",
+          done: true,
+        },
+        {
+          name: "Adresse",
+          href: "/person/adresse",
+          active: true,
+        },
+        {
+          name: "Steuer-Identifikationsnummer",
+          href: "/person/steuer-id",
+        },
+      ],
+    },
+    { name: "Unternehmen und Tätigkeit", href: "/unternehmen/start" },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+  ];
+
   res.render("person/adresse", {
     session: req.session,
+    links: links,
     pageName: "Wo wohnen Sie?",
   });
 });
@@ -156,8 +426,55 @@ app.post("/person/steuer-id", (req, res) => {
 });
 
 app.get("/person/steuer-id", (req, res) => {
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      active: true,
+      started: true,
+      items: [
+        {
+          name: "Name",
+          href: "/person/name",
+          done: true,
+        },
+        {
+          name: "Geburtstag",
+          href: "/person/geburtstag",
+          done: true,
+        },
+        {
+          name: "Geburtsort",
+          href: "/person/geburtsort",
+          done: true,
+        },
+        {
+          name: "Staatsangehörigkeit",
+          href: "/person/staatsangehoerigkeit",
+          done: true,
+        },
+        {
+          name: "Adresse",
+          href: "/person/adresse",
+          done: true,
+        },
+        {
+          name: "Steuer-Identifikationsnummer",
+          href: "/person/steuer-id",
+          active: true,
+        },
+      ],
+    },
+    { name: "Unternehmen und Tätigkeit", href: "/unternehmen/start" },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+  ];
+
   res.render("person/steuer-id", {
     session: req.session,
+    links: links,
     pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
   });
 });
@@ -180,7 +497,45 @@ app.post("/unternehmen/start", (req, res) => {
 });
 
 app.get("/unternehmen/start", (req, res) => {
-  res.render("unternehmen/start", { session: req.session });
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      done: true,
+    },
+    {
+      name: "Unternehmen und Tätigkeit",
+      href: "/unternehmen/start",
+      active: true,
+      items: [
+        {
+          name: "Adresse",
+          href: "/unternehmen/adresse-abweichend",
+        },
+        {
+          name: "Tätigkeit",
+          href: "/unternehmen/taetigkeit",
+        },
+        {
+          name: "Beginn",
+          href: "/unternehmen/taetigkeit-begonnen",
+        },
+        {
+          name: "Art der Gründung",
+          href: "/unternehmen/gewerbeart",
+        },
+        {
+          name: "Umsatzsteuer-Identifikationsnummer",
+          href: "/unternehmen/ustid-abfrage",
+        },
+      ],
+    },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+  ];
+  res.render("unternehmen/start", { links: links, session: req.session });
 });
 
 app.post("/unternehmen/adresse-abweichend", (req, res) => {
@@ -188,7 +543,49 @@ app.post("/unternehmen/adresse-abweichend", (req, res) => {
 });
 
 app.get("/unternehmen/adresse-abweichend", (req, res) => {
-  res.render("unternehmen/adresse-abweichend", { session: req.session });
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      done: true,
+    },
+    {
+      name: "Unternehmen und Tätigkeit",
+      href: "/unternehmen/start",
+      active: true,
+      items: [
+        {
+          name: "Adresse",
+          href: "/unternehmen/adresse-abweichend",
+          active: true,
+        },
+        {
+          name: "Tätigkeit",
+          href: "/unternehmen/taetigkeit",
+        },
+        {
+          name: "Beginn",
+          href: "/unternehmen/taetigkeit-begonnen",
+        },
+        {
+          name: "Art der Gründung",
+          href: "/unternehmen/gewerbeart",
+        },
+        {
+          name: "Umsatzsteuer-Identifikationsnummer",
+          href: "/unternehmen/ustid-abfrage",
+        },
+      ],
+    },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen" },
+  ];
+  res.render("unternehmen/adresse-abweichend", {
+    links: links,
+    session: req.session,
+  });
 });
 
 app.post("/unternehmen/adresse-eingabe", function (req, res) {
@@ -701,8 +1098,22 @@ app.get("/antrag-ueberpruefen", (req, res) => {
   var adresseAbweichend = req.session.adresseAbweichend == "ja";
   var kleinunternehmenVerwenden = req.session.kleinunternehmenBool == "ja";
 
+  const links = [
+    {
+      name: "Persönliche Angaben",
+      href: "/person/start",
+      started: true,
+    },
+    { name: "Unternehmen und Tätigkeit", href: "/unternehmen/start" },
+    { name: "Umsätze", href: "/umsatz/start" },
+    { name: "Gewinne und Einkünfte", href: "/gewinn/start" },
+    { name: "Kontakt", href: "/kontakt/start" },
+    { name: "Angaben überprüfen", href: "/antrag-ueberpruefen", active: true },
+  ];
+
   res.render("antrag-ueberpruefen", {
     pageName: "Antrag überprüfen",
+    links: links,
     adresseAbweichend: adresseAbweichend,
     kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     session: req.session,

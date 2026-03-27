@@ -1,0 +1,9 @@
+{{#unless active}}
+<a class="kern-link" href="{{ href }}"
+  >{{name}} {{> tree-link-status started=started done=done}}</a
+>
+{{else}}
+<p class="kern-body kern-body--bold">
+  {{name}} {{> tree-link-status started=started done=done}}
+</p>
+{{/unless}}

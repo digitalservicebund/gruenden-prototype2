@@ -35,6 +35,14 @@ main {
   max-width: 80ch;
 }
 
+.kern-link .kern-icon.status--started {
+  background-color: var(--kern-color-feedback-warning);
+}
+
+.kern-link .kern-icon.status--done {
+  background-color: var(--kern-color-feedback-success);
+}
+
 footer {
   margin-block-start: 6rem;
   background: var(--kern-color-layout-background-hued);

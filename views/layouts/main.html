@@ -13,11 +13,19 @@
     </a>
     {{> header}}
     <div class="kern-container kern-py-xl">
-      <div class="kern-stack kern-gap-xl">
+      <div class="kern-flex-md">
+        <div class="kern-stack kern-gap-xl kern-flex-1">
+          {{#unless start}}
+          <div>{{> back url=url}}</div>
+          {{/unless}}
+          <main id="content">{{{body}}}</main>
+        </div>
         {{#unless start}}
-        <div>{{> back url=url}}</div>
+        <aside class="">
+          <a href="/antrag" class="kern-link">Zur Übersicht</a>
+          {{> tree items=links}}
+        </aside>
         {{/unless}}
-        <main id="content">{{{body}}}</main>
       </div>
     </div>
     {{> footer}}
