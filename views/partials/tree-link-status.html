@@ -1,11 +1,13 @@
-{{#if started}} {{#unless done}}
-<span
-  class="status--started kern-icon kern-icon--in-progress kern-icon--small"
-  aria-hidden="true"
-></span>
-{{/unless}} {{/if}} {{#if done}}
-<span
-  class="status--done kern-icon kern-icon--success kern-icon--small"
-  aria-hidden="true"
-></span>
-{{/if}}
+<span class="tree-link-status">
+  {{#if started}} {{#unless done}}
+  <span
+    class="status--started kern-icon kern-icon--in-progress kern-icon--small"
+    aria-hidden="true"
+  ></span>
+  {{/unless}} {{/if}} {{#if done}}
+  <span
+    class="status--done kern-icon kern-icon--success kern-icon--small"
+    aria-hidden="true"
+  ></span>
+  {{/if}}
+</span>

@@ -35,6 +35,10 @@ main {
   max-width: 80ch;
 }
 
+aside {
+  width: 50ch;
+}
+
 .kern-icon--in-progress {
   mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%22%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%22%22%20fill%3D%22%231f1f1f%22%3E%3Cpath%20d%3D%22M22%2C12c0%2C5.52-4.48%2C10-10%2C10S2%2C17.52%2C2%2C12c0-2.76%2C1.12-5.26%2C2.93-7.07L12%2C12V2C17.52%2C2%2C22%2C6.48%2C22%2C12z%22%2F%3E%3C%2Fsvg%3E");
   background-color: var(--kern-color-layout-text-default);
@@ -56,6 +60,17 @@ main {
 
 .tree ol > li li {
   padding-inline-start: var(--kern-metric-space-large);
+}
+
+.tree-link {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.tree-link-status {
+  display: inline-flex;
+  width: var(--kern-metric-space-large);
 }
 
 footer {
