@@ -1,5 +1,7 @@
-<ol>
-  {{#each items}}
-  <li>{{> tree-link}} {{#if items}} {{> tree}} {{/if}}</li>
-  {{/each}}
-</ol>
+<nav class="tree">
+  <ol>
+    {{#each items}}
+    <li>{{> tree-link}} {{#if items}} {{> tree}} {{/if}}</li>
+    {{/each}}
+  </ol>
+</nav>
