@@ -5,7 +5,7 @@
   </div>
   <form
     class="kern-stack kern-gap-xl"
-    action="/person/geburtsort"
+    action="/person/geburtstag"
     method="post"
   >
     <div class="kern-fieldset__body kern-fieldset__body--horizontal">
@@ -17,7 +17,7 @@
           name="tag"
           type="text"
           inputmode="numeric"
-          value="{{session.tag}}"
+          value="{{#if session.tag}}{{ session.tag }}{{else}}17{{/if}}"
         />
       </div>
       <div class="kern-form-input">
@@ -28,7 +28,7 @@
           name="monat"
           type="text"
           inputmode="numeric"
-          value="{{session.monat}}"
+          value="{{#if session.monat}}{{ session.monat }}{{else}}11{{/if}}"
         />
       </div>
       <div class="kern-form-input">
@@ -39,7 +39,7 @@
           name="jahr"
           type="text"
           inputmode="numeric"
-          value="{{session.jahr}}"
+          value="{{#if session.jahr}}{{ session.jahr }}{{else}}1997{{/if}}"
         />
       </div>
     </div>

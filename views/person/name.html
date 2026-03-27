@@ -3,11 +3,19 @@
   <div>
     <h2 class="kern-heading-x-large">Wie heißen Sie?</h2>
   </div>
-  <form
-    class="kern-stack kern-gap-xl"
-    action="/person/geburtstag"
-    method="post"
-  >
+  {{#if edit}}
+    <form
+      class="kern-stack kern-gap-xl"
+      action="/person/name?edit=true"
+      method="post"
+    >
+  {{else}}
+    <form
+      class="kern-stack kern-gap-xl"
+      action="/person/name"
+      method="post"
+    >
+  {{/if}}
     <div class="kern-fieldset__body">
       <div class="kern-form-input">
         <label class="kern-label" for="vorname">Vorname</label>
@@ -16,7 +24,7 @@
           id="vorname"
           name="vorname"
           type="text"
-          value="{{ session.vorname }}"
+          value="{{#if session.vorname}}{{ session.vorname }}{{else}}Kim{{/if}}"
         />
       </div>
       <div class="kern-form-input">
@@ -26,7 +34,7 @@
           id="nachname"
           name="nachname"
           type="text"
-          value="{{ session.nachname }}"
+          value="{{#if session.nachname}}{{ session.nachname }}{{else}}Beyer{{/if}}"
         />
       </div>
       <div class="kern-form-input">
