@@ -81,27 +81,41 @@ function treeForCurrentState(session, current) {
         {
           name: "Adresse",
           href: "/unternehmen/adresse-abweichend",
-          active: current === "/unternehmen/adresse-abweichend",
+          active:
+            current === "/unternehmen/adresse-abweichend" ||
+            current === "/unternehmen/adresse-eingabe",
+          done: session.adresseAbweichend === "nein" || session.unternehmenOrt,
         },
         {
           name: "Tätigkeit",
           href: "/unternehmen/taetigkeit",
           active: current === "/unternehmen/taetigkeit",
+          done: session.taetigkeit,
         },
         {
           name: "Beginn",
           href: "/unternehmen/taetigkeit-begonnen",
           active: current === "/unternehmen/taetigkeit-begonnen",
+          started:
+            session.taetigkeitBeginnTag ||
+            session.taetigkeitBeginnMonat ||
+            session.taetigkeitBeginnJahr,
+          done:
+            session.taetigkeitBeginnTag &&
+            session.taetigkeitBeginnMonat &&
+            session.taetigkeitBeginnJahr,
         },
         {
           name: "Art der Gründung",
           href: "/unternehmen/gewerbeart",
           active: current === "/unternehmen/gewerbeart",
+          done: session.gewerbeart,
         },
         {
           name: "Umsatzsteuer-Identifikationsnummer",
           href: "/unternehmen/ustid-abfrage",
           active: current === "/unternehmen/ustid-abfrage",
+          done: session.ustidexistingbool === "ja" || session.ustid,
         },
       ],
     },
@@ -118,12 +132,14 @@ function treeForCurrentState(session, current) {
         {
           name: "Kleinunternehmerregelung",
           href: "/umsatz/kleinunternehmerregelung-moeglich",
-          active: current === "/umsatz/kleinunternehmerregelung-moeglich",
+          active: current.startsWith("/umsatz/kleinunternehmerregelung-"),
         },
         {
           name: "Umsatzsteuer",
           href: "/umsatz/umsatzsteuer",
           active: current === "/umsatz/umsatzsteuer",
+          started: session.ustDiesesJahr || session.ustNaechstesJahr,
+          done: session.ustDiesesJahr && session.ustNaechstesJahr,
         },
       ],
     },
@@ -559,6 +575,10 @@ app.post("/umsatz/kleinunternehmerregelung/verzicht", (req, res) => {
 app.get("/umsatz/kleinunternehmerregelung/verzicht", (req, res) => {
   res.render("umsatz/kleinunternehmerregelung/verzicht", {
     session: req.session,
+    pageTree: treeForCurrentState(
+      req.session,
+      "/umsatz/kleinunternehmerregelung/verzicht",
+    ),
   });
 });
 
@@ -575,7 +595,10 @@ app.post("/umsatz/weitere-unternehmen", (req, res) => {
 });
 
 app.get("/umsatz/weitere-unternehmen", (req, res) => {
-  res.render("umsatz/weitere-unternehmen", { session: req.session });
+  res.render("umsatz/weitere-unternehmen", {
+    session: req.session,
+    pageTree: treeForCurrentState(req.session, "/umsatz/weitere-unternehmen"),
+  });
 });
 
 app.post("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
@@ -593,7 +616,13 @@ app.post("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
 });
 
 app.get("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
-  res.render("umsatz/weitere-unternehmen-gesamt", { session: req.session });
+  res.render("umsatz/weitere-unternehmen-gesamt", {
+    session: req.session,
+    pageTree: treeForCurrentState(
+      req.session,
+      "/umsatz/weitere-unternehmen-gesamt",
+    ),
+  });
 });
 
 app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
@@ -612,7 +641,13 @@ app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
 });
 
 app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
-  res.render("umsatz/kleinunternehmerregelung", { session: req.session });
+  res.render("umsatz/kleinunternehmerregelung", {
+    session: req.session,
+    pageTree: treeForCurrentState(
+      req.session,
+      "/umsatz/kleinunternehmerregelung",
+    ),
+  });
 });
 
 app.post("/umsatz/umsatzsteuer", (req, res) => {
