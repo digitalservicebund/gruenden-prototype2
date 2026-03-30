@@ -224,7 +224,6 @@ app.post("/person/start", (req, res) => {
 app.get("/person/start", (req, res) => {
   res.render("person/start", {
     pageName: "Persönliche Daten",
-    start: true,
     session: req.session,
   });
 });
