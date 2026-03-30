@@ -2,6 +2,7 @@ import express from "express";
 import session from "express-session";
 import bodyParser from "body-parser";
 import { engine } from "express-handlebars";
+import * as helpers from "./helpers.js";
 
 const app = express();
 const port = Number.parseInt(process.env.PORT ?? "7070", 10);
@@ -12,7 +13,7 @@ app.locals.serviceUrl = "/";
 
 app.use(express.static("public"));
 
-app.engine(".html", engine({ extname: ".html" }));
+app.engine(".html", engine({ extname: ".html", helpers: helpers }));
 app.set("view engine", ".html");
 app.set("views", "./views");
 
@@ -137,6 +138,12 @@ function treeForCurrentState(session, current) {
       name: "Umsätze",
       href: "/umsatz/start",
       active: current.startsWith("/umsatz"),
+      started: session.umsatzDiesesJahr || session.ustDiesesJahr,
+      done:
+        session.umsatzDiesesJahr &&
+        session.umsatzNaechstesJahr &&
+        (session.kleinunternehmenBool === "ja" ||
+          (session.ustDiesesJahr && session.ustNaechstesJahr)),
       items: [
         {
           name: "Vorraussichtliche Umsätze",
@@ -222,6 +229,7 @@ app.get("/", (req, res) => {
   res.render("index", {
     pageName: "Kombi-Antrag Steuer und Gewerbe",
     start: true,
+    pageTree: treeForCurrentState(req.session, "/"),
     session: req.session,
   });
 });
@@ -230,13 +238,15 @@ app.get("/antrag", (req, res) => {
   res.render("antrag", {
     pageName: "Ihr Kombi-Antrag",
     start: true,
+    pageTree: treeForCurrentState(req.session, "/antrag"),
     session: req.session,
   });
 });
 
 app.get("/person/start", (req, res) => {
   res.render("person/start", {
-    pageName: "Persönliche Daten",
+    pageName: "Persönliche Angaben",
+    pageTree: treeForCurrentState(req.session, "/person/start"),
     session: req.session,
   });
 });
@@ -278,8 +288,6 @@ app.post("/person/geburtstag", (req, res) => {
   req.session.tag = req.body.tag;
   req.session.monat = req.body.monat;
   req.session.jahr = req.body.jahr;
-
-  req.session.personalStarted = true;
   res.redirect("/person/geburtsort");
 });
 
@@ -648,7 +656,7 @@ app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
   }
 
   if (kleinunternehmenVerwenden) {
-    res.redirect("/umsatz/status");
+    res.redirect("/gewinn/start");
   } else {
     res.redirect("/umsatz/umsatzsteuer");
   }

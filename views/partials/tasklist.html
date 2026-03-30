@@ -1,25 +1,24 @@
+{{#if interactive}}
 <div class="kern-task-list">
   <ul class="kern-task-list__list">
+    {{#each items}}
     <li class="kern-task-list__item">
-      <span class="kern-number">1</span>
+      <span class="kern-number">{{printIndex @index}}</span>
       <div class="kern-task-list__title" id="task1-title">
-        {{#if interactive}}
         <a
-          href="/person/start"
+          href="{{href}}"
           class="kern-link kern-link--stretched"
           aria-describedby="task1-status"
         >
-          Persönliche Angaben
+          {{name}}
         </a>
-        {{else}}
-        <p class="kern-body">Persönliche Angaben</p>
-        {{/if}} {{#if session.personalStarted}} {{#unless session.personalDone}}
+        {{#if started }} {{#unless done }}
         <div class="kern-task-list__status" id="task2-status">
           <span class="kern-badge kern-badge--warning">
             <span class="kern-label kern-label--small">Unvollständig</span>
           </span>
         </div>
-        {{/unless}} {{/if}} {{#if session.personalDone}}
+        {{/unless}} {{/if}} {{#if done}}
         <div class="kern-task-list__status" id="task1-status">
           <span class="kern-badge kern-badge--success">
             <span
@@ -32,151 +31,37 @@
         {{/if}}
       </div>
     </li>
-    <li class="kern-task-list__item">
-      <span class="kern-number">2</span>
-      <div class="kern-task-list__title" id="task2-title">
-        {{#if interactive}}
-        <a
-          href="/unternehmen/start"
-          class="kern-link kern-link--stretched"
-          aria-describedby="task2-status"
-        >
-          Unternehmen und Tätigkeit
-        </a>
-        {{else}}
-        <p class="kern-body">Unternehmen und Tätigkeit</p>
-        {{/if}} {{#if session.unternehmenStarted}} {{#unless
-        session.unternehmenDone}}
-        <div class="kern-task-list__status" id="task2-status">
-          <span class="kern-badge kern-badge--warning">
-            <span class="kern-label kern-label--small">Unvollständig</span>
-          </span>
-        </div>
-        {{/unless}} {{/if}} {{#if session.unternehmenDone}}
-        <div class="kern-task-list__status" id="task1-status">
-          <span class="kern-badge kern-badge--success">
-            <span
-              class="kern-icon kern-icon--success kern-icon--sm"
-              aria-hidden="true"
-            ></span>
-            <span class="kern-label kern-label--small">Erledigt</span>
-          </span>
-        </div>
-        {{/if}}
-      </div>
-    </li>
-    <li class="kern-task-list__item">
-      <span class="kern-number">3</span>
-      <div class="kern-task-list__title" id="task2-title">
-        {{#if interactive}}
-        <a
-          href="/umsatz/start"
-          class="kern-link kern-link--stretched"
-          aria-describedby="task2-status"
-        >
-          Umsätze
-        </a>
-        {{else}}
-        <p class="kern-body">Umsätze</p>
-        {{/if}} {{#if session.umsatzStarted}} {{#unless session.umsatzDone}}
-        <div class="kern-task-list__status" id="task2-status">
-          <span class="kern-badge kern-badge--warning">
-            <span class="kern-label kern-label--small">Unvollständig</span>
-          </span>
-        </div>
-        {{/unless}} {{/if}} {{#if session.umsatzDone}}
-        <div class="kern-task-list__status" id="task1-status">
-          <span class="kern-badge kern-badge--success">
-            <span
-              class="kern-icon kern-icon--success kern-icon--sm"
-              aria-hidden="true"
-            ></span>
-            <span class="kern-label kern-label--small">Erledigt</span>
-          </span>
-        </div>
-        {{/if}}
-      </div>
-    </li>
-    <li class="kern-task-list__item">
-      <span class="kern-number">4</span>
-      <div class="kern-task-list__title" id="task2-title">
-        {{#if interactive}}
-        <a
-          href="/gewinn/start"
-          class="kern-link kern-link--stretched"
-          aria-describedby="task2-status"
-        >
-          Gewinne und Einkünfte
-        </a>
-        {{else}}
-        <p class="kern-body">Gewinne und Einkünfte</p>
-        {{/if}} {{#if session.gewinnStarted}} {{#unless session.gewinnDone}}
-        <div class="kern-task-list__status" id="task2-status">
-          <span class="kern-badge kern-badge--warning">
-            <span class="kern-label kern-label--small">Unvollständig</span>
-          </span>
-        </div>
-        {{/unless}} {{/if}} {{#if session.gewinnDone}}
-        <div class="kern-task-list__status" id="task1-status">
-          <span class="kern-badge kern-badge--success">
-            <span
-              class="kern-icon kern-icon--success kern-icon--sm"
-              aria-hidden="true"
-            ></span>
-            <span class="kern-label kern-label--small">Erledigt</span>
-          </span>
-        </div>
-        {{/if}}
-      </div>
-    </li>
-    <li class="kern-task-list__item">
-      <span class="kern-number">5</span>
-      <div class="kern-task-list__title" id="task2-title">
-        {{#if interactive}}
-        <a
-          href="/kontakt/start"
-          class="kern-link kern-link--stretched"
-          aria-describedby="task2-status"
-        >
-          Kontaktdaten
-        </a>
-        {{else}}
-        <p class="kern-body">Kontaktdaten</p>
-        {{/if}} {{#if session.kontaktStarted}} {{#unless session.kontaktDone}}
-        <div class="kern-task-list__status" id="task2-status">
-          <span class="kern-badge kern-badge--warning">
-            <span class="kern-label kern-label--small">Unvollständig</span>
-          </span>
-        </div>
-        {{/unless}} {{/if}} {{#if session.kontaktDone}}
-        <div class="kern-task-list__status" id="task1-status">
-          <span class="kern-badge kern-badge--success">
-            <span
-              class="kern-icon kern-icon--success kern-icon--sm"
-              aria-hidden="true"
-            ></span>
-            <span class="kern-label kern-label--small">Erledigt</span>
-          </span>
-        </div>
-        {{/if}}
-      </div>
-    </li>
-    <li class="kern-task-list__item">
-      <span class="kern-number">6</span>
-
-      <div class="kern-task-list__title">
-        {{#if interactive}}
-        <a
-          href="/antrag-ueberpruefen"
-          class="kern-link kern-link--stretched"
-          aria-describedby="task2-status"
-        >
-          Angaben überprüfen</a
-        >
-        {{else}}
-        <p class="kern-body">Angaben überprüfen</p>
-        {{/if}}
-      </div>
-    </li>
+    {{/each}}
   </ul>
 </div>
+{{else}}
+<div class="kern-task-list">
+  <ul class="kern-task-list__list">
+    {{#each items}}
+    <li class="kern-task-list__item">
+      <span class="kern-number">{{printIndex @index}}</span>
+      <div class="kern-task-list__title" id="task1-title">
+        <p class="kern-body">{{name}}</p>
+        {{#if started }} {{#unless done }}
+        <div class="kern-task-list__status" id="task2-status">
+          <span class="kern-badge kern-badge--warning">
+            <span class="kern-label kern-label--small">Unvollständig</span>
+          </span>
+        </div>
+        {{/unless}} {{/if}} {{#if done}}
+        <div class="kern-task-list__status" id="task1-status">
+          <span class="kern-badge kern-badge--success">
+            <span
+              class="kern-icon kern-icon--success kern-icon--sm"
+              aria-hidden="true"
+            ></span>
+            <span class="kern-label kern-label--small">Erledigt</span>
+          </span>
+        </div>
+        {{/if}}
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
