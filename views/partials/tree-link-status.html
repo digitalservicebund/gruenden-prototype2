@@ -1,5 +1,10 @@
 <span class="tree-link-status">
-  {{#if started}} {{#unless done}}
+  {{#if active}}
+  <span
+    class="status--active kern-icon kern-icon--arrow-forward kern-icon--small"
+    aria-hidden="true"
+  ></span>
+  {{else}} {{#if started}} {{#unless done}}
   <span
     class="status--started kern-icon kern-icon--in-progress kern-icon--small"
     aria-hidden="true"
@@ -9,5 +14,5 @@
     class="status--done kern-icon kern-icon--success kern-icon--small"
     aria-hidden="true"
   ></span>
-  {{/if}}
+  {{/if}} {{/if}}
 </span>

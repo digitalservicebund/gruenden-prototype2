@@ -20,12 +20,12 @@
           {{/unless}}
           <main id="content">{{{body}}}</main>
         </div>
-        {{#unless start}}
+        {{#unless start}} {{#unless edit}}
         <aside class="">
           <a href="/antrag" class="kern-link kern-mb-lg">Zur Übersicht</a>
           {{> tree items=pageTree}}
         </aside>
-        {{/unless}}
+        {{/unless}} {{/unless}}
       </div>
     </div>
     {{> footer}}
