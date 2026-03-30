@@ -217,19 +217,11 @@ app.get("/antrag", (req, res) => {
   });
 });
 
-app.post("/person/start", (req, res) => {
-  res.redirect("/person/start");
-});
-
 app.get("/person/start", (req, res) => {
   res.render("person/start", {
     pageName: "Persönliche Daten",
     session: req.session,
   });
-});
-
-app.post("/person/bundid", (req, res) => {
-  res.redirect("/person/name");
 });
 
 app.get("/person/bundid", (req, res) => {
@@ -310,10 +302,6 @@ app.post("/person/adresse", (req, res) => {
 });
 
 app.get("/person/adresse", (req, res) => {
-  // req.session.strasse = "Prinzessinnenstraße 17";
-  // req.session.plz = "10967";
-  // req.session.ort = "Berlin";
-
   res.render("person/adresse", {
     session: req.session,
     pageTree: treeForCurrentState(req.session, "/person/adresse"),
@@ -459,7 +447,7 @@ app.get("/unternehmen/gewerbeart", (req, res) => {
 });
 
 app.post("/unternehmen/ustid-abfrage", (req, res) => {
-  req.session.ustidbool = req.body.ustidbool;
+  req.session.gewerbeart = req.body.gewerbeart;
   res.redirect("/unternehmen/ustid-abfrage");
 });
 
