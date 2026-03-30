@@ -90,7 +90,14 @@ function treeForCurrentState(session, current) {
           active:
             current === "/unternehmen/adresse-abweichend" ||
             current === "/unternehmen/adresse-eingabe",
-          done: session.adresseAbweichend === "nein" || session.unternehmenOrt,
+          started:
+            session.unternehmenStrasse ||
+            session.unternehmenPlz ||
+            session.unternehmenOrt,
+          done:
+            session.unternehmenStrasse &&
+            session.unternehmenPlz &&
+            session.unternehmenOrt,
         },
         {
           name: "Tätigkeit",
@@ -121,7 +128,8 @@ function treeForCurrentState(session, current) {
           name: "Umsatzsteuer-Identifikationsnummer",
           href: "/unternehmen/ustid-abfrage",
           active: current === "/unternehmen/ustid-abfrage",
-          done: session.ustidexistingbool === "ja" || session.ustid,
+          started: session.ustidexistingbool,
+          done: session.ustidexistingbool === "ja" || session.ustidbool,
         },
       ],
     },
@@ -134,11 +142,20 @@ function treeForCurrentState(session, current) {
           name: "Vorraussichtliche Umsätze",
           href: "/umsatz/eingabe",
           active: current === "/umsatz/eingabe",
+          started: session.umsatzDiesesJahr,
+          done: session.umsatzDiesesJahr && session.umsatzNaechstesJahr,
         },
         {
           name: "Kleinunternehmerregelung",
           href: "/umsatz/kleinunternehmerregelung-moeglich",
-          active: current.startsWith("/umsatz/kleinunternehmerregelung-"),
+          active:
+            current.startsWith("/umsatz/kleinunternehmerregelung") ||
+            current.startsWith("/umsatz/weitere-unternehmen"),
+          done:
+            session.umsatzDiesesJahr > 25000 ||
+            session.verzichtBool === "ja" ||
+            session.weitereUnternehmenGesamtBool === "nein" ||
+            session.kleinunternehmenBool,
         },
         {
           name: "Umsatzsteuer",
@@ -224,6 +241,10 @@ app.get("/person/start", (req, res) => {
   });
 });
 
+app.post("/person/bundid", (req, res) => {
+  res.redirect("/person/name");
+});
+
 app.get("/person/bundid", (req, res) => {
   res.render("person/bundid", {
     pageName: "Mit BundID anmelden",
@@ -271,7 +292,10 @@ app.get("/person/geburtstag", (req, res) => {
 });
 
 app.post("/person/geburtsort", (req, res) => {
-  res.redirect("/person/geburtsort");
+  req.session.geburtsort = req.body.geburtsort;
+  req.session.geburtsland = req.body.geburtsland;
+
+  res.redirect("/person/staatsangehoerigkeit");
 });
 
 app.get("/person/geburtsort", (req, res) => {
@@ -283,9 +307,8 @@ app.get("/person/geburtsort", (req, res) => {
 });
 
 app.post("/person/staatsangehoerigkeit", (req, res) => {
-  req.session.geburtsort = req.body.geburtsort;
-  req.session.geburtsland = req.body.geburtsland;
-  res.redirect("/person/staatsangehoerigkeit");
+  req.session.staatsangehoerigkeitbool = req.body.staatsangehoerigkeitbool;
+  res.redirect("/person/adresse");
 });
 
 app.get("/person/staatsangehoerigkeit", (req, res) => {
@@ -297,8 +320,11 @@ app.get("/person/staatsangehoerigkeit", (req, res) => {
 });
 
 app.post("/person/adresse", (req, res) => {
-  req.session.staatsangehoerigkeit = req.body.staatsangehoerigkeit;
-  res.redirect("/person/adresse");
+  req.session.strasse = req.body.strasse;
+  // req.session.hausnummer = req.body.hausnummer;
+  req.session.plz = req.body.plz;
+  req.session.ort = req.body.ort;
+  res.redirect("/person/steuer-id");
 });
 
 app.get("/person/adresse", (req, res) => {
@@ -310,12 +336,8 @@ app.get("/person/adresse", (req, res) => {
 });
 
 app.post("/person/steuer-id", (req, res) => {
-  req.session.strasse = req.body.strasse;
-  // req.session.hausnummer = req.body.hausnummer;
-  req.session.plz = req.body.plz;
-  req.session.ort = req.body.ort;
-
-  res.redirect("/person/steuer-id");
+  req.session.steuerid = req.body.steuerid;
+  res.redirect("/unternehmen/start");
 });
 
 app.get("/person/steuer-id", (req, res) => {
@@ -324,12 +346,6 @@ app.get("/person/steuer-id", (req, res) => {
     pageTree: treeForCurrentState(req.session, "/person/steuer-id"),
     pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
   });
-});
-
-app.post("/person/status", (req, res) => {
-  req.session.steuerid = req.body.steuerid;
-  req.session.personalDone = true;
-  res.redirect("/person/status");
 });
 
 app.get("/person/status", (req, res) => {
@@ -351,7 +367,15 @@ app.get("/unternehmen/start", (req, res) => {
 });
 
 app.post("/unternehmen/adresse-abweichend", (req, res) => {
-  res.redirect("/unternehmen/adresse-abweichend");
+  req.session.adresseAbweichend = req.body.adresseAbweichend;
+  req.session.unternehmenStarted = true;
+  var adresseAbweichend = req.session.adresseAbweichend == "ja";
+
+  if (adresseAbweichend) {
+    res.redirect("/unternehmen/adresse-eingabe");
+  } else {
+    res.redirect("/unternehmen/taetigkeit");
+  }
 });
 
 app.get("/unternehmen/adresse-abweichend", (req, res) => {
@@ -365,15 +389,11 @@ app.get("/unternehmen/adresse-abweichend", (req, res) => {
 });
 
 app.post("/unternehmen/adresse-eingabe", function (req, res) {
-  req.session.adresseAbweichend = req.body.adresseAbweichend;
-  req.session.unternehmenStarted = true;
-  var adresseAbweichend = req.session.adresseAbweichend == "ja";
+  req.session.unternehmenStrasse = req.body.unternehmenStrasse;
+  req.session.unternehmenHausnummer = req.body.unternehmenHausnummer;
+  req.session.unternehmenOrt = req.body.unternehmenOrt;
 
-  if (adresseAbweichend) {
-    res.redirect("/unternehmen/adresse-eingabe");
-  } else {
-    res.redirect("/unternehmen/taetigkeit");
-  }
+  res.redirect("/unternehmen/taetigkeit");
 });
 
 app.get("/unternehmen/adresse-eingabe", (req, res) => {
@@ -384,12 +404,8 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
 });
 
 app.post("/unternehmen/taetigkeit", (req, res) => {
-  req.session.unternehmenStrasse = req.body.unternehmenStrasse;
-  req.session.unternehmenHausnummer = req.body.unternehmenHausnummer;
-  req.session.unternehmenPlz = req.body.unternehmenPlz;
-  req.session.unternehmenOrt = req.body.unternehmenOrt;
-
-  res.redirect("/unternehmen/taetigkeit");
+  req.session.taetigkeit = req.body.taetigkeit;
+  res.redirect("/unternehmen/taetigkeit-begonnen");
 });
 
 app.get("/unternehmen/taetigkeit", (req, res) => {
@@ -400,8 +416,8 @@ app.get("/unternehmen/taetigkeit", (req, res) => {
 });
 
 app.post("/unternehmen/taetigkeit-begonnen", (req, res) => {
-  req.session.taetigkeit = req.body.taetigkeit;
-  res.redirect("/unternehmen/taetigkeit-begonnen");
+  req.session.taetigkeitBegonnen = req.body.taetigkeitBegonnen;
+  res.redirect("/unternehmen/taetigkeit-beginn");
 });
 
 app.get("/unternehmen/taetigkeit-begonnen", (req, res) => {
@@ -415,8 +431,11 @@ app.get("/unternehmen/taetigkeit-begonnen", (req, res) => {
 });
 
 app.post("/unternehmen/taetigkeit-beginn", function (req, res) {
-  req.session.taetigkeitBegonnen = req.body.taetigkeitBegonnen;
-  res.redirect("/unternehmen/taetigkeit-beginn");
+  req.session.taetigkeitBeginnTag = req.body.taetigkeitBeginnTag;
+  req.session.taetigkeitBeginnMonat = req.body.taetigkeitBeginnMonat;
+  req.session.taetigkeitBeginnJahr = req.body.taetigkeitBeginnJahr;
+
+  res.redirect("/unternehmen/gewerbeart");
 });
 
 app.get("/unternehmen/taetigkeit-beginn", (req, res) => {
@@ -433,10 +452,8 @@ app.get("/unternehmen/taetigkeit-beginn", (req, res) => {
 });
 
 app.post("/unternehmen/gewerbeart", (req, res) => {
-  req.session.taetigkeitBeginnTag = req.body.taetigkeitBeginnTag;
-  req.session.taetigkeitBeginnMonat = req.body.taetigkeitBeginnMonat;
-  req.session.taetigkeitBeginnJahr = req.body.taetigkeitBeginnJahr;
-  res.redirect("/unternehmen/gewerbeart");
+  req.session.gewerbeart = req.body.gewerbeart;
+  res.redirect("/unternehmen/ustid-abfrage");
 });
 
 app.get("/unternehmen/gewerbeart", (req, res) => {
@@ -447,8 +464,14 @@ app.get("/unternehmen/gewerbeart", (req, res) => {
 });
 
 app.post("/unternehmen/ustid-abfrage", (req, res) => {
-  req.session.gewerbeart = req.body.gewerbeart;
-  res.redirect("/unternehmen/ustid-abfrage");
+  req.session.ustidexistingbool = req.body.ustidexistingbool;
+  var existingUstid = req.session.ustidexistingbool;
+
+  if (existingUstid == "ja") {
+    res.redirect("/umsatz/start");
+  } else {
+    res.redirect("/unternehmen/ustid");
+  }
 });
 
 app.get("/unternehmen/ustid-abfrage", (req, res) => {
@@ -459,14 +482,8 @@ app.get("/unternehmen/ustid-abfrage", (req, res) => {
 });
 
 app.post("/unternehmen/ustid", (req, res) => {
-  req.session.ustidexistingbool = req.body.ustidexistingbool;
-  var existingUstid = req.session.ustidexistingbool;
-
-  if (existingUstid == "ja") {
-    res.redirect("/unternehmen/status");
-  } else {
-    res.redirect("/unternehmen/ustid");
-  }
+  req.session.ustidbool = req.body.ustidbool;
+  res.redirect("/umsatz/start");
 });
 
 app.get("/unternehmen/ustid", (req, res) => {
@@ -476,21 +493,11 @@ app.get("/unternehmen/ustid", (req, res) => {
   });
 });
 
-app.post("/unternehmen/status", (req, res) => {
-  req.session.ustid = req.body.ustid;
-  req.session.unternehmenDone = true;
-  res.redirect("/unternehmen/status");
-});
-
 app.get("/unternehmen/status", (req, res) => {
   res.render("unternehmen/status", {
     pageName: "Ihr Kombi-Antrag Status",
     session: req.session,
   });
-});
-
-app.post("/umsatz/start", (req, res) => {
-  res.redirect("/umsatz/start");
 });
 
 app.get("/umsatz/start", (req, res) => {
@@ -501,18 +508,6 @@ app.get("/umsatz/start", (req, res) => {
 });
 
 app.post("/umsatz/eingabe", (req, res) => {
-  req.session.umsatzStarted = true;
-  res.redirect("/umsatz/eingabe");
-});
-
-app.get("/umsatz/eingabe", (req, res) => {
-  res.render("umsatz/eingabe", {
-    session: req.session,
-    pageTree: treeForCurrentState(req.session, "/umsatz/eingabe"),
-  });
-});
-
-app.post("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
   req.session.umsatzDiesesJahr = req.body.umsatzDiesesJahr;
   req.session.umsatzNaechstesJahr = req.body.umsatzNaechstesJahr;
 
@@ -527,6 +522,17 @@ app.post("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
   }
 });
 
+app.get("/umsatz/eingabe", (req, res) => {
+  res.render("umsatz/eingabe", {
+    session: req.session,
+    pageTree: treeForCurrentState(req.session, "/umsatz/eingabe"),
+  });
+});
+
+app.post("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
+  res.redirect("/umsatz/kleinunternehmerregelung-verzicht");
+});
+
 app.get("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
   res.render("umsatz/kleinunternehmerregelung-moeglich", {
     session: req.session,
@@ -538,7 +544,7 @@ app.get("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
 });
 
 app.post("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
-  res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
+  res.redirect("/umsatz/umsatzsteuer");
 });
 
 app.get("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
@@ -562,21 +568,7 @@ app.get("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
   });
 });
 
-app.post("/umsatz/kleinunternehmerregelung/verzicht", (req, res) => {
-  res.redirect("/umsatz/kleinunternehmerregelung/verzicht");
-});
-
-app.get("/umsatz/kleinunternehmerregelung/verzicht", (req, res) => {
-  res.render("umsatz/kleinunternehmerregelung/verzicht", {
-    session: req.session,
-    pageTree: treeForCurrentState(
-      req.session,
-      "/umsatz/kleinunternehmerregelung/verzicht",
-    ),
-  });
-});
-
-app.post("/umsatz/weitere-unternehmen", (req, res) => {
+app.post("/umsatz/kleinunternehmerregelung-verzicht", (req, res) => {
   req.session.verzichtBool = req.body.verzichtBool;
 
   var verzicht = req.session.verzichtBool && req.session.verzichtBool == "ja";
@@ -588,14 +580,17 @@ app.post("/umsatz/weitere-unternehmen", (req, res) => {
   }
 });
 
-app.get("/umsatz/weitere-unternehmen", (req, res) => {
-  res.render("umsatz/weitere-unternehmen", {
+app.get("/umsatz/kleinunternehmerregelung-verzicht", (req, res) => {
+  res.render("umsatz/kleinunternehmerregelung-verzicht", {
     session: req.session,
-    pageTree: treeForCurrentState(req.session, "/umsatz/weitere-unternehmen"),
+    pageTree: treeForCurrentState(
+      req.session,
+      "/umsatz/kleinunternehmerregelung-verzicht",
+    ),
   });
 });
 
-app.post("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
+app.post("/umsatz/weitere-unternehmen", (req, res) => {
   req.session.weitereunternehmenbool = req.body.weitereunternehmenbool;
 
   var weitereUnternehmen =
@@ -609,17 +604,14 @@ app.post("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
   }
 });
 
-app.get("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
-  res.render("umsatz/weitere-unternehmen-gesamt", {
+app.get("/umsatz/weitere-unternehmen", (req, res) => {
+  res.render("umsatz/weitere-unternehmen", {
     session: req.session,
-    pageTree: treeForCurrentState(
-      req.session,
-      "/umsatz/weitere-unternehmen-gesamt",
-    ),
+    pageTree: treeForCurrentState(req.session, "/umsatz/weitere-unternehmen"),
   });
 });
 
-app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
+app.post("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
   req.session.weitereUnternehmenGesamtBool =
     req.body.weitereUnternehmenGesamtBool;
 
@@ -634,17 +626,17 @@ app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
   }
 });
 
-app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
-  res.render("umsatz/kleinunternehmerregelung", {
+app.get("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
+  res.render("umsatz/weitere-unternehmen-gesamt", {
     session: req.session,
     pageTree: treeForCurrentState(
       req.session,
-      "/umsatz/kleinunternehmerregelung",
+      "/umsatz/weitere-unternehmen-gesamt",
     ),
   });
 });
 
-app.post("/umsatz/umsatzsteuer", (req, res) => {
+app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
   req.session.kleinunternehmenBool = req.body.kleinunternehmenBool;
 
   var kleinunternehmenVerwenden =
@@ -662,6 +654,22 @@ app.post("/umsatz/umsatzsteuer", (req, res) => {
   }
 });
 
+app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
+  res.render("umsatz/kleinunternehmerregelung", {
+    session: req.session,
+    pageTree: treeForCurrentState(
+      req.session,
+      "/umsatz/kleinunternehmerregelung",
+    ),
+  });
+});
+
+app.post("/umsatz/umsatzsteuer", (req, res) => {
+  req.session.ustDiesesJahr = req.body.ustDiesesJahr;
+  req.session.ustNaechstesJahr = req.body.NaechstesJahr;
+  res.redirect("/gewinn/start");
+});
+
 app.get("/umsatz/umsatzsteuer", (req, res) => {
   res.render("umsatz/umsatzsteuer", {
     session: req.session,
@@ -669,23 +677,11 @@ app.get("/umsatz/umsatzsteuer", (req, res) => {
   });
 });
 
-app.post("/umsatz/status", (req, res) => {
-  req.session.ustDiesesJahr = req.body.ustDiesesJahr;
-  req.session.ustNaechstesJahr = req.body.NaechstesJahr;
-  req.session.umsatzDone = true;
-
-  res.redirect("/umsatz/status");
-});
-
 app.get("/umsatz/status", (req, res) => {
   res.render("umsatz/status", {
     pageName: "Ihr Kombi-Antrag Status",
     session: req.session,
   });
-});
-
-app.post("/gewinn/start", (req, res) => {
-  res.redirect("/gewinn/start");
 });
 
 app.get("/gewinn/start", (req, res) => {
@@ -696,7 +692,10 @@ app.get("/gewinn/start", (req, res) => {
 });
 
 app.post("/gewinn/eingabe", (req, res) => {
-  res.redirect("/gewinn/eingabe");
+  req.session.gewinnDiesesJahr = req.body.gewinnDiesesJahr;
+  req.session.gewinnNaechstesJahr = req.body.gewinnNaechstesJahr;
+  req.session.gewinnStarted = true;
+  res.redirect("/einkuenfte/auswahl");
 });
 
 app.get("/gewinn/eingabe", (req, res) => {
@@ -706,10 +705,6 @@ app.get("/gewinn/eingabe", (req, res) => {
   });
 });
 
-app.post("/einkuenfte/start", (req, res) => {
-  res.redirect("/einkuenfte/start");
-});
-
 app.get("/einkuenfte/start", (req, res) => {
   res.render("einkuenfte/start", {
     session: req.session,
@@ -717,21 +712,6 @@ app.get("/einkuenfte/start", (req, res) => {
 });
 
 app.post("/einkuenfte/auswahl", (req, res) => {
-  req.session.gewinnDiesesJahr = req.body.gewinnDiesesJahr;
-  req.session.gewinnNaechstesJahr = req.body.gewinnNaechstesJahr;
-  req.session.gewinnStarted = true;
-  res.redirect("/einkuenfte/auswahl");
-});
-
-app.get("/einkuenfte/auswahl", (req, res) => {
-  res.render("einkuenfte/auswahl", {
-    pageName: "Weitere Einkünfte",
-    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
-    session: req.session,
-  });
-});
-
-app.post("/einkuenfte/landwirtschaft", (req, res) => {
   req.session.einkuenfte = req.body.einkuenfte;
 
   var einkuenfte = req.session.einkuenfte;
@@ -750,23 +730,22 @@ app.post("/einkuenfte/landwirtschaft", (req, res) => {
     } else if (einkuenfte.includes("sonstige")) {
       res.redirect("/einkuenfte/sonstige");
     } else {
-      req.session.gewinnDone = true;
-      res.redirect("/gewinn/status");
+      res.redirect("/kontakt/start");
     }
   } else {
-    req.session.gewinnDone = true;
-    res.redirect("/gewinn/status");
+    res.redirect("/kontakt/start");
   }
 });
 
-app.get("/einkuenfte/landwirtschaft", (req, res) => {
-  res.render("einkuenfte/landwirtschaft", {
-    session: req.session,
+app.get("/einkuenfte/auswahl", (req, res) => {
+  res.render("einkuenfte/auswahl", {
+    pageName: "Weitere Einkünfte",
     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+    session: req.session,
   });
 });
 
-app.post("/einkuenfte/vermietung", (req, res) => {
+app.post("/einkuenfte/landwirtschaft", (req, res) => {
   req.session.landwirtschaftDiesesJahr = req.body.landwirtschaftDiesesJahr;
   req.session.landwirtschaftNaechstesJahr =
     req.body.landwirtschaftNaechstesJahr;
@@ -784,19 +763,18 @@ app.post("/einkuenfte/vermietung", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
-    req.session.gewinnDone = true;
-    res.redirect("/gewinn/status");
+    res.redirect("/kontakt/start");
   }
 });
 
-app.get("/einkuenfte/vermietung", (req, res) => {
-  res.render("einkuenfte/vermietung", {
+app.get("/einkuenfte/landwirtschaft", (req, res) => {
+  res.render("einkuenfte/landwirtschaft", {
     session: req.session,
     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
   });
 });
 
-app.post("/einkuenfte/selbststaendig", (req, res) => {
+app.post("/einkuenfte/vermietung", (req, res) => {
   req.session.vermietungDiesesJahr = req.body.vermietungDiesesJahr;
   req.session.vermietungNaechstesJahr = req.body.vermietungNaechstesJahr;
 
@@ -811,19 +789,18 @@ app.post("/einkuenfte/selbststaendig", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
-    req.session.gewinnDone = true;
-    res.redirect("/gewinn/status");
+    res.redirect("/kontakt/start");
   }
 });
 
-app.get("/einkuenfte/selbststaendig", (req, res) => {
-  res.render("einkuenfte/selbststaendig", {
+app.get("/einkuenfte/vermietung", (req, res) => {
+  res.render("einkuenfte/vermietung", {
     session: req.session,
     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
   });
 });
 
-app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
+app.post("/einkuenfte/selbststaendig", (req, res) => {
   req.session.selbststaendigDiesesJahr = req.body.selbststaendigDiesesJahr;
   req.session.selbststaendigNaechstesJahr =
     req.body.selbststaendigNaechstesJahr;
@@ -837,19 +814,18 @@ app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
-    req.session.gewinnDone = true;
-    res.redirect("/gewinn/status");
+    res.redirect("/kontakt/start");
   }
 });
 
-app.get("/einkuenfte/nicht-selbststaendig", (req, res) => {
-  res.render("einkuenfte/nicht-selbststaendig", {
+app.get("/einkuenfte/selbststaendig", (req, res) => {
+  res.render("einkuenfte/selbststaendig", {
     session: req.session,
     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
   });
 });
 
-app.post("/einkuenfte/kapital", (req, res) => {
+app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
   req.session.nichtSelbststaendigDiesesJahr =
     req.body.nichtSelbststaendigDiesesJahr;
   req.session.nichtSelbststaendigNaechstesJahr =
@@ -862,8 +838,28 @@ app.post("/einkuenfte/kapital", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
+    res.redirect("/kontakt/start");
+  }
+});
+
+app.get("/einkuenfte/nicht-selbststaendig", (req, res) => {
+  res.render("einkuenfte/nicht-selbststaendig", {
+    session: req.session,
+    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+  });
+});
+
+app.post("/einkuenfte/kapital", (req, res) => {
+  req.session.kapitalDiesesJahr = req.body.sonstigeDiesesJahr;
+  req.session.kapitalNaechstesJahr = req.body.sonstigeNaechstesJahr;
+
+  var einkuenfte = req.session.einkuenfte;
+
+  if (einkuenfte.includes("sonstige")) {
+    res.redirect("/einkuenfte/sonstige");
+  } else {
     req.session.gewinnDone = true;
-    res.redirect("/gewinn/status");
+    res.redirect("/kontakt/start");
   }
 });
 
@@ -875,17 +871,9 @@ app.get("/einkuenfte/kapital", (req, res) => {
 });
 
 app.post("/einkuenfte/sonstige", (req, res) => {
-  req.session.kapitalDiesesJahr = req.body.sonstigeDiesesJahr;
-  req.session.kapitalNaechstesJahr = req.body.sonstigeNaechstesJahr;
-
-  var einkuenfte = req.session.einkuenfte;
-
-  if (einkuenfte.includes("sonstige")) {
-    res.redirect("/einkuenfte/sonstige");
-  } else {
-    req.session.gewinnDone = true;
-    res.redirect("/gewinn/status");
-  }
+  req.session.sonstigeDiesesJahr = req.body.sonstigeDiesesJahr;
+  req.session.sonstigeNaechstesJahr = req.body.sonstigeNaechstesJahr;
+  res.redirect("/kontakt/start");
 });
 
 app.get("/einkuenfte/sonstige", (req, res) => {
@@ -893,13 +881,6 @@ app.get("/einkuenfte/sonstige", (req, res) => {
     session: req.session,
     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
   });
-});
-
-app.post("/gewinn/status", (req, res) => {
-  req.session.sonstigeDiesesJahr = req.body.sonstigeDiesesJahr;
-  req.session.sonstigeNaechstesJahr = req.body.sonstigeNaechstesJahr;
-  req.session.gewinnDone = true;
-  res.redirect("/gewinn/status");
 });
 
 app.get("/gewinn/status", (req, res) => {
@@ -921,7 +902,8 @@ app.get("/kontakt/start", (req, res) => {
 });
 
 app.post("/kontakt/telefon", (req, res) => {
-  res.redirect("/kontakt/telefon");
+  req.session.kontaktTelefon = req.body.kontaktTelefon;
+  res.redirect("/kontakt/email");
 });
 
 app.get("/kontakt/telefon", (req, res) => {
@@ -932,9 +914,8 @@ app.get("/kontakt/telefon", (req, res) => {
 });
 
 app.post("/kontakt/email", (req, res) => {
-  req.session.kontaktTelefon = req.body.kontaktTelefon;
-  req.session.kontaktStarted = true;
-  res.redirect("/kontakt/email");
+  req.session.kontaktEmail = req.body.kontaktEmail;
+  res.redirect("/antrag-ueberpruefen");
 });
 
 app.get("/kontakt/email", (req, res) => {
@@ -944,25 +925,11 @@ app.get("/kontakt/email", (req, res) => {
   });
 });
 
-app.post("/kontakt/status", (req, res) => {
-  req.session.kontaktEmail = req.body.kontaktEmail;
-  req.session.kontaktDone = true;
-  res.redirect("/kontakt/status");
-});
-
 app.get("/kontakt/status", (req, res) => {
   res.render("kontakt/status", {
     pageName: "Ihr Kombi-Antrag Status",
     session: req.session,
   });
-});
-
-app.post("/antrag-ueberpruefen", (req, res) => {
-  req.session.vorname = req.body.vorname;
-  req.session.nachname = req.body.nachname;
-  req.session.geburtsname = req.body.geburtsname;
-
-  res.redirect("/antrag-ueberpruefen");
 });
 
 app.get("/antrag-ueberpruefen", (req, res) => {
@@ -976,10 +943,6 @@ app.get("/antrag-ueberpruefen", (req, res) => {
     kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     session: req.session,
   });
-});
-
-app.post("/antrag-absenden", (req, res) => {
-  res.redirect("/antrag-absenden");
 });
 
 app.get("/antrag-absenden", (req, res) => {
