@@ -32,6 +32,7 @@ function treeForCurrentState(session, current) {
       href: "/person/start",
       active: current.startsWith("/person"),
       started: session.vorname || session.jahr,
+      done: session.vorname && session.steuerid,
       items: [
         {
           name: "Name",
@@ -56,7 +57,7 @@ function treeForCurrentState(session, current) {
           name: "Staatsangehörigkeit",
           href: "/person/staatsangehoerigkeit",
           active: current === "/person/staatsangehoerigkeit",
-          done: session.staatsangehoerigkeit,
+          done: session.staatsangehoerigkeitbool,
         },
         {
           name: "Adresse",
@@ -77,6 +78,11 @@ function treeForCurrentState(session, current) {
       name: "Unternehmen und Tätigkeit",
       href: "/unternehmen/start",
       active: current.startsWith("/unternehmen"),
+      started: session.adresseAbweichend || session.taetigkeit,
+      done:
+        session.adresseAbweichend &&
+        (session.ustidexistingbool === "ja" || session.ustid),
+
       items: [
         {
           name: "Adresse",
@@ -148,16 +154,21 @@ function treeForCurrentState(session, current) {
       href: "/gewinn/start",
       active:
         current.startsWith("/gewinn") || current.startsWith("/einkuenfte"),
+      started: session.gewinnDiesesJahr || session.einkuenfte,
+      done: session.gewinnDiesesJahr && session.einkuenfte,
       items: [
         {
           name: "Gewinn",
           href: "/gewinn/eingabe",
           active: current === "/gewinn/eingabe",
+          started: session.gewinnDiesesJahr || session.gewinnNaechstesJahr,
+          done: session.gewinnDiesesJahr && session.gewinnNaechstesJahr,
         },
         {
           name: "Sonstige Einkünfte",
           href: "/einkuenfte/auswahl",
           active: current === "/einkuenfte/auswahl",
+          done: session.einkuenfte,
         },
       ],
     },
@@ -165,16 +176,20 @@ function treeForCurrentState(session, current) {
       name: "Kontakt",
       href: "/kontakt/start",
       active: current.startsWith("/kontakt"),
+      started: session.kontaktTelefon || session.kontaktEmail,
+      done: session.kontaktTelefon && session.kontaktEmail,
       items: [
         {
           name: "Telefon",
           href: "/kontakt/telefon",
           active: current === "/kontakt/telefon",
+          done: session.kontaktTelefon,
         },
         {
           name: "Email",
           href: "/kontakt/email",
           active: current === "/kontakt/email",
+          done: session.kontaktEmail,
         },
       ],
     },

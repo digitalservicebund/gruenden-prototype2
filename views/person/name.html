@@ -1,5 +1,7 @@
 <div class="kern-stack">
-  {{> progress step=1 max=6 url="/person/bundid" section="Persönliche Angaben"}}
+  {{#unless edit}}
+    {{> progress step=1 max=6 url="/person/bundid" section="Persönliche Angaben"}}
+  {{/unless}}
   <div>
     {{#if edit}}
       <p class="kern-preline">Bearbeiten</p>
