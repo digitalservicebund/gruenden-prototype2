@@ -73,6 +73,15 @@ aside {
   width: var(--kern-metric-space-large);
 }
 
+.progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kern-metric-space-default);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
 footer {
   margin-block-start: 6rem;
   background: var(--kern-color-layout-background-hued);
