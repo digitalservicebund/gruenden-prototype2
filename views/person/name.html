@@ -1,6 +1,9 @@
 <div class="kern-stack">
   {{> progress step=1 max=6 url="/person/bundid" section="Persönliche Angaben"}}
   <div>
+    {{#if edit}}
+      <p class="kern-preline">Bearbeiten</p>
+    {{/if}}
     <h2 class="kern-heading-x-large">Wie heißen Sie?</h2>
   </div>
   {{#if edit}}
@@ -53,7 +56,15 @@
     </div>
     <div class="kern-btn-wrapper">
       <button class="kern-btn kern-btn--primary">
-        <span class="kern-label">Weiter</span>
+        <span class="kern-label">
+
+  {{#if edit}}
+            Speichern
+  {{else}}
+            Weiter
+
+  {{/if}}
+          </span>
       </button>
     </div>
   </form>

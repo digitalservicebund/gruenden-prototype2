@@ -231,7 +231,11 @@ app.post("/person/name", (req, res) => {
   req.session.nachname = req.body.nachname;
   req.session.geburtsname = req.body.geburtsname;
 
-  res.redirect("/person/geburtstag");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/person/geburtstag");
+  }
 });
 
 app.get("/person/name", (req, res) => {
@@ -240,18 +244,6 @@ app.get("/person/name", (req, res) => {
     pageTree: treeForCurrentState(req.session, "/person/name"),
     session: req.session,
     edit: req.query.edit,
-  });
-});
-
-app.post("/person/name/edit", (req, res) => {
-  res.redirect("/person/name-edit");
-});
-
-app.get("/person/name/edit", (req, res) => {
-  res.render("person/name-edit", {
-    pageName: "Wie heißen Sie?",
-    start: true,
-    session: req.session,
   });
 });
 
