@@ -1,32 +1,17 @@
-<div class="kern-stack">
-  {{> progress step=2 max=5 section="Unternehmen und Tätigkeit"}}
-  <div>
-    <h2 class="kern-heading-x-large">
-      Womit wird sich Ihr neues Unternehmen beschäftigen?
-    </h2>
-    <p class="kern-body">Beschreiben Sie Ihre Tätigkeit möglichst genau.</p>
+{{#> question edit=edit step=2 max=5 section="Unternehmen und Tätigkeit"
+title="Womit wird sich Ihr neues Unternehmen beschäftigen?"
+action="/unternehmen/taetigkeit" }}
+<div class="kern-fieldset__body">
+  <div class="kern-form-input">
+    <label class="kern-label" for="taetigkeit">Tätigkeit</label>
+    <textarea
+      class="kern-form-input__input"
+      id="taetigkeit"
+      name="taetigkeit"
+      type="text"
+    >
+{{ session.taetigkeit }}</textarea
+    >
   </div>
-  <form
-    class="kern-stack kern-gap-xl"
-    action="/unternehmen/taetigkeit"
-    method="post"
-  >
-    <div class="kern-fieldset__body">
-      <div class="kern-form-input">
-        <label class="kern-label" for="taetigkeit">Tätigkeit</label>
-        <textarea
-          class="kern-form-input__input"
-          id="taetigkeit"
-          name="taetigkeit"
-          type="text"
-          value="{{ session.taetigkeit }}"
-        ></textarea>
-      </div>
-    </div>
-    <div class="kern-btn-wrapper">
-      <button class="kern-btn kern-btn--primary">
-        <span class="kern-label">Weiter</span>
-      </button>
-    </div>
-  </form>
 </div>
+{{/question}}

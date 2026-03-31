@@ -420,6 +420,7 @@ app.post("/unternehmen/adresse-abweichend", (req, res) => {
 
 app.get("/unternehmen/adresse-abweichend", (req, res) => {
   res.render("unternehmen/adresse-abweichend", {
+    adresseAbweichend: req.session.adresseAbweichend == "ja",
     edit: req.query.edit,
     pageTree: treeForCurrentState(
       req.session,
@@ -451,13 +452,18 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
 
 app.post("/unternehmen/taetigkeit", (req, res) => {
   req.session.taetigkeit = req.body.taetigkeit;
-  res.redirect("/unternehmen/taetigkeit-begonnen");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/unternehmen/taetigkeit-begonnen");
+  }
 });
 
 app.get("/unternehmen/taetigkeit", (req, res) => {
   res.render("unternehmen/taetigkeit", {
-    session: req.session,
+    edit: req.query.edit,
     pageTree: treeForCurrentState(req.session, "/unternehmen/taetigkeit"),
+    session: req.session,
   });
 });
 
