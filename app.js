@@ -308,56 +308,75 @@ app.post("/person/geburtsort", (req, res) => {
   req.session.geburtsort = req.body.geburtsort;
   req.session.geburtsland = req.body.geburtsland;
 
-  res.redirect("/person/staatsangehoerigkeit");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/person/staatsangehoerigkeit");
+  }
 });
 
 app.get("/person/geburtsort", (req, res) => {
   res.render("person/geburtsort", {
+    edit: req.query.edit,
+    pageName: "Wo wurden Sie geboren?",
     pageTree: treeForCurrentState(req.session, "/person/geburtsort"),
     session: req.session,
-    pageName: "Wo wurden Sie geboren?",
   });
 });
 
 app.post("/person/staatsangehoerigkeit", (req, res) => {
   req.session.staatsangehoerigkeitbool = req.body.staatsangehoerigkeitbool;
-  res.redirect("/person/adresse");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/person/adresse");
+  }
 });
 
 app.get("/person/staatsangehoerigkeit", (req, res) => {
   res.render("person/staatsangehoerigkeit", {
-    session: req.session,
-    pageTree: treeForCurrentState(req.session, "/person/staatsangehoerigkeit"),
+    edit: req.query.edit,
     pageName: "Haben Sie eine deutsche Staatsangehörigkeit?",
+    pageTree: treeForCurrentState(req.session, "/person/staatsangehoerigkeit"),
+    session: req.session,
   });
 });
 
 app.post("/person/adresse", (req, res) => {
   req.session.strasse = req.body.strasse;
-  // req.session.hausnummer = req.body.hausnummer;
   req.session.plz = req.body.plz;
   req.session.ort = req.body.ort;
-  res.redirect("/person/steuer-id");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/person/steuer-id");
+  }
 });
 
 app.get("/person/adresse", (req, res) => {
   res.render("person/adresse", {
-    session: req.session,
-    pageTree: treeForCurrentState(req.session, "/person/adresse"),
+    edit: req.query.edit,
     pageName: "Wo wohnen Sie?",
+    pageTree: treeForCurrentState(req.session, "/person/adresse"),
+    session: req.session,
   });
 });
 
 app.post("/person/steuer-id", (req, res) => {
   req.session.steuerid = req.body.steuerid;
-  res.redirect("/unternehmen/start");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/unternehmen/start");
+  }
 });
 
 app.get("/person/steuer-id", (req, res) => {
   res.render("person/steuer-id", {
-    session: req.session,
-    pageTree: treeForCurrentState(req.session, "/person/steuer-id"),
+    edit: req.query.edit,
     pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
+    pageTree: treeForCurrentState(req.session, "/person/steuer-id"),
+    session: req.session,
   });
 });
 

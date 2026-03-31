@@ -1,53 +1,38 @@
-<div class="kern-stack">
-  {{> progress step=6 max=6 section="Persönliche Angaben"}}
-  <div class="kern-stack kern-gap-xl">
-    <div>
-      <h2 class="kern-heading-x-large">
-        Wie lautet Ihre Steuer-Identifikationsnummer?
-      </h2>
-      <div class="kern-stack kern-gap-sm">
-        <p class="kern-body">
-          Die 11-stellige Steuer-Identifkationsnummer ist Ihre persönliche
-          Nummer für das Finanzamt. Sie bleibt lebenslang gültig.
-        </p>
-        <p class="kern-body">
-          Hinweis: Sie finden Ihre Steuer-Identifkationsnummer auf fast jedem
-          Brief vom Finanzamt oder auf Ihrer Lohnabrechnung.
-        </p>
-        <a
-          class="kern-link"
-          target="_blank"
-          href="https://www.bzst.de/DE/Privatpersonen/SteuerlicheIdentifikationsnummer/steuerlicheidentifikationsnummer_node.html"
-        >
-          Mehr Informationen
-        </a>
-      </div>
-    </div>
-    <form
-      class="kern-stack kern-gap-xl"
-      action="/person/steuer-id"
-      method="post"
+{{#> question edit=edit step=6 max=6 section="Persönliche Angaben" title="Wie
+lautet Ihre Steuer-Identifikationsnummer?" action="/person/steuer-id"}}
+{{#*inline "intro"}}
+<div class="kern-stack kern-gap-sm">
+  <p class="kern-body">
+    Die 11-stellige Steuer-Identifkationsnummer ist Ihre persönliche Nummer für
+    das Finanzamt. Sie bleibt lebenslang gültig.
+  </p>
+  <p class="kern-body">
+    Hinweis: Sie finden Ihre Steuer-Identifkationsnummer auf fast jedem Brief
+    vom Finanzamt oder auf Ihrer Lohnabrechnung.
+  </p>
+  <a
+    class="kern-link"
+    target="_blank"
+    href="https://www.bzst.de/DE/Privatpersonen/SteuerlicheIdentifikationsnummer/steuerlicheidentifikationsnummer_node.html"
+  >
+    Mehr Informationen
+  </a>
+</div>
+{{/inline}}
+
+<div class="kern-fieldset__body">
+  <div class="kern-form-input">
+    <label class="kern-label" for="steuerid"
+      >Steuer-Identifikationsnummer</label
     >
-      <div class="kern-fieldset__body">
-        <div class="kern-form-input">
-          <label class="kern-label" for="steuerid"
-            >Steuer-Identifikationsnummer</label
-          >
-          <input
-            class="kern-form-input__input"
-            id="steuerid"
-            name="steuerid"
-            type="text"
-            inputmode="numeric"
-            value="{{ session.steuerid }}"
-          />
-        </div>
-      </div>
-      <div class="kern-btn-wrapper">
-        <button class="kern-btn kern-btn--primary">
-          <span class="kern-label">Weiter</span>
-        </button>
-      </div>
-    </form>
+    <input
+      class="kern-form-input__input"
+      id="steuerid"
+      name="steuerid"
+      type="text"
+      inputmode="numeric"
+      value="{{ session.steuerid }}"
+    />
   </div>
 </div>
+{{/question}}

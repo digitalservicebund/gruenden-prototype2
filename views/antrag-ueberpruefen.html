@@ -28,12 +28,14 @@
                 {{session.nachname}}
               </dd>
             </div>
+            {{#if session.geburtsname}}
             <div class="kern-description-list-item">
               <dt class="kern-description-list-item__key">Geburtsname</dt>
               <dd class="kern-description-list-item__value">
                 {{session.geburtsname}}
               </dd>
             </div>
+            {{/if}}
             <div class="kern-summary__actions">
               <a
                 href="/person/name?edit=true"
@@ -123,7 +125,7 @@
                 Staatsangehörigkeit
               </dt>
               <dd class="kern-description-list-item__value">
-                {{session.staatsangehoerigkeit}}
+                {{session.staatsangehoerigkeitbool}}
               </dd>
             </div>
             <div class="kern-summary__actions">
