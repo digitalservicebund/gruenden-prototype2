@@ -335,12 +335,16 @@
                 Umsatzsteuer-Identifikationsnummer
               </dt>
               <dd class="kern-description-list-item__value">
-                {{session.ustid}}
+                {{#if existingUstid}} Ich habe bereits eine
+                Umsatzsteuer-Identifikationsnummer. {{else}} {{#if newUstid}}
+                Ich möchte eine Umsatzsteuer-Identifikationsnummer beantragen.
+                {{else}} Ich möchte keine Umsatzsteuer-Identifikationsnummer
+                beantragen. {{/if}} {{/if}}
               </dd>
             </div>
             <div class="kern-summary__actions">
               <a
-                href="/unternehmen/ustid?edit=true"
+                href="/unternehmen/ustid-abfrage?edit=true"
                 class="kern-link"
                 aria-describedby="title"
               >

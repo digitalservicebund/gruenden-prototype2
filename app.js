@@ -411,7 +411,7 @@ app.post("/unternehmen/adresse-abweichend", (req, res) => {
     }
   } else {
     if (adresseAbweichend) {
-      res.redirect("/unternehmen/adresse-eingabe?edit=true");
+      res.redirect("/unternehmen/adresse-eingabe");
     } else {
       res.redirect("/unternehmen/taetigkeit");
     }
@@ -469,16 +469,23 @@ app.get("/unternehmen/taetigkeit", (req, res) => {
 
 app.post("/unternehmen/taetigkeit-begonnen", (req, res) => {
   req.session.taetigkeitBegonnen = req.body.taetigkeitBegonnen;
-  res.redirect("/unternehmen/taetigkeit-beginn");
+  if (req.query.edit) {
+    res.redirect("/unternehmen/taetigkeit-beginn?edit=true");
+  } else {
+    res.redirect("/unternehmen/taetigkeit-beginn");
+  }
 });
 
 app.get("/unternehmen/taetigkeit-begonnen", (req, res) => {
+  var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
   res.render("unternehmen/taetigkeit-begonnen", {
-    session: req.session,
+    edit: req.query.edit,
     pageTree: treeForCurrentState(
       req.session,
       "/unternehmen/taetigkeit-begonnen",
     ),
+    session: req.session,
+    taetigkeitBegonnen: taetigkeitBegonnen,
   });
 });
 
@@ -487,18 +494,23 @@ app.post("/unternehmen/taetigkeit-beginn", function (req, res) {
   req.session.taetigkeitBeginnMonat = req.body.taetigkeitBeginnMonat;
   req.session.taetigkeitBeginnJahr = req.body.taetigkeitBeginnJahr;
 
-  res.redirect("/unternehmen/gewerbeart");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/unternehmen/gewerbeart");
+  }
 });
 
 app.get("/unternehmen/taetigkeit-beginn", (req, res) => {
   var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
 
   res.render("unternehmen/taetigkeit-beginn", {
-    session: req.session,
+    edit: req.query.edit,
     pageTree: treeForCurrentState(
       req.session,
       "/unternehmen/taetigkeit-begonnen",
     ),
+    session: req.session,
     taetigkeitBegonnen: taetigkeitBegonnen,
   });
 });
@@ -519,15 +531,24 @@ app.post("/unternehmen/ustid-abfrage", (req, res) => {
   req.session.ustidexistingbool = req.body.ustidexistingbool;
   var existingUstid = req.session.ustidexistingbool;
 
-  if (existingUstid == "ja") {
-    res.redirect("/umsatz/start");
+  if (req.query.edit) {
+    if (existingUstid == "ja") {
+      res.redirect("/antrag-ueberpruefen");
+    } else {
+      res.redirect("/unternehmen/ustid?edit=true");
+    }
   } else {
-    res.redirect("/unternehmen/ustid");
+    if (existingUstid == "ja") {
+      res.redirect("/umsatz/start");
+    } else {
+      res.redirect("/unternehmen/ustid");
+    }
   }
 });
 
 app.get("/unternehmen/ustid-abfrage", (req, res) => {
   res.render("unternehmen/ustid-abfrage", {
+    edit: req.query.edit,
     session: req.session,
     pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
   });
@@ -535,13 +556,18 @@ app.get("/unternehmen/ustid-abfrage", (req, res) => {
 
 app.post("/unternehmen/ustid", (req, res) => {
   req.session.ustidbool = req.body.ustidbool;
-  res.redirect("/umsatz/start");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/umsatz/start");
+  }
 });
 
 app.get("/unternehmen/ustid", (req, res) => {
   res.render("unternehmen/ustid", {
-    session: req.session,
+    edit: req.query.edit,
     pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
+    session: req.session,
   });
 });
 
@@ -987,12 +1013,16 @@ app.get("/kontakt/status", (req, res) => {
 app.get("/antrag-ueberpruefen", (req, res) => {
   var adresseAbweichend = req.session.adresseAbweichend == "ja";
   var kleinunternehmenVerwenden = req.session.kleinunternehmenBool == "ja";
+  var existingUstid = req.session.ustidexistingbool === "ja";
+  var newUstid = req.session.ustidbool === "ja";
 
   res.render("antrag-ueberpruefen", {
+    adresseAbweichend: adresseAbweichend,
+    existingUstid: existingUstid,
+    kleinunternehmenVerwenden: kleinunternehmenVerwenden,
+    newUstid: newUstid,
     pageName: "Antrag überprüfen",
     pageTree: treeForCurrentState(req.session, "/antrag-ueberpruefen"),
-    adresseAbweichend: adresseAbweichend,
-    kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     session: req.session,
   });
 });
