@@ -1,52 +1,38 @@
-<div class="kern-stack">
-  {{> progress step=2 max=6 section="Persönliche Angaben"}}
-  <div>
-    <h2 class="kern-heading-x-large">Wann wurden Sie geboren?</h2>
+{{#> question edit=edit step=2 max=6 section="Persönliche Angaben" title="Wann
+wurden Sie geboren?" action="/person/geburtstag"}}
+<div class="kern-fieldset__body kern-fieldset__body--horizontal">
+  <div class="kern-form-input">
+    <label class="kern-label" for="tag">Tag</label>
+    <input
+      class="kern-form-input__input kern-form-input__input--width-2"
+      id="tag"
+      name="tag"
+      type="text"
+      inputmode="numeric"
+      value="{{#if session.tag}}{{ session.tag }}{{else}}17{{/if}}"
+    />
   </div>
-  <form
-    class="kern-stack kern-gap-xl"
-    action="/person/geburtstag"
-    method="post"
-  >
-    <div class="kern-fieldset__body kern-fieldset__body--horizontal">
-      <div class="kern-form-input">
-        <label class="kern-label" for="tag">Tag</label>
-        <input
-          class="kern-form-input__input kern-form-input__input--width-2"
-          id="tag"
-          name="tag"
-          type="text"
-          inputmode="numeric"
-          value="{{#if session.tag}}{{ session.tag }}{{else}}17{{/if}}"
-        />
-      </div>
-      <div class="kern-form-input">
-        <label class="kern-label" for="monat">Monat</label>
-        <input
-          class="kern-form-input__input kern-form-input__input--width-2"
-          id="monat"
-          name="monat"
-          type="text"
-          inputmode="numeric"
-          value="{{#if session.monat}}{{ session.monat }}{{else}}11{{/if}}"
-        />
-      </div>
-      <div class="kern-form-input">
-        <label class="kern-label" for="jahr">Jahr</label>
-        <input
-          class="kern-form-input__input kern-form-input__input--width-4"
-          id="jahr"
-          name="jahr"
-          type="text"
-          inputmode="numeric"
-          value="{{#if session.jahr}}{{ session.jahr }}{{else}}1997{{/if}}"
-        />
-      </div>
-    </div>
-    <div class="kern-btn-wrapper">
-      <button class="kern-btn kern-btn--primary">
-        <span class="kern-label">Weiter</span>
-      </button>
-    </div>
-  </form>
+  <div class="kern-form-input">
+    <label class="kern-label" for="monat">Monat</label>
+    <input
+      class="kern-form-input__input kern-form-input__input--width-2"
+      id="monat"
+      name="monat"
+      type="text"
+      inputmode="numeric"
+      value="{{#if session.monat}}{{ session.monat }}{{else}}11{{/if}}"
+    />
+  </div>
+  <div class="kern-form-input">
+    <label class="kern-label" for="jahr">Jahr</label>
+    <input
+      class="kern-form-input__input kern-form-input__input--width-4"
+      id="jahr"
+      name="jahr"
+      type="text"
+      inputmode="numeric"
+      value="{{#if session.jahr}}{{ session.jahr }}{{else}}1997{{/if}}"
+    />
+  </div>
 </div>
+{{/question}}

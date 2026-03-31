@@ -277,10 +277,10 @@ app.post("/person/name", (req, res) => {
 
 app.get("/person/name", (req, res) => {
   res.render("person/name", {
+    edit: req.query.edit,
     pageName: "Wie heißen Sie?",
     pageTree: treeForCurrentState(req.session, "/person/name"),
     session: req.session,
-    edit: req.query.edit,
   });
 });
 
@@ -288,14 +288,19 @@ app.post("/person/geburtstag", (req, res) => {
   req.session.tag = req.body.tag;
   req.session.monat = req.body.monat;
   req.session.jahr = req.body.jahr;
-  res.redirect("/person/geburtsort");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/person/geburtsort");
+  }
 });
 
 app.get("/person/geburtstag", (req, res) => {
   res.render("person/geburtstag", {
-    session: req.session,
-    pageTree: treeForCurrentState(req.session, "/person/geburtstag"),
+    edit: req.query.edit,
     pageName: "Wann wurden Sie geboren?",
+    pageTree: treeForCurrentState(req.session, "/person/geburtstag"),
+    session: req.session,
   });
 });
 
