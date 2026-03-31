@@ -2951,7 +2951,7 @@ select {
   line-height: var(--kern-typography-line-height-adaptive-2x-large, 56px);
 }
 
-.kern-heading-large {
+.kern-heading-x-large {
   margin: 0;
   padding: 0;
   border: 0;
