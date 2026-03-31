@@ -403,15 +403,24 @@ app.post("/unternehmen/adresse-abweichend", (req, res) => {
   req.session.unternehmenStarted = true;
   var adresseAbweichend = req.session.adresseAbweichend == "ja";
 
-  if (adresseAbweichend) {
-    res.redirect("/unternehmen/adresse-eingabe");
+  if (req.query.edit) {
+    if (adresseAbweichend) {
+      res.redirect("/unternehmen/adresse-eingabe?edit=true");
+    } else {
+      res.redirect("/antrag-ueberpruefen");
+    }
   } else {
-    res.redirect("/unternehmen/taetigkeit");
+    if (adresseAbweichend) {
+      res.redirect("/unternehmen/adresse-eingabe?edit=true");
+    } else {
+      res.redirect("/unternehmen/taetigkeit");
+    }
   }
 });
 
 app.get("/unternehmen/adresse-abweichend", (req, res) => {
   res.render("unternehmen/adresse-abweichend", {
+    edit: req.query.edit,
     pageTree: treeForCurrentState(
       req.session,
       "/unternehmen/adresse-abweichend",
@@ -422,16 +431,21 @@ app.get("/unternehmen/adresse-abweichend", (req, res) => {
 
 app.post("/unternehmen/adresse-eingabe", function (req, res) {
   req.session.unternehmenStrasse = req.body.unternehmenStrasse;
-  req.session.unternehmenHausnummer = req.body.unternehmenHausnummer;
+  req.session.unternehmenPlz = req.body.unternehmenPlz;
   req.session.unternehmenOrt = req.body.unternehmenOrt;
 
-  res.redirect("/unternehmen/taetigkeit");
+  if (req.query.edit) {
+    res.redirect("/antrag-ueberpruefen");
+  } else {
+    res.redirect("/unternehmen/taetigkeit");
+  }
 });
 
 app.get("/unternehmen/adresse-eingabe", (req, res) => {
   res.render("unternehmen/adresse-eingabe", {
-    session: req.session,
+    edit: req.query.edit,
     pageTree: treeForCurrentState(req.session, "/unternehmen/adresse-eingabe"),
+    session: req.session,
   });
 });
 
