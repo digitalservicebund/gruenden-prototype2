@@ -31,8 +31,12 @@ header {
   padding-block: var(--kern-metric-space-default);
 }
 
-main {
-  max-width: 80ch;
+.container--clamp {
+  max-width: 44rem;
+}
+
+.container--summary {
+  max-width: 64rem;
 }
 
 aside {

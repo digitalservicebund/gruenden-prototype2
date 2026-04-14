@@ -367,7 +367,7 @@ app.post("/person/steuer-id", (req, res) => {
   if (req.query.edit) {
     res.redirect("/antrag-ueberpruefen");
   } else {
-    res.redirect("/unternehmen/start");
+    res.redirect("/person/status");
   }
 });
 
@@ -383,6 +383,7 @@ app.get("/person/steuer-id", (req, res) => {
 app.get("/person/status", (req, res) => {
   res.render("person/status", {
     session: req.session,
+    pageTree: treeForCurrentState(req.session, "/person/status"),
     pageName: "Ihr Kombi-Antrag Status",
   });
 });
@@ -539,7 +540,7 @@ app.post("/unternehmen/ustid-abfrage", (req, res) => {
     }
   } else {
     if (existingUstid == "ja") {
-      res.redirect("/umsatz/start");
+      res.redirect("/unternehmen/status");
     } else {
       res.redirect("/unternehmen/ustid");
     }
@@ -559,7 +560,7 @@ app.post("/unternehmen/ustid", (req, res) => {
   if (req.query.edit) {
     res.redirect("/antrag-ueberpruefen");
   } else {
-    res.redirect("/umsatz/start");
+    res.redirect("/unternehmen/status");
   }
 });
 
@@ -574,6 +575,7 @@ app.get("/unternehmen/ustid", (req, res) => {
 app.get("/unternehmen/status", (req, res) => {
   res.render("unternehmen/status", {
     pageName: "Ihr Kombi-Antrag Status",
+    pageTree: treeForCurrentState(req.session, "/unternehmen/status"),
     session: req.session,
   });
 });
@@ -581,6 +583,7 @@ app.get("/unternehmen/status", (req, res) => {
 app.get("/umsatz/start", (req, res) => {
   res.render("umsatz/start", {
     session: req.session,
+    start: true,
     pageTree: treeForCurrentState(req.session, "/umsatz/start"),
   });
 });
@@ -726,7 +729,7 @@ app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
   }
 
   if (kleinunternehmenVerwenden) {
-    res.redirect("/gewinn/start");
+    res.redirect("/umsatz/status");
   } else {
     res.redirect("/umsatz/umsatzsteuer");
   }
@@ -745,7 +748,7 @@ app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
 app.post("/umsatz/umsatzsteuer", (req, res) => {
   req.session.ustDiesesJahr = req.body.ustDiesesJahr;
   req.session.ustNaechstesJahr = req.body.NaechstesJahr;
-  res.redirect("/gewinn/start");
+  res.redirect("/umsatz/status");
 });
 
 app.get("/umsatz/umsatzsteuer", (req, res) => {
@@ -759,12 +762,14 @@ app.get("/umsatz/status", (req, res) => {
   res.render("umsatz/status", {
     pageName: "Ihr Kombi-Antrag Status",
     session: req.session,
+    pageTree: treeForCurrentState(req.session, "/umsatz/status"),
   });
 });
 
 app.get("/gewinn/start", (req, res) => {
   res.render("gewinn/start", {
     session: req.session,
+    start: true,
     pageTree: treeForCurrentState(req.session, "/gewinn/start"),
   });
 });
@@ -808,10 +813,10 @@ app.post("/einkuenfte/auswahl", (req, res) => {
     } else if (einkuenfte.includes("sonstige")) {
       res.redirect("/einkuenfte/sonstige");
     } else {
-      res.redirect("/kontakt/start");
+      res.redirect("/gewinn/status");
     }
   } else {
-    res.redirect("/kontakt/start");
+    res.redirect("/gewinn/status");
   }
 });
 
@@ -841,7 +846,7 @@ app.post("/einkuenfte/landwirtschaft", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
-    res.redirect("/kontakt/start");
+    res.redirect("/gewinn/status");
   }
 });
 
@@ -867,7 +872,7 @@ app.post("/einkuenfte/vermietung", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
-    res.redirect("/kontakt/start");
+    res.redirect("/gewinn/status");
   }
 });
 
@@ -892,7 +897,7 @@ app.post("/einkuenfte/selbststaendig", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
-    res.redirect("/kontakt/start");
+    res.redirect("/gewinn/status");
   }
 });
 
@@ -916,7 +921,7 @@ app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
   } else if (einkuenfte.includes("sonstige")) {
     res.redirect("/einkuenfte/sonstige");
   } else {
-    res.redirect("/kontakt/start");
+    res.redirect("/gewinn/status");
   }
 });
 
@@ -937,7 +942,7 @@ app.post("/einkuenfte/kapital", (req, res) => {
     res.redirect("/einkuenfte/sonstige");
   } else {
     req.session.gewinnDone = true;
-    res.redirect("/kontakt/start");
+    res.redirect("/gewinn/status");
   }
 });
 
@@ -951,7 +956,7 @@ app.get("/einkuenfte/kapital", (req, res) => {
 app.post("/einkuenfte/sonstige", (req, res) => {
   req.session.sonstigeDiesesJahr = req.body.sonstigeDiesesJahr;
   req.session.sonstigeNaechstesJahr = req.body.sonstigeNaechstesJahr;
-  res.redirect("/kontakt/start");
+  res.redirect("/gewinn/status");
 });
 
 app.get("/einkuenfte/sonstige", (req, res) => {
@@ -964,6 +969,7 @@ app.get("/einkuenfte/sonstige", (req, res) => {
 app.get("/gewinn/status", (req, res) => {
   res.render("gewinn/status", {
     pageName: "Ihr Kombi-Antrag Status",
+    pageTree: treeForCurrentState(req.session, "/gewinn/status"),
     session: req.session,
   });
 });
@@ -1022,6 +1028,7 @@ app.get("/antrag-ueberpruefen", (req, res) => {
     kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     newUstid: newUstid,
     pageName: "Antrag überprüfen",
+    start: true,
     pageTree: treeForCurrentState(req.session, "/antrag-ueberpruefen"),
     session: req.session,
   });

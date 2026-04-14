@@ -19,15 +19,38 @@
           <div>{{> back url=url}}</div>
           {{/unless}}
           <main id="content">{{{body}}}</main>
+
+          {{#unless start}} {{#unless edit}}
+          <div class="container--summary" x-data="{ open: false }">
+            <a
+              class="kern-link"
+              href="#past-answers"
+              x-on:click="open = ! open"
+            >
+              <span
+                class="kern-icon"
+                x-bind:class="open ? 'kern-icon--arrow-up' : 'kern-icon--arrow-down'"
+                aria-hidden="true"
+              ></span>
+              <span
+                x-text="open ? 'Bisherige Antworten ausblenden' : 'Bisherige Antworten einblenden'"
+                >Bisherige Antworten einblenden</span
+              >
+            </a>
+
+            <div id="past-answers" x-show="open">{{>past-answers}}</div>
+          </div>
+          {{/unless}} {{/unless}}
         </div>
-        {{#unless start}} {{#unless edit}}
-        <aside class="">
-          <a href="/antrag" class="kern-link kern-mb-lg">Zur Übersicht</a>
-          {{> tree items=pageTree}}
-        </aside>
-        {{/unless}} {{/unless}}
       </div>
     </div>
     {{> footer}}
   </body>
 </html>
+
+<!-- {{#unless start}} {{#unless edit}} -->
+<!-- <aside class=""> -->
+<!--   <a href="/antrag" class="kern-link kern-mb-lg">Zur Übersicht</a> -->
+<!--   {{> tree items=pageTree}} -->
+<!-- </aside> -->
+<!-- {{/unless}} {{/unless}} -->

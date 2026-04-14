@@ -1,24 +1,32 @@
-<div class="kern-stack">
-  {{#unless edit}} {{> progress step=step max=max section=section}} {{/unless}}
-  <div>
-    {{#if edit}}
-    <p class="kern-preline">Bearbeiten</p>
-    {{/if}}
-    <h2 class="kern-heading-x-large">{{title}}{{#> title}}{{/title}}</h2>
-    {{#> intro}}{{/intro}}
-  </div>
-  <form
-    class="kern-stack kern-gap-xl"
-    action="{{action}}{{#if edit}}?edit=true{{/if}}"
-    method="post"
-  >
-    <div class="kern-fieldset__body">{{> @partial-block }}</div>
-    <div class="kern-btn-wrapper">
-      <button class="kern-btn kern-btn--primary">
-        <span class="kern-label">
-          {{#if edit}} Speichern {{else}} Weiter {{/if}}
-        </span>
-      </button>
+<div class="kern-stack kern-gap-xl">
+  <div class="kern-stack container--clamp">
+    {{#unless edit}} {{> progress step=step max=max section=section}}
+    {{/unless}}
+    <div>
+      {{#if edit}}
+      <p class="kern-preline">Bearbeiten</p>
+      {{/if}}
+      <h2 class="kern-heading-x-large">{{title}}{{#> title}}{{/title}}</h2>
+      {{#> intro}}{{/intro}}
     </div>
-  </form>
+    <form
+      class="kern-stack kern-gap-xl"
+      action="{{action}}{{#if edit}}?edit=true{{/if}}"
+      method="post"
+    >
+      <div class="kern-fieldset__body">{{> @partial-block }}</div>
+      <div class="kern-btn-wrapper kern-gap-lg">
+        <button class="kern-btn kern-btn--primary">
+          <span class="kern-label">
+            {{#if edit}} Speichern {{else}} Weiter {{/if}}
+          </span>
+        </button>
+        {{#if edit}}
+        <button class="kern-btn kern-btn--secondary">
+          <span class="kern-label">Abbrechen</span>
+        </button>
+        {{/if}}
+      </div>
+    </form>
+  </div>
 </div>
