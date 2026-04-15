@@ -1,5 +1,7 @@
 <div class="kern-progress">
   <progress id="progress" value="{{ step }}" max="{{ max }}"></progress>
-  <label class="kern-label kern-sr-only" for="progress">Schritt 1 von 6</label>
-  <p class="kern-body">{{#if section}}{{section}}{{/if}}</p>
+  <label class="kern-label kern-sr-only" for="progress"
+    >{{ section }}: Schritt {{ step }} von {{ max }}</label
+  >
+  <p class="kern-body">{{section}}</p>
 </div>

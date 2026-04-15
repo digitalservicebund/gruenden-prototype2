@@ -1037,6 +1037,7 @@ app.get("/antrag-ueberpruefen", (req, res) => {
 app.get("/antrag-absenden", (req, res) => {
   res.render("antrag-absenden", {
     pageName: "Antrag absenden",
+    start: true,
     session: req.session,
   });
 });
@@ -1044,6 +1045,7 @@ app.get("/antrag-absenden", (req, res) => {
 app.get("/antrag-gesendet", (req, res) => {
   res.render("antrag-gesendet", {
     pageName: "Antrag gesendet",
+    start: true,
     session: req.session,
   });
 });

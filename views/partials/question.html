@@ -6,7 +6,7 @@
       {{#if edit}}
       <p class="kern-preline">Bearbeiten</p>
       {{/if}}
-      <h2 class="kern-heading-x-large">{{title}}{{#> title}}{{/title}}</h2>
+      <h1 class="kern-heading-x-large">{{title}}{{#> title}}{{/title}}</h1>
       {{#> intro}}{{/intro}}
     </div>
     <form
@@ -21,11 +21,11 @@
             {{#if edit}} Speichern {{else}} Weiter {{/if}}
           </span>
         </button>
-        {{#if edit}}
-        <button class="kern-btn kern-btn--secondary">
-          <span class="kern-label">Abbrechen</span>
-        </button>
-        {{/if}}
+        <!-- {{#if edit}} -->
+        <!-- <button class="kern-btn kern-btn--secondary"> -->
+        <!--   <span class="kern-label">Abbrechen</span> -->
+        <!-- </button> -->
+        <!-- {{/if}} -->
       </div>
     </form>
   </div>
