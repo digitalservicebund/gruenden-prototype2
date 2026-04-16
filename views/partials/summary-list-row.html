@@ -1,0 +1,15 @@
+<div class="summary-list__row">
+  <dt class="summary-list__key kern-body">{{ key }}</dt>
+  <dd class="summary-list__value kern-body kern-body--bold">
+    {{> @partial-block }}
+  </dd>
+  {{#if action}}
+  <dd class="summary-list__actions">
+    <a href="{{action}}" class="kern-link">
+      <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
+      <span class="kern-sr-only">{{ key }}</span>
+      Bearbeiten
+    </a>
+  </dd>
+  {{/if}}
+</div>

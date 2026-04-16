@@ -86,6 +86,31 @@ aside {
   align-items: center;
 }
 
+/* summary-list */
+/* ----------------------------------- */
+
+.summary-list {
+  container: summary-list / inline-size;
+}
+
+.summary-list__row {
+  display: grid;
+  padding-block: var(--kern-metric-space-default);
+  border-bottom: 1px solid var(--kern-color-layout-border);
+
+  @container summary-list (min-width: 44rem) {
+    grid-template-columns: 2fr 3fr 1fr;
+    gap: var(--kern-metric-space-default);
+    .summary-list__actions {
+      text-align: right;
+    }
+  }
+}
+
+.summary-list__row:first-child {
+  padding-block-start: 0;
+}
+
 footer {
   margin-block-start: 6rem;
   background: var(--kern-color-layout-background-hued);

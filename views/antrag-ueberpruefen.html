@@ -4,203 +4,35 @@
     <p class="kern-body kern-body--large">Bitte überprüfen Sie Ihre Angaben</p>
   </div>
 
-  <div class="kern-stack kern-gap-sm">
-    <div class="kern-summary__header">
-      <span class="kern-number">1</span>
-      <h3 class="kern-title kern-title--small" id="title">
-        Persönliche Angaben
-      </h3>
-    </div>
+  <div class="kern-stack kern-gap-lg">
+    <h3 class="kern-heading-medium">Persönliche Angaben</h3>
 
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Vorname</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.vorname}}
-              </dd>
-            </div>
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Nachname</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.nachname}}
-              </dd>
-            </div>
-            {{#if session.geburtsname}}
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Geburtsname</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.geburtsname}}
-              </dd>
-            </div>
-            {{/if}}
-            <div class="kern-summary__actions">
-              <a
-                href="/person/name?edit=true"
-                class="kern-link"
-                aria-describedby="title"
-              >
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Geburtstag</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.tag}}.{{session.monat}}.{{session.jahr}}
-              </dd>
-            </div>
-            <div class="kern-summary__actions">
-              <a
-                href="/person/geburtstag?edit=true"
-                class="kern-link"
-                aria-describedby="title"
-              >
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Geburtsort</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.geburtsort}}
-              </dd>
-            </div>
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Geburtsland</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.geburtsland}}
-              </dd>
-            </div>
-            <div class="kern-summary__actions">
-              <a
-                href="/person/geburtsort?edit=true"
-                class="kern-link"
-                aria-describedby="title"
-              >
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">
-                Staatsangehörigkeit
-              </dt>
-              <dd class="kern-description-list-item__value">
-                {{session.staatsangehoerigkeitbool}}
-              </dd>
-            </div>
-            <div class="kern-summary__actions">
-              <a
-                href="/person/staatsangehoerigkeit?edit=true"
-                class="kern-link"
-                aria-describedby="title"
-              >
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Adresse</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.strasse}} {{session.hausnummer}} <br />
-                {{session.plz}} {{session.ort}}
-              </dd>
-            </div>
-          </dl>
-          <div class="kern-summary__actions">
-            <a
-              href="/person/adresse?edit=true"
-              class="kern-link"
-              aria-describedby="title"
-            >
-              <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
-              Bearbeiten
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">
-                Steuer-Identifikationsnummer
-              </dt>
-              <dd class="kern-description-list-item__value">
-                {{session.steuerid}}
-              </dd>
-            </div>
-            <div class="kern-summary__actions">
-              <a
-                href="/person/steuer-id?edit=true"
-                class="kern-link"
-                aria-describedby="title"
-              >
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
+    <dl class="summary-list">
+      {{#> summary-list-row key="Name" action="/person/name?edit=true"}}
+      <span
+        >{{session.vorname}} {{session.nachname}} {{#if session.geburtsname}},
+        geb. {{session.geburtsname}}{{/if}}</span
+      >
+      {{/summary-list-row}} {{#> summary-list-row key="Geburtstag"
+      action="/person/geburtstag?edit=true"}}
+      <span>{{session.tag}}.{{session.monat}}.{{session.jahr}}</span>
+      {{/summary-list-row}} {{#> summary-list-row key="Geburtsort"
+      action="/person/geburtsort?edit=true" }}
+      <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
+      {{/summary-list-row}} {{#> summary-list-row key="Staatsangehörigkeit"
+      action="/person/staatsangehoerigkeit?edit=true" }}
+      <span>{{session.staatsangehoerigkeitbool}}</span>
+      {{/summary-list-row}} {{#> summary-list-row key="Adresse"
+      action="/person/adresse?edit=true" }}
+      <span
+        >{{session.strasse}} {{session.hausnummer}} <br />
+        {{session.plz}} {{session.ort}}</span
+      >
+      {{/summary-list-row}} {{#> summary-list-row
+      key="Steuer-Identifikationsnummer" action="/person/steuer-id?edit=true" }}
+      <span>{{session.steuerid}}</span>
+      {{/summary-list-row}}
+    </dl>
   </div>
 
   <div class="kern-stack kern-gap-sm">
