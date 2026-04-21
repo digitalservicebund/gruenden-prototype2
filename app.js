@@ -244,14 +244,37 @@ app.get("/vorab-check", (req, res) => {
   });
 });
 
+app.post("/vorab-check/neugruendung", (req, res) => {
+  res.redirect("/vorab-check/rechtsform");
+});
+
+app.get("/vorab-check/neugruendung", (req, res) => {
+  res.render("vorab-check/neugruendung", {
+    pageName: "Gründen Sie das Unternehmen neu?",
+    pageTree: treeForCurrentState(req.session, "/vorab-check/neugruendung"),
+    session: req.session,
+    step: "quick",
+  });
+});
+
 app.post("/vorab-check/rechtsform", (req, res) => {
-  res.redirect("/antrag");
+  res.redirect("/vorab-check/antrag-moeglich");
 });
 
 app.get("/vorab-check/rechtsform", (req, res) => {
   res.render("vorab-check/rechtsform", {
     pageName: "Rechtsform",
     pageTree: treeForCurrentState(req.session, "/vorab-check/rechtsform"),
+    session: req.session,
+    step: "quick",
+  });
+});
+
+app.get("/vorab-check/antrag-moeglich", (req, res) => {
+  res.render("vorab-check/antrag-moeglich", {
+    pageName: "Vorab-Check für Kombi-Antrag",
+    start: true,
+    pageTree: treeForCurrentState(req.session, "/vorab-check/antrag-moeglich"),
     session: req.session,
     step: "quick",
   });

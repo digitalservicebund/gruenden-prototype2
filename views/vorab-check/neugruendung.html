@@ -1,0 +1,28 @@
+{{#> question edit=edit step=1 max=2 title="Gründen Sie das Unternehmen neu?"
+action="/vorab-check/neugruendung"}}
+<div class="kern-fieldset__body">
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="neugruendung-ja"
+      type="radio"
+      value="ja"
+      name="neugruendungbool"
+      checked
+    /><label class="kern-label" for="neugruendung-ja"
+      >Ja, ich gründe das Unternehmen neu</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="neugruendung-nein"
+      type="radio"
+      value="nein"
+      name="neugruendungbool"
+    /><label class="kern-label" for="neugruendung-nein"
+      >Nein, das Unternehmen gibt es schon</label
+    >
+  </div>
+</div>
+{{/question}}
