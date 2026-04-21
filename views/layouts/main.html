@@ -25,11 +25,7 @@
             class="container--summary kern-stack kern-gap-lg"
             x-data="{ open: false }"
           >
-            <a
-              class="kern-link"
-              href="#past-answers"
-              x-on:click="open = ! open"
-            >
+            <button class="kern-link" x-on:click="open = ! open">
               <span
                 class="kern-icon"
                 x-bind:class="open ? 'kern-icon--arrow-up' : 'kern-icon--arrow-down'"
@@ -39,7 +35,7 @@
                 x-text="open ? 'Bisherige Antworten ausblenden' : 'Bisherige Antworten einblenden'"
                 >Bisherige Antworten einblenden</span
               >
-            </a>
+            </button>
 
             <div id="past-answers" x-show="open">{{>past-answers}}</div>
           </div>

@@ -11,7 +11,7 @@
     </div>
     <form
       class="kern-stack kern-gap-xl"
-      action="{{action}}{{#if edit}}?edit=true{{/if}}"
+      action="{{action}}{{#if edit}}?edit=true{{/if}}{{#if redirect}}&redirect={{redirect}}{{/if}}"
       method="post"
     >
       <div class="kern-fieldset__body">{{> @partial-block }}</div>

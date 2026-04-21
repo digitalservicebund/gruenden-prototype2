@@ -5,6 +5,12 @@
   margin: 0;
 }
 
+button.kern-link {
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 /* skip-to-content link */
 /* ----------------------------------- */
 

@@ -3,7 +3,7 @@
     <h3 class="kern-heading-medium">Persönliche Angaben</h3>
     <dl class="summary-list">
       {{#if session.vorname}}
-        {{#> summary-list-row key="Name" action="/person/name?edit=true"}}
+        {{#> summary-list-row key="Name" action=(join "/person/name?edit=true&redirect=" redirectPath) }}
         <span
           >{{session.vorname}} {{session.nachname}} {{#if session.geburtsname}},
           geb. {{session.geburtsname}}{{/if}}</span
@@ -11,26 +11,24 @@
         {{/summary-list-row}}
       {{/if}}
       {{#if session.tag}}
-        {{#> summary-list-row key="Geburtstag"
-        action="/person/geburtstag?edit=true"}}
+        {{#> summary-list-row key="Geburtstag" action=(join "/person/geburtstag?edit=true&redirect=" redirectPath) }}
         <span>{{session.tag}}.{{session.monat}}.{{session.jahr}}</span>
         {{/summary-list-row}}
       {{/if}}
       {{#if session.geburtsort}}
-        {{#> summary-list-row key="Geburtsort"
-        action="/person/geburtsort?edit=true" }}
+        {{#> summary-list-row key="Geburtsort" action=(join "/person/geburtsort?edit=true&redirect=" redirectPath) }}
         <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
         {{/summary-list-row}} 
       {{/if}}
       {{#if session.staatsangehoerigkeitbool}}
         {{#> summary-list-row key="Staatsangehörigkeit"
-        action="/person/staatsangehoerigkeit?edit=true" }}
+        action="/person/staatsangehoerigkeit?edit=true&redirect={{redirectPath}}" }}
         <span>{{session.staatsangehoerigkeitbool}}</span>
         {{/summary-list-row}}
       {{/if}}
       {{#if session.strasse}}
         {{#> summary-list-row key="Adresse"
-        action="/person/adresse?edit=true" }}
+        action="/person/adresse?edit=true&redirect={{redirectPath}}" }}
         <span
           >{{session.strasse}} {{session.hausnummer}} <br />
           {{session.plz}} {{session.ort}}</span
@@ -38,7 +36,7 @@
         {{/summary-list-row}}
       {{/if}}
       {{#if session.steuerid}}
-        {{#> summary-list-row key="Steuer-Identifikationsnummer" action="/person/steuer-id?edit=true" }}
+        {{#> summary-list-row key="Steuer-Identifikationsnummer" action="/person/steuer-id?edit=true&redirect={{redirectPath}}" }}
         <span>{{session.steuerid}}</span>
         {{/summary-list-row}}
       {{/if}}

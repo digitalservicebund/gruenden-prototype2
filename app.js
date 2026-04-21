@@ -269,7 +269,7 @@ app.post("/person/name", (req, res) => {
   req.session.geburtsname = req.body.geburtsname;
 
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/person/geburtstag");
   }
@@ -278,6 +278,8 @@ app.post("/person/name", (req, res) => {
 app.get("/person/name", (req, res) => {
   res.render("person/name", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageName: "Wie heißen Sie?",
     pageTree: treeForCurrentState(req.session, "/person/name"),
     session: req.session,
@@ -288,8 +290,9 @@ app.post("/person/geburtstag", (req, res) => {
   req.session.tag = req.body.tag;
   req.session.monat = req.body.monat;
   req.session.jahr = req.body.jahr;
+
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/person/geburtsort");
   }
@@ -298,6 +301,8 @@ app.post("/person/geburtstag", (req, res) => {
 app.get("/person/geburtstag", (req, res) => {
   res.render("person/geburtstag", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageName: "Wann wurden Sie geboren?",
     pageTree: treeForCurrentState(req.session, "/person/geburtstag"),
     session: req.session,
@@ -309,7 +314,7 @@ app.post("/person/geburtsort", (req, res) => {
   req.session.geburtsland = req.body.geburtsland;
 
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/person/staatsangehoerigkeit");
   }
@@ -318,6 +323,8 @@ app.post("/person/geburtsort", (req, res) => {
 app.get("/person/geburtsort", (req, res) => {
   res.render("person/geburtsort", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageName: "Wo wurden Sie geboren?",
     pageTree: treeForCurrentState(req.session, "/person/geburtsort"),
     session: req.session,
@@ -326,6 +333,7 @@ app.get("/person/geburtsort", (req, res) => {
 
 app.post("/person/staatsangehoerigkeit", (req, res) => {
   req.session.staatsangehoerigkeitbool = req.body.staatsangehoerigkeitbool;
+
   if (req.query.edit) {
     res.redirect("/antrag-ueberpruefen");
   } else {
@@ -336,6 +344,8 @@ app.post("/person/staatsangehoerigkeit", (req, res) => {
 app.get("/person/staatsangehoerigkeit", (req, res) => {
   res.render("person/staatsangehoerigkeit", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageName: "Haben Sie eine deutsche Staatsangehörigkeit?",
     pageTree: treeForCurrentState(req.session, "/person/staatsangehoerigkeit"),
     session: req.session,
@@ -346,6 +356,7 @@ app.post("/person/adresse", (req, res) => {
   req.session.strasse = req.body.strasse;
   req.session.plz = req.body.plz;
   req.session.ort = req.body.ort;
+
   if (req.query.edit) {
     res.redirect("/antrag-ueberpruefen");
   } else {
@@ -356,6 +367,8 @@ app.post("/person/adresse", (req, res) => {
 app.get("/person/adresse", (req, res) => {
   res.render("person/adresse", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageName: "Wo wohnen Sie?",
     pageTree: treeForCurrentState(req.session, "/person/adresse"),
     session: req.session,
@@ -374,6 +387,8 @@ app.post("/person/steuer-id", (req, res) => {
 app.get("/person/steuer-id", (req, res) => {
   res.render("person/steuer-id", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
     pageTree: treeForCurrentState(req.session, "/person/steuer-id"),
     session: req.session,
@@ -423,6 +438,8 @@ app.get("/unternehmen/adresse-abweichend", (req, res) => {
   res.render("unternehmen/adresse-abweichend", {
     adresseAbweichend: req.session.adresseAbweichend == "ja",
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageTree: treeForCurrentState(
       req.session,
       "/unternehmen/adresse-abweichend",
@@ -446,6 +463,8 @@ app.post("/unternehmen/adresse-eingabe", function (req, res) {
 app.get("/unternehmen/adresse-eingabe", (req, res) => {
   res.render("unternehmen/adresse-eingabe", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageTree: treeForCurrentState(req.session, "/unternehmen/adresse-eingabe"),
     session: req.session,
   });
@@ -463,6 +482,8 @@ app.post("/unternehmen/taetigkeit", (req, res) => {
 app.get("/unternehmen/taetigkeit", (req, res) => {
   res.render("unternehmen/taetigkeit", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageTree: treeForCurrentState(req.session, "/unternehmen/taetigkeit"),
     session: req.session,
   });
@@ -481,6 +502,8 @@ app.get("/unternehmen/taetigkeit-begonnen", (req, res) => {
   var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
   res.render("unternehmen/taetigkeit-begonnen", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageTree: treeForCurrentState(
       req.session,
       "/unternehmen/taetigkeit-begonnen",
@@ -507,6 +530,8 @@ app.get("/unternehmen/taetigkeit-beginn", (req, res) => {
 
   res.render("unternehmen/taetigkeit-beginn", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageTree: treeForCurrentState(
       req.session,
       "/unternehmen/taetigkeit-begonnen",
@@ -550,6 +575,8 @@ app.post("/unternehmen/ustid-abfrage", (req, res) => {
 app.get("/unternehmen/ustid-abfrage", (req, res) => {
   res.render("unternehmen/ustid-abfrage", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     session: req.session,
     pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
   });
@@ -567,6 +594,8 @@ app.post("/unternehmen/ustid", (req, res) => {
 app.get("/unternehmen/ustid", (req, res) => {
   res.render("unternehmen/ustid", {
     edit: req.query.edit,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
     session: req.session,
   });
