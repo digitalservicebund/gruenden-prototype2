@@ -8,3 +8,10 @@ export function join() {
   arg.pop();
   return arg.join("");
 }
+
+export function is(a, b, options) {
+  if (a == b) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+}

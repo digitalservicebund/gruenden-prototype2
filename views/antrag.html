@@ -1,6 +1,24 @@
-<div class="kern-stack kern-gap-xl">
-  <div class="kern-stack">
-    <h2 class="kern-heading-x-large">Ihr Kombi-Antrag</h2>
-    {{>tasklist items=pageTree interactive=true}}
+<div class="kern-stack kern-gap-xl container--clamp">
+  <div>
+    <h2 class="kern-heading-x-large">
+      Kombi-Antrag für Steuernummer und Gewerbeanmeldung
+    </h2>
+    <p class="kern-subline kern-subline--large">
+      Geschätzte Bearbeitungszeit: 20 Min
+    </p>
+    <p class="kern-body">
+      Schritt für Schritt zu Ihrer Unternehmensgründung. Mit einem kombinierten
+      Antrag für Steuernummer und Gewerbeanmeldung.
+    </p>
+  </div>
+  {{>tasklist items=pageTree }}
+  <div class="kern-btn-wrapper">
+    <a href="/person/bundid" class="kern-btn kern-btn--primary">
+      <span class="kern-label">Jetzt Starten</span>
+      <span
+        class="kern-icon kern-icon--arrow-forward"
+        aria-hidden="true"
+      ></span>
+    </a>
   </div>
 </div>

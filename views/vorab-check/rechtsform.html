@@ -1,0 +1,28 @@
+{{#> question edit=edit step=2 max=2 title="Welche Rechtsform soll Ihr
+Unternehmen haben?" action="/vorab-check/rechtsform"}}
+<div class="kern-fieldset__body">
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="rechtsform-einzelunternehmen"
+      type="radio"
+      value="einzelunternehmen"
+      name="rechtsform"
+      checked
+    /><label class="kern-label" for="rechtsform-einzelunternehmen"
+      >Einzelunternehmen</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="rechtsform-gmbh"
+      type="radio"
+      value="gmbh"
+      name="rechtsform"
+    /><label class="kern-label" for="rechtsform-gmbh"
+      >GmbH – Gesellschaft mit beschränkter Haftung</label
+    >
+  </div>
+</div>
+{{/question}}

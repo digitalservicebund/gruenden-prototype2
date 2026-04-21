@@ -1,0 +1,79 @@
+{{#is step "quick"}}
+<div class="kern-flex kern-flex-wrap kern-gap-md kern-align-items-center">
+  <div class="steps steps--active">
+    <span class="steps__counter"> 1 </span>
+    <span class="steps__label">Vorab-Check</span>
+  </div>
+
+  <span class="kern-icon kern-icon--arrow-forward" aria-hidden="true"></span>
+
+  <div class="steps">
+    <span class="steps__counter">2</span>
+    <span class="steps__label">Kombi-Antrag</span>
+  </div>
+
+  <span class="kern-icon kern-icon--arrow-forward" aria-hidden="true"></span>
+
+  <div class="steps">
+    <span class="steps__counter">3</span>
+    <span class="steps__label">Antrag absenden</span>
+  </div>
+</div>
+{{/is}} {{#is step "kombi"}}
+<div class="kern-flex kern-flex-wrap kern-gap-md kern-align-items-center">
+  <div class="steps steps--done">
+    <span class="steps__counter">
+      <span
+        class="steps__icon kern-icon kern-icon--check"
+        aria-hidden="true"
+      ></span>
+    </span>
+    <span class="steps__label">Vorab-Check</span>
+  </div>
+
+  <span class="kern-icon kern-icon--arrow-forward" aria-hidden="true"></span>
+
+  <div class="steps steps--active">
+    <span class="steps__counter">2</span>
+    <span class="steps__label">Kombi-Antrag</span>
+  </div>
+
+  <span class="kern-icon kern-icon--arrow-forward" aria-hidden="true"></span>
+
+  <div class="steps">
+    <span class="steps__counter">3</span>
+    <span class="steps__label">Antrag absenden</span>
+  </div>
+</div>
+{{/is}} {{#is step "absenden"}}
+<div class="kern-flex kern-flex-wrap kern-gap-md kern-align-items-center">
+  <div class="steps steps--done">
+    <span class="steps__counter">
+      <span
+        class="steps__icon kern-icon kern-icon--check"
+        aria-hidden="true"
+      ></span>
+    </span>
+    <span class="steps__label">Vorab-Check</span>
+  </div>
+
+  <span class="kern-icon kern-icon--arrow-forward" aria-hidden="true"></span>
+
+  <div class="steps steps--done">
+    <span class="steps__counter">
+      <span
+        class="steps__icon kern-icon kern-icon--check"
+        aria-hidden="true"
+      ></span>
+    </span>
+    <span class="steps__label">Kombi-Antrag</span>
+  </div>
+
+  <span class="kern-icon kern-icon--arrow-forward" aria-hidden="true"></span>
+
+  <div class="steps steps--active">
+    <span class="steps__counter">3</span>
+    <span class="steps__label">Antrag absenden</span>
+  </div>
+</div>
+{{/is}}

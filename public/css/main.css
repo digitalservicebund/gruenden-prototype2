@@ -117,6 +117,51 @@ aside {
   padding-block-start: 0;
 }
 
+/* steps */
+/* ----------------------------------- */
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: var(--kern-metric-space-small);
+}
+
+.steps--active {
+  background: var(--kern-color-layout-background-hued);
+  padding: var(--kern-metric-space-small);
+  padding-inline-end: var(--kern-metric-space-default);
+  font-weight: bold;
+  border-radius: 9999em;
+}
+
+.steps__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--kern-color-layout-border);
+  border-radius: 9999em;
+  width: var(--kern-metric-dimension-large);
+  height: var(--kern-metric-dimension-large);
+}
+
+.steps--done .steps__counter {
+  background: var(--kern-color-feedback-success);
+  color: var(--kern-color-action-on-default);
+}
+
+.steps--done .steps__icon {
+  background-color: var(--kern-color-action-on-default);
+}
+
+.steps--active .steps__counter {
+  background: var(--kern-color-action-default);
+  color: var(--kern-color-action-on-default);
+}
+
+.steps__label {
+  font-size: var(--kern-typography-font-size-static-medium);
+}
+
 footer {
   margin-block-start: 6rem;
   background: var(--kern-color-layout-background-hued);

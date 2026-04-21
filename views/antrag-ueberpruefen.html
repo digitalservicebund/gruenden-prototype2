@@ -8,31 +8,31 @@
     <h3 class="kern-heading-medium">Persönliche Angaben</h3>
 
     <dl class="summary-list">
-      {{#> summary-list-row key="Name" action=(join "/person/name?edit=true&redirect=" redirectPath) }}
+      {{#> summary-list-row key="Name" action=(join
+      "/person/name?edit=true&redirect=" redirectPath) }}
       <span
         >{{session.vorname}} {{session.nachname}} {{#if session.geburtsname}},
         geb. {{session.geburtsname}}{{/if}}</span
       >
-      {{/summary-list-row}}
-      {{#> summary-list-row key="Geburtstag" action=(join "/person/geburtstag?edit=true&redirect=" redirectPath) }}
+      {{/summary-list-row}} {{#> summary-list-row key="Geburtstag" action=(join
+      "/person/geburtstag?edit=true&redirect=" redirectPath) }}
       <span>{{session.tag}}.{{session.monat}}.{{session.jahr}}</span>
-      {{/summary-list-row}} 
-
-      {{#> summary-list-row key="Geburtsort" action=(join "/person/geburtsort?edit=true&redirect=" redirectPath) }}
+      {{/summary-list-row}} {{#> summary-list-row key="Geburtsort" action=(join
+      "/person/geburtsort?edit=true&redirect=" redirectPath) }}
       <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
-      {{/summary-list-row}}
-
-      {{#> summary-list-row key="Staatsangehörigkeit" action=(join "/person/staatsangehoerigkeit?edit=true&redirect=" redirectPath) }}
+      {{/summary-list-row}} {{#> summary-list-row key="Staatsangehörigkeit"
+      action=(join "/person/staatsangehoerigkeit?edit=true&redirect="
+      redirectPath) }}
       <span>{{session.staatsangehoerigkeitbool}}</span>
-      {{/summary-list-row}}
-
-      {{#> summary-list-row key="Adresse" action=(join "/person/adresse?edit=true&redirect=" redirectPath) }}
+      {{/summary-list-row}} {{#> summary-list-row key="Adresse" action=(join
+      "/person/adresse?edit=true&redirect=" redirectPath) }}
       <span
         >{{session.strasse}} {{session.hausnummer}} <br />
         {{session.plz}} {{session.ort}}</span
       >
-      {{/summary-list-row}}
-      {{#> summary-list-row key="Steuer-Identifikationsnummer" action=(join "/person/steuer-id?edit=true&redirect=" redirectPath) }}
+      {{/summary-list-row}} {{#> summary-list-row
+      key="Steuer-Identifikationsnummer" action=(join
+      "/person/steuer-id?edit=true&redirect=" redirectPath) }}
       <span>{{session.steuerid}}</span>
       {{/summary-list-row}}
     </dl>
@@ -417,7 +417,7 @@
   </div>
 
   <div class="kern-btn-wrapper">
-    <a href="/antrag-gesendet" class="kern-btn kern-btn--primary">
+    <a href="/antrag-senden" class="kern-btn kern-btn--primary">
       <span class="kern-label">Antrag absenden</span>
     </a>
   </div>
