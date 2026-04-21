@@ -22,13 +22,13 @@
       {{/if}}
       {{#if session.staatsangehoerigkeitbool}}
         {{#> summary-list-row key="Staatsangehörigkeit"
-        action="/person/staatsangehoerigkeit?edit=true&redirect={{redirectPath}}" }}
+        action=(join "/person/staatsangehoerigkeit?edit=true&redirect=" redirectPath)}}
         <span>{{session.staatsangehoerigkeitbool}}</span>
         {{/summary-list-row}}
       {{/if}}
       {{#if session.strasse}}
         {{#> summary-list-row key="Adresse"
-        action="/person/adresse?edit=true&redirect={{redirectPath}}" }}
+        action=(join "/person/adresse?edit=true&redirect=" redirectPath) }}
         <span
           >{{session.strasse}} {{session.hausnummer}} <br />
           {{session.plz}} {{session.ort}}</span
@@ -36,7 +36,7 @@
         {{/summary-list-row}}
       {{/if}}
       {{#if session.steuerid}}
-        {{#> summary-list-row key="Steuer-Identifikationsnummer" action="/person/steuer-id?edit=true&redirect={{redirectPath}}" }}
+        {{#> summary-list-row key="Steuer-Identifikationsnummer" action=(join "/person/steuer-id?edit=true&redirect=" redirectPath) }}
         <span>{{session.steuerid}}</span>
         {{/summary-list-row}}
       {{/if}}

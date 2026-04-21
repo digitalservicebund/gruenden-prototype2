@@ -335,7 +335,7 @@ app.post("/person/staatsangehoerigkeit", (req, res) => {
   req.session.staatsangehoerigkeitbool = req.body.staatsangehoerigkeitbool;
 
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/person/adresse");
   }
@@ -358,7 +358,7 @@ app.post("/person/adresse", (req, res) => {
   req.session.ort = req.body.ort;
 
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/person/steuer-id");
   }
@@ -378,7 +378,7 @@ app.get("/person/adresse", (req, res) => {
 app.post("/person/steuer-id", (req, res) => {
   req.session.steuerid = req.body.steuerid;
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/person/status");
   }
@@ -1057,6 +1057,7 @@ app.get("/antrag-ueberpruefen", (req, res) => {
     kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     newUstid: newUstid,
     pageName: "Antrag überprüfen",
+    redirectPath: req.baseUrl + req.path,
     start: true,
     pageTree: treeForCurrentState(req.session, "/antrag-ueberpruefen"),
     session: req.session,

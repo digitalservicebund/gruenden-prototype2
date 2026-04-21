@@ -22,16 +22,17 @@
       <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
       {{/summary-list-row}}
 
-      {{#> summary-list-row key="Staatsangehörigkeit" action="/person/staatsangehoerigkeit?edit=true" }}
+      {{#> summary-list-row key="Staatsangehörigkeit" action=(join "/person/staatsangehoerigkeit?edit=true&redirect=" redirectPath) }}
       <span>{{session.staatsangehoerigkeitbool}}</span>
+      {{/summary-list-row}}
 
-      {{/summary-list-row}} {{#> summary-list-row key="Adresse" action="/person/adresse?edit=true" }}
+      {{#> summary-list-row key="Adresse" action=(join "/person/adresse?edit=true&redirect=" redirectPath) }}
       <span
         >{{session.strasse}} {{session.hausnummer}} <br />
         {{session.plz}} {{session.ort}}</span
       >
-      {{/summary-list-row}} {{#> summary-list-row
-      key="Steuer-Identifikationsnummer" action="/person/steuer-id?edit=true" }}
+      {{/summary-list-row}}
+      {{#> summary-list-row key="Steuer-Identifikationsnummer" action=(join "/person/steuer-id?edit=true&redirect=" redirectPath) }}
       <span>{{session.steuerid}}</span>
       {{/summary-list-row}}
     </dl>
