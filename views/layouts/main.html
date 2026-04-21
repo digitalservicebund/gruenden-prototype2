@@ -21,7 +21,10 @@
           <main id="content">{{{body}}}</main>
 
           {{#unless start}} {{#unless edit}}
-          <div class="container--summary" x-data="{ open: false }">
+          <div
+            class="container--summary kern-stack kern-gap-lg"
+            x-data="{ open: false }"
+          >
             <a
               class="kern-link"
               href="#past-answers"
