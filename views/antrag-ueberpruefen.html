@@ -1,198 +1,84 @@
 <div class="kern-stack kern-gap-xl">
-  <div class="kern-stack">
+  <div class="kern-stack container--clamp">
     <h2 class="kern-heading-x-large">Eingaben überprüfen</h2>
     <p class="kern-body kern-body--large">Bitte überprüfen Sie Ihre Angaben</p>
   </div>
 
-  <div class="kern-stack kern-gap-lg">
-    <h3 class="kern-heading-medium">Persönliche Angaben</h3>
+  <div class="kern-stack kern-gap-xl container--summary">
+    <div class="kern-stack kern-gap-md">
+      <h3 class="kern-heading-medium">Persönliche Angaben</h3>
 
-    <dl class="summary-list">
-      {{#> summary-list-row key="Name" action=(join
-      "/person/name?edit=true&redirect=" redirectPath) }}
-      <span
-        >{{session.vorname}} {{session.nachname}} {{#if session.geburtsname}},
-        geb. {{session.geburtsname}}{{/if}}</span
-      >
-      {{/summary-list-row}} {{#> summary-list-row key="Geburtstag" action=(join
-      "/person/geburtstag?edit=true&redirect=" redirectPath) }}
-      <span>{{session.tag}}.{{session.monat}}.{{session.jahr}}</span>
-      {{/summary-list-row}} {{#> summary-list-row key="Geburtsort" action=(join
-      "/person/geburtsort?edit=true&redirect=" redirectPath) }}
-      <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
-      {{/summary-list-row}} {{#> summary-list-row key="Staatsangehörigkeit"
-      action=(join "/person/staatsangehoerigkeit?edit=true&redirect="
-      redirectPath) }}
-      <span>{{session.staatsangehoerigkeitbool}}</span>
-      {{/summary-list-row}} {{#> summary-list-row key="Adresse" action=(join
-      "/person/adresse?edit=true&redirect=" redirectPath) }}
-      <span
-        >{{session.strasse}} {{session.hausnummer}} <br />
-        {{session.plz}} {{session.ort}}</span
-      >
-      {{/summary-list-row}} {{#> summary-list-row
-      key="Steuer-Identifikationsnummer" action=(join
-      "/person/steuer-id?edit=true&redirect=" redirectPath) }}
-      <span>{{session.steuerid}}</span>
-      {{/summary-list-row}}
-    </dl>
-  </div>
-
-  <div class="kern-stack kern-gap-sm">
-    <div class="kern-summary__header">
-      <span class="kern-number">2</span>
-      <h3 class="kern-title kern-title--small" id="title">
-        Unternehmen &amp; Tätigkeit
-      </h3>
+      <dl class="summary-list">
+        {{#> summary-list-row key="Name" action=(join
+        "/person/name?edit=true&redirect=" redirectPath) }}
+        <span
+          >{{session.vorname}} {{session.nachname}} {{#if session.geburtsname}},
+          geb. {{session.geburtsname}}{{/if}}</span
+        >
+        {{/summary-list-row}} {{#> summary-list-row key="Geburtstag" action=(join
+        "/person/geburtstag?edit=true&redirect=" redirectPath) }}
+        <span>{{session.tag}}.{{session.monat}}.{{session.jahr}}</span>
+        {{/summary-list-row}} {{#> summary-list-row key="Geburtsort" action=(join
+        "/person/geburtsort?edit=true&redirect=" redirectPath) }}
+        <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
+        {{/summary-list-row}} {{#> summary-list-row key="Staatsangehörigkeit"
+        action=(join "/person/staatsangehoerigkeit?edit=true&redirect="
+        redirectPath) }}
+        <span>{{session.staatsangehoerigkeitbool}}</span>
+        {{/summary-list-row}} {{#> summary-list-row key="Adresse" action=(join
+        "/person/adresse?edit=true&redirect=" redirectPath) }}
+        <span
+          >{{session.strasse}} {{session.hausnummer}} <br />
+          {{session.plz}} {{session.ort}}</span
+        >
+        {{/summary-list-row}} {{#> summary-list-row
+        key="Steuer-Identifikationsnummer" action=(join
+        "/person/steuer-id?edit=true&redirect=" redirectPath) }}
+        <span>{{session.steuerid}}</span>
+        {{/summary-list-row}}
+      </dl>
     </div>
 
-    {{#unless adresseAbweichend}}
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Adresse</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.strasse}} {{session.hausnummer}} <br />
-                {{session.plz}} {{session.ort}}
-              </dd>
-            </div>
-          </dl>
-          <div class="kern-summary__actions">
-            <a
-              href="/unternehmen/adresse-abweichend?edit=true"
-              class="kern-link"
-              aria-describedby="title"
-            >
-              <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
-              Bearbeiten
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{else}}
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Adresse</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.unternehmenStrasse}} {{session.unternehmenHausnummer}}
-                <br />
-                {{session.unternehmenPlz}} {{session.unternehmenOrt}}
-              </dd>
-            </div>
-          </dl>
-          <div class="kern-summary__actions">
-            <a
-              href="/unternehmen/adresse-abweichend?edit=true"
-              class="kern-link"
-              aria-describedby="title"
-            >
-              <span class="kern-icon kern-icon--edit" aria-hidden="true"></span>
-              Bearbeiten
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{/unless}}
+    <div class="kern-stack kern-gap-md">
+      <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
 
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">Tätigkeit</dt>
-              <dd class="kern-description-list-item__value">
-                {{session.taetigkeit}}
-              </dd>
-            </div>
-            <div class="kern-summary__actions">
-              <a
-                href="/unternehmen/taetigkeit?edit=true"
-                class="kern-link"
-                aria-describedby="title"
-              >
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">
-                Beginn der Tätigkeit:
-              </dt>
-              <dd class="kern-description-list-item__value">
-                {{session.taetigkeitBeginnTag}}.
-                {{session.taetigkeitBeginnMonat}}.
-                {{session.taetigkeitBeginnJahr}}
-              </dd>
-            </div>
-            <div class="kern-summary__actions">
-              <a
-                href="/unternehmen/taetigkeit-begonnen?edit=true"
-                class="kern-link"
-                aria-describedby="title"
-              >
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <div class="kern-summary-group">
-      <div class="kern-summary">
-        <div class="kern-summary__body">
-          <dl class="kern-description-list">
-            <div class="kern-description-list-item">
-              <dt class="kern-description-list-item__key">
-                Umsatzsteuer-Identifikationsnummer
-              </dt>
-              <dd class="kern-description-list-item__value">
-                {{#if existingUstid}} Ich habe bereits eine
-                Umsatzsteuer-Identifikationsnummer. {{else}} {{#if newUstid}}
-                Ich möchte eine Umsatzsteuer-Identifikationsnummer beantragen.
-                {{else}} Ich möchte keine Umsatzsteuer-Identifikationsnummer
-                beantragen. {{/if}} {{/if}}
-              </dd>
-            </div>
-            <div class="kern-summary__actions">
-              <a
-                href="/unternehmen/ustid-abfrage?edit=true"
-                class="kern-link"
-                aria-describedby="title"
-              >
-                <span
-                  class="kern-icon kern-icon--edit"
-                  aria-hidden="true"
-                ></span>
-                Bearbeiten
-              </a>
-            </div>
-          </dl>
-        </div>
-      </div>
+      <dl class="summary-list">
+        {{#> summary-list-row key="Adresse" action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
+          {{#unless adresseAbweichend}}
+          <span>
+            {{session.strasse}} {{session.hausnummer}} <br />
+            {{session.plz}} {{session.ort}}
+          </span>
+          {{else}}
+            <span>
+            {{session.unternehmenStrasse}} {{session.unternehmenHausnummer}}
+            <br />
+            {{session.unternehmenPlz}} {{session.unternehmenOrt}}
+            </span>
+          {{/unless}}
+        {{/summary-list-row}}
+        {{#> summary-list-row key="Tätigkeit" action=(join "/unternehmen/taetigkeit?edit=true&redirect=" redirectPath) }}
+          <span>
+            {{session.taetigkeit}}
+          </span>
+        {{/summary-list-row}}
+        {{#> summary-list-row key="Beginn der Tätigkeit" action=(join "/unternehmen/taetigkeit-begonnen?edit=true&redirect=" redirectPath) }}
+          <span>
+            {{session.taetigkeitBeginnTag}}.
+            {{session.taetigkeitBeginnMonat}}.
+            {{session.taetigkeitBeginnJahr}}
+          </span>
+        {{/summary-list-row}}
+        {{#> summary-list-row key="Umsatzsteuer-Identifikationsnummer" action=(join "/unternehmen/ustid-abfrage?edit=true&redirect=" redirectPath) }}
+          <span>
+            {{#if existingUstid}} Ich habe bereits eine
+            Umsatzsteuer-Identifikationsnummer. {{else}} {{#if newUstid}}
+            Ich möchte eine Umsatzsteuer-Identifikationsnummer beantragen.
+            {{else}} Ich möchte keine Umsatzsteuer-Identifikationsnummer
+            beantragen. {{/if}} {{/if}}
+          </span>
+        {{/summary-list-row}}
+      </dl>
     </div>
   </div>
 
