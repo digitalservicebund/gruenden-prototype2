@@ -478,7 +478,9 @@ app.post("/unternehmen/adresse-abweichend", (req, res) => {
 
   if (req.query.edit) {
     if (adresseAbweichend) {
-      res.redirect("/unternehmen/adresse-eingabe?edit=true");
+      res.redirect(
+        "/unternehmen/adresse-eingabe?edit=true&redirect=" + req.query.redirect,
+      );
     } else {
       res.redirect("/antrag-ueberpruefen");
     }
@@ -512,7 +514,7 @@ app.post("/unternehmen/adresse-eingabe", function (req, res) {
   req.session.unternehmenOrt = req.body.unternehmenOrt;
 
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/unternehmen/taetigkeit");
   }
@@ -532,7 +534,7 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
 app.post("/unternehmen/taetigkeit", (req, res) => {
   req.session.taetigkeit = req.body.taetigkeit;
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/unternehmen/taetigkeit-begonnen");
   }
@@ -552,7 +554,9 @@ app.get("/unternehmen/taetigkeit", (req, res) => {
 app.post("/unternehmen/taetigkeit-begonnen", (req, res) => {
   req.session.taetigkeitBegonnen = req.body.taetigkeitBegonnen;
   if (req.query.edit) {
-    res.redirect("/unternehmen/taetigkeit-beginn?edit=true");
+    res.redirect(
+      "/unternehmen/taetigkeit-beginn?edit=true&redirect=" + req.query.redirect,
+    );
   } else {
     res.redirect("/unternehmen/taetigkeit-beginn");
   }
@@ -580,7 +584,7 @@ app.post("/unternehmen/taetigkeit-beginn", function (req, res) {
   req.session.taetigkeitBeginnJahr = req.body.taetigkeitBeginnJahr;
 
   if (req.query.edit) {
-    res.redirect("/antrag-ueberpruefen");
+    res.redirect(req.query.redirect);
   } else {
     res.redirect("/unternehmen/gewerbeart");
   }
@@ -610,9 +614,12 @@ app.post("/unternehmen/gewerbeart", (req, res) => {
 
 app.get("/unternehmen/gewerbeart", (req, res) => {
   res.render("unternehmen/gewerbeart", {
+    edit: req.query.edit,
+    pageTree: treeForCurrentState(req.session, "/unternehmen/gewerbeart"),
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path,
     session: req.session,
     step: "kombi",
-    pageTree: treeForCurrentState(req.session, "/unternehmen/gewerbeart"),
   });
 });
 

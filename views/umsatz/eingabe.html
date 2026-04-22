@@ -1,60 +1,53 @@
-<div class="kern-stack kern-gap-xl">
-  <div class="kern-stack">
-    {{> progress step=1 max=3 section="Umsätze"}}
-    <div>
-      <h2 class="kern-heading-x-large">
-        Wie hoch sind Ihre voraussichtlichen Umsätze?
-      </h2>
-      <p class="kern-body kern-body--large">
-        Der Umsatz ist das Geld, das Sie einnehmen. Ihre Kosten ziehen Sie hier
-        noch nicht ab.
-      </p>
-    </div>
-    <p class="kern-body">
-      <strong>Beispiel</strong>: Eine Rechnung in Höhe von 100 € entspricht 100
-      € Umsatz. Die Mehrwertsteuer wird dabei nicht mitgezählt.
-    </p>
-  </div>
-  <form class="kern-stack kern-gap-xl" action="/umsatz/eingabe" method="post">
-    <div class="kern-fieldset__body">
-      <div class="kern-form-input">
-        <label class="kern-label" for="umsatz-dieses-jahr"
-          >Umsätze dieses Jahr</label
-        >
-        <div class="kern-input-group">
-          <input
-            class="kern-form-input__input"
-            id="umsatz-dieses-jahr"
-            name="umsatzDiesesJahr"
-            type="text"
-            inputmode="numeric"
-            value="{{ session.umsatzDiesesJahr }}"
-          />
-          <span class="kern-input-group-text">Euro</span>
-        </div>
-      </div>
+{{#> question edit=edit step=1 max=3 section="Umsätze" title="Wie hoch sind Ihre
+voraussichtlichen Umsätze?" action="/unternehmen/ustid"}} {{#*inline "intro"}}
+<p class="kern-body kern-body--large">
+  Der Umsatz ist das Geld, das Sie einnehmen. Ihre Kosten ziehen Sie hier noch
+  nicht ab.
+</p>
+<p class="kern-body">
+  <strong>Beispiel</strong>: Eine Rechnung in Höhe von 100 € entspricht 100 €
+  Umsatz. Die Mehrwertsteuer wird dabei nicht mitgezählt.
+</p>
+{{/inline}}
 
-      <div class="kern-form-input">
-        <label class="kern-label" for="umsatz-naechstes-jahr"
-          >Umsätze nächstes Jahr</label
-        >
-        <div class="kern-input-group">
-          <input
-            class="kern-form-input__input"
-            id="umsatz-naechstes-jahr"
-            name="umsatzNaechstesJahr"
-            type="text"
-            inputmode="numeric"
-            value="{{ session.umsatzNaechstesJahr }}"
-          />
-          <span class="kern-input-group-text">Euro</span>
-        </div>
+<fieldset class="kern-fieldset">
+  <legend class="kern-label">
+    Möchten Sie eine Umsatzsteuer-Identifikationsnummer beantragen?
+  </legend>
+  <div class="kern-fieldset__body">
+    <div class="kern-form-input">
+      <label class="kern-label" for="umsatz-dieses-jahr"
+        >Umsätze dieses Jahr</label
+      >
+      <div class="kern-input-group">
+        <input
+          class="kern-form-input__input"
+          id="umsatz-dieses-jahr"
+          name="umsatzDiesesJahr"
+          type="text"
+          inputmode="numeric"
+          value="{{ session.umsatzDiesesJahr }}"
+        />
+        <span class="kern-input-group-text">Euro</span>
       </div>
     </div>
-    <div class="kern-btn-wrapper">
-      <button class="kern-btn kern-btn--primary">
-        <span class="kern-label">Weiter</span>
-      </button>
+
+    <div class="kern-form-input">
+      <label class="kern-label" for="umsatz-naechstes-jahr"
+        >Umsätze nächstes Jahr</label
+      >
+      <div class="kern-input-group">
+        <input
+          class="kern-form-input__input"
+          id="umsatz-naechstes-jahr"
+          name="umsatzNaechstesJahr"
+          type="text"
+          inputmode="numeric"
+          value="{{ session.umsatzNaechstesJahr }}"
+        />
+        <span class="kern-input-group-text">Euro</span>
+      </div>
     </div>
-  </form>
-</div>
+  </div>
+</fieldset>
+{{/question}}

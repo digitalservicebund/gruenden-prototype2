@@ -1,4 +1,6 @@
 <div class="kern-stack kern-gap-xl">
+
+  {{#if session.vorname}}
   <div class="kern-stack">
     <h3 class="kern-heading-medium">Persönliche Angaben</h3>
     <dl class="summary-list">
@@ -42,4 +44,57 @@
       {{/if}}
     </dl>
   </div>
+  {{/if}}
+
+  {{#if session.unternehmenStrasse}}
+    <div class="kern-stack">
+      <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
+
+      <dl class="summary-list">
+        {{#if session.unternehmenStrasse}}
+          {{#> summary-list-row key="Adresse" action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
+            {{#unless adresseAbweichend}}
+            <span>
+              {{session.strasse}} {{session.hausnummer}} <br />
+              {{session.plz}} {{session.ort}}
+            </span>
+            {{else}}
+              <span>
+              {{session.unternehmenStrasse}} {{session.unternehmenHausnummer}}
+              <br />
+              {{session.unternehmenPlz}} {{session.unternehmenOrt}}
+              </span>
+            {{/unless}}
+          {{/summary-list-row}}
+        {{/if}}
+        {{#if session.taetigkeit}}
+          {{#> summary-list-row key="Tätigkeit" action=(join "/unternehmen/taetigkeit?edit=true&redirect=" redirectPath) }}
+            <span>
+              {{session.taetigkeit}}
+            </span>
+          {{/summary-list-row}}
+        {{/if}}
+        {{#if session.taetigkeitBeginnTag}}
+        {{#> summary-list-row key="Beginn der Tätigkeit" action=(join "/unternehmen/taetigkeit-begonnen?edit=true&redirect=" redirectPath) }}
+          <span>
+            {{session.taetigkeitBeginnTag}}.
+            {{session.taetigkeitBeginnMonat}}.
+            {{session.taetigkeitBeginnJahr}}
+          </span>
+        {{/summary-list-row}}
+        {{/if}}
+        {{#if session.existingUstid}}
+        {{#> summary-list-row key="Umsatzsteuer-Identifikationsnummer" action=(join "/unternehmen/ustid-abfrage?edit=true&redirect=" redirectPath) }}
+          <span>
+            {{#if existingUstid}} Ich habe bereits eine
+            Umsatzsteuer-Identifikationsnummer. {{else}} {{#if newUstid}}
+            Ich möchte eine Umsatzsteuer-Identifikationsnummer beantragen.
+            {{else}} Ich möchte keine Umsatzsteuer-Identifikationsnummer
+            beantragen. {{/if}} {{/if}}
+          </span>
+        {{/summary-list-row}}
+        {{/if}}
+      </dl>
+    </div>
+  {{/if}}
 </div>
