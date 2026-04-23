@@ -15,3 +15,10 @@ export function is(a, b, options) {
   }
   return options.inverse(this);
 }
+
+export function isnt(a, b, options) {
+  if (a !== b) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+}

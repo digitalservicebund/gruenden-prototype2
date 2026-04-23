@@ -20,7 +20,7 @@
           {{/unless}}
           <main id="content">{{{body}}}</main>
 
-          {{#unless start}} {{#unless edit}}
+          {{#isnt step "quick"}} {{#unless start}} {{#unless edit}}
           <div
             class="container--summary kern-stack kern-gap-lg"
             x-data="{ open: false }"
@@ -39,7 +39,7 @@
 
             <div id="past-answers" x-show="open">{{>past-answers}}</div>
           </div>
-          {{/unless}} {{/unless}}
+          {{/unless}} {{/unless}} {{/isnt}}
         </div>
       </div>
     </div>
