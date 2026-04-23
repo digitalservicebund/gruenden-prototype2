@@ -33,6 +33,11 @@ header {
   padding-block-start: var(--kern-metric-space-default);
 }
 
+footer {
+  margin-block-start: 6rem;
+  background: var(--kern-color-layout-background-hued);
+}
+
 .menu a {
   padding-block: var(--kern-metric-space-default);
 }
@@ -92,7 +97,7 @@ aside {
   align-items: center;
 }
 
-/* summary-list */
+/* <summary-list> */
 /* ----------------------------------- */
 
 .summary-list {
@@ -117,7 +122,7 @@ aside {
   padding-block-start: 0;
 }
 
-/* steps */
+/* <steps> */
 /* ----------------------------------- */
 
 .steps {
@@ -163,7 +168,31 @@ aside {
   font-size: var(--kern-typography-font-size-static-medium);
 }
 
-footer {
-  margin-block-start: 6rem;
-  background: var(--kern-color-layout-background-hued);
+/* <banner> */
+/* ----------------------------------- */
+
+.banner {
+  container: banner / inline-size;
+}
+
+.banner__inner {
+  padding: var(--kern-metric-space-default);
+
+  @container banner (min-width: 36rem) {
+    padding: var(--kern-metric-space-large);
+  }
+}
+
+.banner--danger {
+  background: var(--kern-color-feedback-danger-background);
+}
+.banner--success {
+  background: var(--kern-color-feedback-success-background);
+}
+
+/* custom spacing helper */
+/* ----------------------------------- */
+
+.gap-2xl {
+  gap: var(--kern-48);
 }

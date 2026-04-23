@@ -245,7 +245,14 @@ app.get("/vorab-check", (req, res) => {
 });
 
 app.post("/vorab-check/neugruendung", (req, res) => {
-  res.redirect("/vorab-check/rechtsform");
+  req.session.neugruendungbool = req.body.neugruendungbool;
+  var neugruendung = req.session.neugruendungbool;
+
+  if (neugruendung == "ja") {
+    res.redirect("/vorab-check/rechtsform");
+  } else {
+    res.redirect("/vorab-check/antrag-nicht-moeglich");
+  }
 });
 
 app.get("/vorab-check/neugruendung", (req, res) => {
@@ -275,6 +282,19 @@ app.get("/vorab-check/antrag-moeglich", (req, res) => {
     pageName: "Vorab-Check für Kombi-Antrag",
     start: true,
     pageTree: treeForCurrentState(req.session, "/vorab-check/antrag-moeglich"),
+    session: req.session,
+    step: "quick",
+  });
+});
+
+app.get("/vorab-check/antrag-nicht-moeglich", (req, res) => {
+  res.render("vorab-check/antrag-nicht-moeglich", {
+    pageName: "Vorab-Check für Kombi-Antrag",
+    start: true,
+    pageTree: treeForCurrentState(
+      req.session,
+      "/vorab-check/antrag-nicht-moeglich",
+    ),
     session: req.session,
     step: "quick",
   });
