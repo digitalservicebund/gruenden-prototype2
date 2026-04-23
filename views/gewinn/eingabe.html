@@ -1,39 +1,46 @@
 {{#> question edit=edit step=1 max=1 section="Gewinne und Einkünfte" title="Wie
 hoch sind Ihre voraussichtliche Gewinne?" action="/gewinn/eingabe"}} {{#*inline
 "intro"}}
-<div class="kern-stack">
-  <div class="kern-form-input">
-    <label class="kern-label" for="gewinn-dieses-jahr"
-      >Gewinn dieses Jahr</label
-    >
-    <div class="kern-input-group">
-      <input
-        class="kern-form-input__input"
-        id="gewinn-dieses-jahr"
-        name="gewinnDiesesJahr"
-        type="text"
-        inputmode="numeric"
-        value="{{ session.gewinnDiesesJahr }}"
-      />
-      <span class="kern-input-group-text">Euro</span>
-    </div>
-  </div>
+<p class="kern-body">
+  Der Gewinn ist der Betrag, der nach Abzug aller Ausgaben von Ihrem Umsatz
+  übrig bleibt. Bei Verlusten tragen Sie bitte einen Minusbetrag ein.
+</p>
+<p class="kern-body">
+  <span class="kern-body--bold">Beispiel</span>: Sie stellen eine Rechnung in
+  Höhe von 100 € und haben gleichzeitig 40 € Ausgaben für Ihr Unternehmen. Ihr
+  Gewinn beträgt in diesem Fall 60 €.
+</p>
+{{/inline}}
 
-  <div class="kern-form-input">
-    <label class="kern-label" for="gewinn-naechstes-jahr"
-      >Gewinn nächstes Jahr</label
-    >
-    <div class="kern-input-group">
-      <input
-        class="kern-form-input__input"
-        id="gewinn-naechstes-jahr"
-        name="gewinnNaechstesJahr"
-        type="text"
-        inputmode="numeric"
-        value="{{ session.gewinnNaechstesJahr }}"
-      />
-      <span class="kern-input-group-text">Euro</span>
-    </div>
+<div class="kern-form-input">
+  <label class="kern-label" for="gewinn-dieses-jahr">Gewinn dieses Jahr</label>
+  <div class="kern-input-group">
+    <input
+      class="kern-form-input__input"
+      id="gewinn-dieses-jahr"
+      name="gewinnDiesesJahr"
+      type="text"
+      inputmode="numeric"
+      value="{{ session.gewinnDiesesJahr }}"
+    />
+    <span class="kern-input-group-text">Euro</span>
   </div>
 </div>
-{{/inline}} {{/question}}
+
+<div class="kern-form-input">
+  <label class="kern-label" for="gewinn-naechstes-jahr"
+    >Gewinn nächstes Jahr</label
+  >
+  <div class="kern-input-group">
+    <input
+      class="kern-form-input__input"
+      id="gewinn-naechstes-jahr"
+      name="gewinnNaechstesJahr"
+      type="text"
+      inputmode="numeric"
+      value="{{ session.gewinnNaechstesJahr }}"
+    />
+    <span class="kern-input-group-text">Euro</span>
+  </div>
+</div>
+{{/question}}

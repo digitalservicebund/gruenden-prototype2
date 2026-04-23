@@ -33,7 +33,7 @@ function treeForCurrentState(session, current) {
       href: "/person/start",
       active: current.startsWith("/person"),
       started: session.vorname || session.jahr,
-      done: session.vorname && session.steuerid,
+      done: session.vorname && session.strasse,
       items: [
         {
           name: "Name",
@@ -81,8 +81,8 @@ function treeForCurrentState(session, current) {
       active: current.startsWith("/unternehmen"),
       started: session.adresseAbweichend || session.taetigkeit,
       done:
-        session.adresseAbweichend &&
-        (session.ustidexistingbool === "ja" || session.ustid),
+        (session.adresseAbweichend || session.unternehmenStrasse) &&
+        session.gewerbeart,
 
       items: [
         {
@@ -139,11 +139,7 @@ function treeForCurrentState(session, current) {
       href: "/umsatz/start",
       active: current.startsWith("/umsatz"),
       started: session.umsatzDiesesJahr || session.ustDiesesJahr,
-      done:
-        session.umsatzDiesesJahr &&
-        session.umsatzNaechstesJahr &&
-        (session.kleinunternehmenBool === "ja" ||
-          (session.ustDiesesJahr && session.ustNaechstesJahr)),
+      done: session.umsatzDiesesJahr && session.umsatzNaechstesJahr,
       items: [
         {
           name: "Vorraussichtliche Umsätze",
@@ -179,7 +175,7 @@ function treeForCurrentState(session, current) {
       active:
         current.startsWith("/gewinn") || current.startsWith("/einkuenfte"),
       started: session.gewinnDiesesJahr || session.einkuenfte,
-      done: session.gewinnDiesesJahr && session.einkuenfte,
+      done: session.gewinnDiesesJahr,
       items: [
         {
           name: "Gewinn",
@@ -893,14 +889,6 @@ app.get("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
 
 app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
   req.session.kleinunternehmenBool = req.body.kleinunternehmenBool;
-
-  var kleinunternehmenVerwenden =
-    req.session.kleinunternehmenBool &&
-    req.session.kleinunternehmenBool == "ja";
-
-  if (kleinunternehmenVerwenden) {
-    req.session.umsatzDone = true;
-  }
 
   res.redirect("/umsatz/status");
 });
