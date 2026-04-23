@@ -190,6 +190,13 @@ aside {
   background: var(--kern-color-feedback-success-background);
 }
 
+/* <radio-hint> */
+/* ----------------------------------- */
+
+.radio-hint {
+  color: var(--kern-color-layout-text-muted);
+}
+
 /* custom spacing helper */
 /* ----------------------------------- */
 

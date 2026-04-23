@@ -1,26 +1,69 @@
 <div class="container--clamp">
   <div class="kern-stack kern-gap-xl">
-    <div class="kern-alert kern-alert--success" role="alert">
-      <div class="kern-alert__header">
-        <span class="kern-icon kern-icon--success" aria-hidden="true"></span>
-        <h1 class="kern-title">Antrag eingereicht</h1>
+    {{#> banner variant="success"}}
+    <h1 class="kern-heading-x-large">Ihr Antrag wurde gesendet</h1>
+    <p class="kern-body">Sie erhalten eine Bestätigung per E-Mail.</p>
+    {{/banner }}
+
+    <div class="kern-stack">
+      <h2 class="kern-sr-only">Aktueller Status</h2>
+      <div>
+        <h3>✅ Wir haben Ihren Antrag erhalten</h3>
+        <p class="kern-body">Am 16. April 2026 um 17:27 Uhr</p>
       </div>
-      <div class="kern-alert__body">
+      <div>
+        <h3>✅ Wir haben Ihren Antrag versendet</h3>
+        <p class="kern-body">Am 16. April 2026 um 17:27 Uhr</p>
+      </div>
+      <div>
+        <h3>⏳ Das Gewerbeamt überprüft Ihren Antrag</h3>
         <p class="kern-body">
-          Wir haben Ihren Antrag an das Finanz- und Gewerbeamt weitergeleitet
-          und haben Ihnen eine Bestätigung per Email zugeschickt.
+          Das Gewerbeamt meldet sich bei Ihnen. Es bestätigt Ihre Anmeldung oder
+          fragt weitere Informationen an.
         </p>
       </div>
     </div>
 
     <div>
-      <h2 class="kern-heading-medium">Wie geht es weiter?</h2>
+      <h2 class="kern-heading-medium">Haben Sie Fragen?</h2>
       <p class="kern-body">
-        Das Finanz- oder Gewerbeamt wird sich mit Ihnen in Verbindung setzen, um
-        Ihre Registrierung zu bestätigen oder weitere Informationen anzufordern.
+        Dann können Sie sich bei Ihrem Finanz- oder Gewerbeamt melden.
       </p>
     </div>
 
-    <a class="kern-link" href="#">Wie hat Ihnen dieser Service gefallen?</a>
+    <div class="kern-stack">
+      <article class="kern-card">
+        <div class="kern-card__container">
+          <header class="kern-card__header">
+            <hgroup>
+              <p class="kern-preline">Ihr Gewerbeamt</p>
+              <h2 class="kern-title">
+                Ordnungsamt Friedrichshain-Kreuzberg Gewerbe
+              </h2>
+            </hgroup>
+          </header>
+          <section class="kern-card__body">
+            <p class="kern-body">+4930902396699</p>
+            <a href="#" class="kern-link">
+              ordnungsamt@bezirksamt-neukoelln.de
+            </a>
+          </section>
+        </div>
+      </article>
+      <article class="kern-card">
+        <div class="kern-card__container">
+          <header class="kern-card__header">
+            <hgroup>
+              <p class="kern-preline">Ihr Finanzamt</p>
+              <h2 class="kern-title">Finanzamt Friedrichshain-Kreuzberg</h2>
+            </hgroup>
+          </header>
+          <section class="kern-card__body">
+            <p class="kern-body">030 9024 14-0</p>
+            <a class="kern-link" href="#">Zum ELSTER Kontaktformular</a>
+          </section>
+        </div>
+      </article>
+    </div>
   </div>
 </div>

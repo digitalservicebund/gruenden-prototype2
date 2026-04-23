@@ -1,5 +1,5 @@
 {{#> question edit=edit step=1 max=5 section="Unternehmen und Tätigkeit"
-title="Ist der Sitz Ihres Unternehmens an ihrer privaten Adresse?"
+title="Befindet sich Ihr Unternehmen an Ihrer privaten Adresse?"
 action="/unternehmen/adresse-abweichend"}}
 <div class="kern-fieldset__body">
   <div class="kern-form-check">
@@ -10,7 +10,7 @@ action="/unternehmen/adresse-abweichend"}}
       value="nein"
       {{#unless adresseAbweichend }}checked{{/unless}}
       name="adresseAbweichend"
-    /><label class="kern-label" for="adresse-abweichend-nein">Ja</label>
+    /><label class="kern-label" for="adresse-abweichend-nein">Ja, mein Unternehmen befindet sich an meiner privaten Adresse</label>
   </div>
   <div class="kern-form-check">
     <input
@@ -25,4 +25,5 @@ action="/unternehmen/adresse-abweichend"}}
     >
   </div>
 </div>
+
 {{/question}}

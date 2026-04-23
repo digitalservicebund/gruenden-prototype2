@@ -217,11 +217,6 @@ function treeForCurrentState(session, current) {
         },
       ],
     },
-    {
-      name: "Angaben überprüfen",
-      href: "/antrag-ueberpruefen",
-      active: current === "/antrag-ueberpruefen",
-    },
   ];
 }
 
@@ -394,7 +389,7 @@ app.post("/person/geburtsort", (req, res) => {
   if (req.query.edit) {
     res.redirect(req.query.redirect);
   } else {
-    res.redirect("/person/staatsangehoerigkeit");
+    res.redirect("/person/adresse");
   }
 });
 
@@ -410,27 +405,27 @@ app.get("/person/geburtsort", (req, res) => {
   });
 });
 
-app.post("/person/staatsangehoerigkeit", (req, res) => {
-  req.session.staatsangehoerigkeitbool = req.body.staatsangehoerigkeitbool;
-
-  if (req.query.edit) {
-    res.redirect(req.query.redirect);
-  } else {
-    res.redirect("/person/adresse");
-  }
-});
-
-app.get("/person/staatsangehoerigkeit", (req, res) => {
-  res.render("person/staatsangehoerigkeit", {
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageName: "Haben Sie eine deutsche Staatsangehörigkeit?",
-    pageTree: treeForCurrentState(req.session, "/person/staatsangehoerigkeit"),
-    session: req.session,
-    currentSection: "kombi",
-  });
-});
+// app.post("/person/staatsangehoerigkeit", (req, res) => {
+//   req.session.staatsangehoerigkeitbool = req.body.staatsangehoerigkeitbool;
+//
+//   if (req.query.edit) {
+//     res.redirect(req.query.redirect);
+//   } else {
+//     res.redirect("/person/adresse");
+//   }
+// });
+//
+// app.get("/person/staatsangehoerigkeit", (req, res) => {
+//   res.render("person/staatsangehoerigkeit", {
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageName: "Haben Sie eine deutsche Staatsangehörigkeit?",
+//     pageTree: treeForCurrentState(req.session, "/person/staatsangehoerigkeit"),
+//     session: req.session,
+//     currentSection: "kombi",
+//   });
+// });
 
 app.post("/person/adresse", (req, res) => {
   req.session.strasse = req.body.strasse;
@@ -440,7 +435,7 @@ app.post("/person/adresse", (req, res) => {
   if (req.query.edit) {
     res.redirect(req.query.redirect);
   } else {
-    res.redirect("/person/steuer-id");
+    res.redirect("/person/status");
   }
 });
 
@@ -456,26 +451,26 @@ app.get("/person/adresse", (req, res) => {
   });
 });
 
-app.post("/person/steuer-id", (req, res) => {
-  req.session.steuerid = req.body.steuerid;
-  if (req.query.edit) {
-    res.redirect(req.query.redirect);
-  } else {
-    res.redirect("/person/status");
-  }
-});
-
-app.get("/person/steuer-id", (req, res) => {
-  res.render("person/steuer-id", {
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
-    pageTree: treeForCurrentState(req.session, "/person/steuer-id"),
-    session: req.session,
-    currentSection: "kombi",
-  });
-});
+// app.post("/person/steuer-id", (req, res) => {
+//   req.session.steuerid = req.body.steuerid;
+//   if (req.query.edit) {
+//     res.redirect(req.query.redirect);
+//   } else {
+//     res.redirect("/person/status");
+//   }
+// });
+//
+// app.get("/person/steuer-id", (req, res) => {
+//   res.render("person/steuer-id", {
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
+//     pageTree: treeForCurrentState(req.session, "/person/steuer-id"),
+//     session: req.session,
+//     currentSection: "kombi",
+//   });
+// });
 
 app.get("/person/status", (req, res) => {
   res.render("person/status", {
@@ -515,7 +510,7 @@ app.post("/unternehmen/adresse-abweichend", (req, res) => {
     if (adresseAbweichend) {
       res.redirect("/unternehmen/adresse-eingabe");
     } else {
-      res.redirect("/unternehmen/taetigkeit");
+      res.redirect("/unternehmen/taetigkeitsbereich");
     }
   }
 });
@@ -543,7 +538,7 @@ app.post("/unternehmen/adresse-eingabe", function (req, res) {
   if (req.query.edit) {
     res.redirect(req.query.redirect);
   } else {
-    res.redirect("/unternehmen/taetigkeit");
+    res.redirect("/unternehmen/taetigkeitsbereich");
   }
 });
 
@@ -558,58 +553,28 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
   });
 });
 
-app.post("/unternehmen/taetigkeit", (req, res) => {
-  req.session.taetigkeit = req.body.taetigkeit;
-  if (req.query.edit) {
-    res.redirect(req.query.redirect);
-  } else {
-    res.redirect("/unternehmen/taetigkeit-begonnen");
-  }
-});
+// app.post("/unternehmen/taetigkeit", (req, res) => {
+//   req.session.taetigkeit = req.body.taetigkeit;
+//   if (req.query.edit) {
+//     res.redirect(req.query.redirect);
+//   } else {
+//     res.redirect("/unternehmen/taetigkeit-begonnen");
+//   }
+// });
+//
+// app.get("/unternehmen/taetigkeit", (req, res) => {
+//   res.render("unternehmen/taetigkeit", {
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(req.session, "/unternehmen/taetigkeit"),
+//     session: req.session,
+//     currentSection: "kombi",
+//   });
+// });
 
-app.get("/unternehmen/taetigkeit", (req, res) => {
-  res.render("unternehmen/taetigkeit", {
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(req.session, "/unternehmen/taetigkeit"),
-    session: req.session,
-    currentSection: "kombi",
-  });
-});
-
-app.post("/unternehmen/taetigkeit-begonnen", (req, res) => {
-  req.session.taetigkeitBegonnen = req.body.taetigkeitBegonnen;
-  if (req.query.edit) {
-    res.redirect(
-      "/unternehmen/taetigkeit-beginn?edit=true&redirect=" + req.query.redirect,
-    );
-  } else {
-    res.redirect("/unternehmen/taetigkeit-beginn");
-  }
-});
-
-app.get("/unternehmen/taetigkeit-begonnen", (req, res) => {
-  var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
-  res.render("unternehmen/taetigkeit-begonnen", {
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(
-      req.session,
-      "/unternehmen/taetigkeit-begonnen",
-    ),
-    session: req.session,
-    currentSection: "kombi",
-    taetigkeitBegonnen: taetigkeitBegonnen,
-  });
-});
-
-app.post("/unternehmen/taetigkeit-beginn", function (req, res) {
-  req.session.taetigkeitBeginnTag = req.body.taetigkeitBeginnTag;
-  req.session.taetigkeitBeginnMonat = req.body.taetigkeitBeginnMonat;
-  req.session.taetigkeitBeginnJahr = req.body.taetigkeitBeginnJahr;
-
+app.post("/unternehmen/taetigkeitsbereich", (req, res) => {
+  req.session.taetigkeitsbereich = req.body.taetigkeitsbereich;
   if (req.query.edit) {
     res.redirect(req.query.redirect);
   } else {
@@ -617,26 +582,79 @@ app.post("/unternehmen/taetigkeit-beginn", function (req, res) {
   }
 });
 
-app.get("/unternehmen/taetigkeit-beginn", (req, res) => {
-  var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
-
-  res.render("unternehmen/taetigkeit-beginn", {
+app.get("/unternehmen/taetigkeitsbereich", (req, res) => {
+  res.render("unternehmen/taetigkeitsbereich", {
     edit: req.query.edit,
     redirect: req.query.redirect,
     redirectPath: req.baseUrl + req.path,
     pageTree: treeForCurrentState(
       req.session,
-      "/unternehmen/taetigkeit-begonnen",
+      "/unternehmen/taetigkeitsbereich",
     ),
     session: req.session,
     currentSection: "kombi",
-    taetigkeitBegonnen: taetigkeitBegonnen,
   });
 });
 
+// app.post("/unternehmen/taetigkeit-begonnen", (req, res) => {
+//   req.session.taetigkeitBegonnen = req.body.taetigkeitBegonnen;
+//   if (req.query.edit) {
+//     res.redirect(
+//       "/unternehmen/taetigkeit-beginn?edit=true&redirect=" + req.query.redirect,
+//     );
+//   } else {
+//     res.redirect("/unternehmen/taetigkeit-beginn");
+//   }
+// });
+//
+// app.get("/unternehmen/taetigkeit-begonnen", (req, res) => {
+//   var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
+//   res.render("unternehmen/taetigkeit-begonnen", {
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(
+//       req.session,
+//       "/unternehmen/taetigkeit-begonnen",
+//     ),
+//     session: req.session,
+//     currentSection: "kombi",
+//     taetigkeitBegonnen: taetigkeitBegonnen,
+//   });
+// });
+//
+// app.post("/unternehmen/taetigkeit-beginn", function (req, res) {
+//   req.session.taetigkeitBeginnTag = req.body.taetigkeitBeginnTag;
+//   req.session.taetigkeitBeginnMonat = req.body.taetigkeitBeginnMonat;
+//   req.session.taetigkeitBeginnJahr = req.body.taetigkeitBeginnJahr;
+//
+//   if (req.query.edit) {
+//     res.redirect(req.query.redirect);
+//   } else {
+//     res.redirect("/unternehmen/gewerbeart");
+//   }
+// });
+//
+// app.get("/unternehmen/taetigkeit-beginn", (req, res) => {
+//   var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
+//
+//   res.render("unternehmen/taetigkeit-beginn", {
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(
+//       req.session,
+//       "/unternehmen/taetigkeit-begonnen",
+//     ),
+//     session: req.session,
+//     currentSection: "kombi",
+//     taetigkeitBegonnen: taetigkeitBegonnen,
+//   });
+// });
+
 app.post("/unternehmen/gewerbeart", (req, res) => {
   req.session.gewerbeart = req.body.gewerbeart;
-  res.redirect("/unternehmen/ustid-abfrage");
+  res.redirect("/unternehmen/status");
 });
 
 app.get("/unternehmen/gewerbeart", (req, res) => {
@@ -650,57 +668,57 @@ app.get("/unternehmen/gewerbeart", (req, res) => {
   });
 });
 
-app.post("/unternehmen/ustid-abfrage", (req, res) => {
-  req.session.ustidexistingbool = req.body.ustidexistingbool;
-  var existingUstid = req.session.ustidexistingbool;
-
-  if (req.query.edit) {
-    if (existingUstid == "ja") {
-      res.redirect(req.query.redirect);
-    } else {
-      res.redirect(
-        "/unternehmen/ustid?edit=true&redirect=" + req.query.redirect,
-      );
-    }
-  } else {
-    if (existingUstid == "ja") {
-      res.redirect("/unternehmen/status");
-    } else {
-      res.redirect("/unternehmen/ustid");
-    }
-  }
-});
-
-app.get("/unternehmen/ustid-abfrage", (req, res) => {
-  res.render("unternehmen/ustid-abfrage", {
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    session: req.session,
-    currentSection: "kombi",
-    pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
-  });
-});
-
-app.post("/unternehmen/ustid", (req, res) => {
-  req.session.ustidbool = req.body.ustidbool;
-  if (req.query.edit) {
-    res.redirect(req.query.redirect);
-  } else {
-    res.redirect("/unternehmen/status");
-  }
-});
-
-app.get("/unternehmen/ustid", (req, res) => {
-  res.render("unternehmen/ustid", {
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
-    session: req.session,
-    currentSection: "kombi",
-  });
-});
+// app.post("/unternehmen/ustid-abfrage", (req, res) => {
+//   req.session.ustidexistingbool = req.body.ustidexistingbool;
+//   var existingUstid = req.session.ustidexistingbool;
+//
+//   if (req.query.edit) {
+//     if (existingUstid == "ja") {
+//       res.redirect(req.query.redirect);
+//     } else {
+//       res.redirect(
+//         "/unternehmen/ustid?edit=true&redirect=" + req.query.redirect,
+//       );
+//     }
+//   } else {
+//     if (existingUstid == "ja") {
+//       res.redirect("/unternehmen/status");
+//     } else {
+//       res.redirect("/unternehmen/ustid");
+//     }
+//   }
+// });
+//
+// app.get("/unternehmen/ustid-abfrage", (req, res) => {
+//   res.render("unternehmen/ustid-abfrage", {
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     session: req.session,
+//     currentSection: "kombi",
+//     pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
+//   });
+// });
+//
+// app.post("/unternehmen/ustid", (req, res) => {
+//   req.session.ustidbool = req.body.ustidbool;
+//   if (req.query.edit) {
+//     res.redirect(req.query.redirect);
+//   } else {
+//     res.redirect("/unternehmen/status");
+//   }
+// });
+//
+// app.get("/unternehmen/ustid", (req, res) => {
+//   res.render("unternehmen/ustid", {
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
+//     session: req.session,
+//     currentSection: "kombi",
+//   });
+// });
 
 app.get("/unternehmen/status", (req, res) => {
   res.render("unternehmen/status", {
@@ -765,7 +783,7 @@ app.get("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
 });
 
 app.post("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
-  res.redirect("/umsatz/umsatzsteuer");
+  res.redirect("/umsatz/status");
 });
 
 app.get("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
@@ -884,11 +902,7 @@ app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
     req.session.umsatzDone = true;
   }
 
-  if (kleinunternehmenVerwenden) {
-    res.redirect("/umsatz/status");
-  } else {
-    res.redirect("/umsatz/umsatzsteuer");
-  }
+  res.redirect("/umsatz/status");
 });
 
 app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
@@ -905,19 +919,19 @@ app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
   });
 });
 
-app.post("/umsatz/umsatzsteuer", (req, res) => {
-  req.session.ustDiesesJahr = req.body.ustDiesesJahr;
-  req.session.ustNaechstesJahr = req.body.NaechstesJahr;
-  res.redirect("/umsatz/status");
-});
-
-app.get("/umsatz/umsatzsteuer", (req, res) => {
-  res.render("umsatz/umsatzsteuer", {
-    session: req.session,
-    currentSection: "kombi",
-    pageTree: treeForCurrentState(req.session, "/umsatz/umsatzsteuer"),
-  });
-});
+// app.post("/umsatz/umsatzsteuer", (req, res) => {
+//   req.session.ustDiesesJahr = req.body.ustDiesesJahr;
+//   req.session.ustNaechstesJahr = req.body.NaechstesJahr;
+//   res.redirect("/umsatz/status");
+// });
+//
+// app.get("/umsatz/umsatzsteuer", (req, res) => {
+//   res.render("umsatz/umsatzsteuer", {
+//     session: req.session,
+//     currentSection: "kombi",
+//     pageTree: treeForCurrentState(req.session, "/umsatz/umsatzsteuer"),
+//   });
+// });
 
 app.get("/umsatz/status", (req, res) => {
   res.render("umsatz/status", {
@@ -947,7 +961,7 @@ app.post("/gewinn/eingabe", (req, res) => {
   req.session.gewinnDiesesJahr = req.body.gewinnDiesesJahr;
   req.session.gewinnNaechstesJahr = req.body.gewinnNaechstesJahr;
   req.session.gewinnStarted = true;
-  res.redirect("/einkuenfte/auswahl");
+  res.redirect("/gewinn/status");
 });
 
 app.get("/gewinn/eingabe", (req, res) => {
@@ -961,215 +975,215 @@ app.get("/gewinn/eingabe", (req, res) => {
   });
 });
 
-app.get("/einkuenfte/start", (req, res) => {
-  res.render("einkuenfte/start", {
-    session: req.session,
-    currentSection: "kombi",
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-  });
-});
-
-app.post("/einkuenfte/auswahl", (req, res) => {
-  req.session.einkuenfte = req.body.einkuenfte;
-
-  var einkuenfte = req.session.einkuenfte;
-
-  if (einkuenfte) {
-    if (einkuenfte.includes("landwirtschaft")) {
-      res.redirect("/einkuenfte/landwirtschaft");
-    } else if (einkuenfte.includes("vermietung")) {
-      res.redirect("/einkuenfte/vermietung");
-    } else if (einkuenfte.includes("selbststaendig")) {
-      res.redirect("/einkuenfte/selbststaendig");
-    } else if (einkuenfte.includes("nichtselbst")) {
-      res.redirect("/einkuenfte/nicht-selbststaendig");
-    } else if (einkuenfte.includes("kapital")) {
-      res.redirect("/einkuenfte/kapital");
-    } else if (einkuenfte.includes("sonstige")) {
-      res.redirect("/einkuenfte/sonstige");
-    } else {
-      res.redirect("/gewinn/status");
-    }
-  } else {
-    res.redirect("/gewinn/status");
-  }
-});
-
-app.get("/einkuenfte/auswahl", (req, res) => {
-  res.render("einkuenfte/auswahl", {
-    pageName: "Weitere Einkünfte",
-    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
-    session: req.session,
-    currentSection: "kombi",
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-  });
-});
-
-app.post("/einkuenfte/landwirtschaft", (req, res) => {
-  req.session.landwirtschaftDiesesJahr = req.body.landwirtschaftDiesesJahr;
-  req.session.landwirtschaftNaechstesJahr =
-    req.body.landwirtschaftNaechstesJahr;
-
-  var einkuenfte = req.session.einkuenfte;
-
-  if (einkuenfte.includes("vermietung")) {
-    res.redirect("/einkuenfte/vermietung");
-  } else if (einkuenfte.includes("selbststaendig")) {
-    res.redirect("/einkuenfte/selbststaendig");
-  } else if (einkuenfte.includes("nichtselbst")) {
-    res.redirect("/einkuenfte/nicht-selbststaendig");
-  } else if (einkuenfte.includes("kapital")) {
-    res.redirect("/einkuenfte/kapital");
-  } else if (einkuenfte.includes("sonstige")) {
-    res.redirect("/einkuenfte/sonstige");
-  } else {
-    res.redirect("/gewinn/status");
-  }
-});
-
-app.get("/einkuenfte/landwirtschaft", (req, res) => {
-  res.render("einkuenfte/landwirtschaft", {
-    session: req.session,
-    currentSection: "kombi",
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
-  });
-});
-
-app.post("/einkuenfte/vermietung", (req, res) => {
-  req.session.vermietungDiesesJahr = req.body.vermietungDiesesJahr;
-  req.session.vermietungNaechstesJahr = req.body.vermietungNaechstesJahr;
-
-  var einkuenfte = req.session.einkuenfte;
-
-  if (einkuenfte.includes("selbststaendig")) {
-    res.redirect("/einkuenfte/selbststaendig");
-  } else if (einkuenfte.includes("nichtselbst")) {
-    res.redirect("/einkuenfte/nicht-selbststaendig");
-  } else if (einkuenfte.includes("kapital")) {
-    res.redirect("/einkuenfte/kapital");
-  } else if (einkuenfte.includes("sonstige")) {
-    res.redirect("/einkuenfte/sonstige");
-  } else {
-    res.redirect("/gewinn/status");
-  }
-});
-
-app.get("/einkuenfte/vermietung", (req, res) => {
-  res.render("einkuenfte/vermietung", {
-    session: req.session,
-    currentSection: "kombi",
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
-  });
-});
-
-app.post("/einkuenfte/selbststaendig", (req, res) => {
-  req.session.selbststaendigDiesesJahr = req.body.selbststaendigDiesesJahr;
-  req.session.selbststaendigNaechstesJahr =
-    req.body.selbststaendigNaechstesJahr;
-
-  var einkuenfte = req.session.einkuenfte;
-
-  if (einkuenfte.includes("nichtselbst")) {
-    res.redirect("/einkuenfte/nicht-selbststaendig");
-  } else if (einkuenfte.includes("kapital")) {
-    res.redirect("/einkuenfte/kapital");
-  } else if (einkuenfte.includes("sonstige")) {
-    res.redirect("/einkuenfte/sonstige");
-  } else {
-    res.redirect("/gewinn/status");
-  }
-});
-
-app.get("/einkuenfte/selbststaendig", (req, res) => {
-  res.render("einkuenfte/selbststaendig", {
-    session: req.session,
-    currentSection: "kombi",
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
-  });
-});
-
-app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
-  req.session.nichtSelbststaendigDiesesJahr =
-    req.body.nichtSelbststaendigDiesesJahr;
-  req.session.nichtSelbststaendigNaechstesJahr =
-    req.body.nichtSelbststaendigNaechstesJahr;
-
-  var einkuenfte = req.session.einkuenfte;
-
-  if (einkuenfte.includes("kapital")) {
-    res.redirect("/einkuenfte/kapital");
-  } else if (einkuenfte.includes("sonstige")) {
-    res.redirect("/einkuenfte/sonstige");
-  } else {
-    res.redirect("/gewinn/status");
-  }
-});
-
-app.get("/einkuenfte/nicht-selbststaendig", (req, res) => {
-  res.render("einkuenfte/nicht-selbststaendig", {
-    session: req.session,
-    currentSection: "kombi",
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
-  });
-});
-
-app.post("/einkuenfte/kapital", (req, res) => {
-  req.session.kapitalDiesesJahr = req.body.sonstigeDiesesJahr;
-  req.session.kapitalNaechstesJahr = req.body.sonstigeNaechstesJahr;
-
-  var einkuenfte = req.session.einkuenfte;
-
-  if (einkuenfte.includes("sonstige")) {
-    res.redirect("/einkuenfte/sonstige");
-  } else {
-    req.session.gewinnDone = true;
-    res.redirect("/gewinn/status");
-  }
-});
-
-app.get("/einkuenfte/kapital", (req, res) => {
-  res.render("einkuenfte/kapital", {
-    session: req.session,
-    currentSection: "kombi",
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
-  });
-});
-
-app.post("/einkuenfte/sonstige", (req, res) => {
-  req.session.sonstigeDiesesJahr = req.body.sonstigeDiesesJahr;
-  req.session.sonstigeNaechstesJahr = req.body.sonstigeNaechstesJahr;
-  res.redirect("/gewinn/status");
-});
-
-app.get("/einkuenfte/sonstige", (req, res) => {
-  res.render("einkuenfte/sonstige", {
-    session: req.session,
-    currentSection: "kombi",
-    edit: req.query.edit,
-    redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
-    pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
-  });
-});
+// app.get("/einkuenfte/start", (req, res) => {
+//   res.render("einkuenfte/start", {
+//     session: req.session,
+//     currentSection: "kombi",
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//   });
+// });
+//
+// app.post("/einkuenfte/auswahl", (req, res) => {
+//   req.session.einkuenfte = req.body.einkuenfte;
+//
+//   var einkuenfte = req.session.einkuenfte;
+//
+//   if (einkuenfte) {
+//     if (einkuenfte.includes("landwirtschaft")) {
+//       res.redirect("/einkuenfte/landwirtschaft");
+//     } else if (einkuenfte.includes("vermietung")) {
+//       res.redirect("/einkuenfte/vermietung");
+//     } else if (einkuenfte.includes("selbststaendig")) {
+//       res.redirect("/einkuenfte/selbststaendig");
+//     } else if (einkuenfte.includes("nichtselbst")) {
+//       res.redirect("/einkuenfte/nicht-selbststaendig");
+//     } else if (einkuenfte.includes("kapital")) {
+//       res.redirect("/einkuenfte/kapital");
+//     } else if (einkuenfte.includes("sonstige")) {
+//       res.redirect("/einkuenfte/sonstige");
+//     } else {
+//       res.redirect("/gewinn/status");
+//     }
+//   } else {
+//     res.redirect("/gewinn/status");
+//   }
+// });
+//
+// app.get("/einkuenfte/auswahl", (req, res) => {
+//   res.render("einkuenfte/auswahl", {
+//     pageName: "Weitere Einkünfte",
+//     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+//     session: req.session,
+//     currentSection: "kombi",
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//   });
+// });
+//
+// app.post("/einkuenfte/landwirtschaft", (req, res) => {
+//   req.session.landwirtschaftDiesesJahr = req.body.landwirtschaftDiesesJahr;
+//   req.session.landwirtschaftNaechstesJahr =
+//     req.body.landwirtschaftNaechstesJahr;
+//
+//   var einkuenfte = req.session.einkuenfte;
+//
+//   if (einkuenfte.includes("vermietung")) {
+//     res.redirect("/einkuenfte/vermietung");
+//   } else if (einkuenfte.includes("selbststaendig")) {
+//     res.redirect("/einkuenfte/selbststaendig");
+//   } else if (einkuenfte.includes("nichtselbst")) {
+//     res.redirect("/einkuenfte/nicht-selbststaendig");
+//   } else if (einkuenfte.includes("kapital")) {
+//     res.redirect("/einkuenfte/kapital");
+//   } else if (einkuenfte.includes("sonstige")) {
+//     res.redirect("/einkuenfte/sonstige");
+//   } else {
+//     res.redirect("/gewinn/status");
+//   }
+// });
+//
+// app.get("/einkuenfte/landwirtschaft", (req, res) => {
+//   res.render("einkuenfte/landwirtschaft", {
+//     session: req.session,
+//     currentSection: "kombi",
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+//   });
+// });
+//
+// app.post("/einkuenfte/vermietung", (req, res) => {
+//   req.session.vermietungDiesesJahr = req.body.vermietungDiesesJahr;
+//   req.session.vermietungNaechstesJahr = req.body.vermietungNaechstesJahr;
+//
+//   var einkuenfte = req.session.einkuenfte;
+//
+//   if (einkuenfte.includes("selbststaendig")) {
+//     res.redirect("/einkuenfte/selbststaendig");
+//   } else if (einkuenfte.includes("nichtselbst")) {
+//     res.redirect("/einkuenfte/nicht-selbststaendig");
+//   } else if (einkuenfte.includes("kapital")) {
+//     res.redirect("/einkuenfte/kapital");
+//   } else if (einkuenfte.includes("sonstige")) {
+//     res.redirect("/einkuenfte/sonstige");
+//   } else {
+//     res.redirect("/gewinn/status");
+//   }
+// });
+//
+// app.get("/einkuenfte/vermietung", (req, res) => {
+//   res.render("einkuenfte/vermietung", {
+//     session: req.session,
+//     currentSection: "kombi",
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+//   });
+// });
+//
+// app.post("/einkuenfte/selbststaendig", (req, res) => {
+//   req.session.selbststaendigDiesesJahr = req.body.selbststaendigDiesesJahr;
+//   req.session.selbststaendigNaechstesJahr =
+//     req.body.selbststaendigNaechstesJahr;
+//
+//   var einkuenfte = req.session.einkuenfte;
+//
+//   if (einkuenfte.includes("nichtselbst")) {
+//     res.redirect("/einkuenfte/nicht-selbststaendig");
+//   } else if (einkuenfte.includes("kapital")) {
+//     res.redirect("/einkuenfte/kapital");
+//   } else if (einkuenfte.includes("sonstige")) {
+//     res.redirect("/einkuenfte/sonstige");
+//   } else {
+//     res.redirect("/gewinn/status");
+//   }
+// });
+//
+// app.get("/einkuenfte/selbststaendig", (req, res) => {
+//   res.render("einkuenfte/selbststaendig", {
+//     session: req.session,
+//     currentSection: "kombi",
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+//   });
+// });
+//
+// app.post("/einkuenfte/nicht-selbststaendig", (req, res) => {
+//   req.session.nichtSelbststaendigDiesesJahr =
+//     req.body.nichtSelbststaendigDiesesJahr;
+//   req.session.nichtSelbststaendigNaechstesJahr =
+//     req.body.nichtSelbststaendigNaechstesJahr;
+//
+//   var einkuenfte = req.session.einkuenfte;
+//
+//   if (einkuenfte.includes("kapital")) {
+//     res.redirect("/einkuenfte/kapital");
+//   } else if (einkuenfte.includes("sonstige")) {
+//     res.redirect("/einkuenfte/sonstige");
+//   } else {
+//     res.redirect("/gewinn/status");
+//   }
+// });
+//
+// app.get("/einkuenfte/nicht-selbststaendig", (req, res) => {
+//   res.render("einkuenfte/nicht-selbststaendig", {
+//     session: req.session,
+//     currentSection: "kombi",
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+//   });
+// });
+//
+// app.post("/einkuenfte/kapital", (req, res) => {
+//   req.session.kapitalDiesesJahr = req.body.sonstigeDiesesJahr;
+//   req.session.kapitalNaechstesJahr = req.body.sonstigeNaechstesJahr;
+//
+//   var einkuenfte = req.session.einkuenfte;
+//
+//   if (einkuenfte.includes("sonstige")) {
+//     res.redirect("/einkuenfte/sonstige");
+//   } else {
+//     req.session.gewinnDone = true;
+//     res.redirect("/gewinn/status");
+//   }
+// });
+//
+// app.get("/einkuenfte/kapital", (req, res) => {
+//   res.render("einkuenfte/kapital", {
+//     session: req.session,
+//     currentSection: "kombi",
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+//   });
+// });
+//
+// app.post("/einkuenfte/sonstige", (req, res) => {
+//   req.session.sonstigeDiesesJahr = req.body.sonstigeDiesesJahr;
+//   req.session.sonstigeNaechstesJahr = req.body.sonstigeNaechstesJahr;
+//   res.redirect("/gewinn/status");
+// });
+//
+// app.get("/einkuenfte/sonstige", (req, res) => {
+//   res.render("einkuenfte/sonstige", {
+//     session: req.session,
+//     currentSection: "kombi",
+//     edit: req.query.edit,
+//     redirect: req.query.redirect,
+//     redirectPath: req.baseUrl + req.path,
+//     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
+//   });
+// });
 
 app.get("/gewinn/status", (req, res) => {
   res.render("gewinn/status", {
@@ -1216,7 +1230,7 @@ app.get("/kontakt/telefon", (req, res) => {
 
 app.post("/kontakt/email", (req, res) => {
   req.session.kontaktEmail = req.body.kontaktEmail;
-  res.redirect("/antrag-ueberpruefen");
+  res.redirect("/kontakt/status");
 });
 
 app.get("/kontakt/email", (req, res) => {
@@ -1238,6 +1252,7 @@ app.get("/kontakt/status", (req, res) => {
     redirect: req.query.redirect,
     redirectPath: req.baseUrl + req.path,
     currentSection: "kombi",
+    pageTree: treeForCurrentState(req.session, "/kontakt/status"),
   });
 });
 
@@ -1261,18 +1276,9 @@ app.get("/antrag-ueberpruefen", (req, res) => {
   });
 });
 
-app.get("/antrag-absenden", (req, res) => {
-  res.render("antrag-absenden", {
-    pageName: "Antrag absenden",
-    start: true,
-    session: req.session,
-    currentSection: "kombi",
-  });
-});
-
 app.get("/antrag-senden", (req, res) => {
   res.render("antrag-senden", {
-    pageName: "Antrag gesendet",
+    pageName: "Antrag absenden",
     start: true,
     session: req.session,
     currentSection: "absenden",

@@ -22,3 +22,10 @@ export function isnt(a, b, options) {
   }
   return options.inverse(this);
 }
+
+export function compare(a, b) {
+  if (a === b) {
+    return true;
+  }
+  return false;
+}

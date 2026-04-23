@@ -1,0 +1,91 @@
+
+{{#> question edit=edit step=4 max=5 section="Unternehmen und Tätigkeit"
+title="Welche Art von Unternehmen gründen Sie?"
+action="/unternehmen/taetigkeitsbereich"}}
+
+{{#*inline "intro"}}
+<div class="kern-stack kern-gap-lg">
+  <p class="kern-body">
+    Die Angabe bestimmt, welche Kammer für Sie zuständig ist – Industrie- und Handelskammer oder Handwerkskammer.
+  </p>
+</div>
+{{/inline}}
+
+<fieldset class="kern-fieldset">
+  <div class="kern-fieldset__body">
+    <div class="kern-form-check">
+      <input
+        class="kern-form-check__radio"
+        id="taetigkeitsbereich-industrie"
+        type="radio"
+        value="industrie"
+        name="taetigkeitsbereich"
+        {{#if (compare session.taetigkeitsbereich "industrie")}}checked{{/if}}
+      />
+      <div>
+        <label class="kern-label" for="taetigkeitsbereich-industrie">
+          Industrie
+        </label>
+        <div class="kern-label kern-label--small radio-hint">
+Sie beschaffen, bearbeiten oder verarbeiten Rohstoffe und Produkte.
+        </div>
+      </div>
+    </div>
+    <div class="kern-form-check">
+      <input
+        class="kern-form-check__radio"
+        id="taetigkeitsbereich-handel"
+        type="radio"
+        value="handel"
+        name="taetigkeitsbereich"
+{{#if (compare session.taetigkeitsbereich "handel")}}checked{{/if}}
+      />
+      <div>
+        <label class="kern-label" for="taetigkeitsbereich-handel">
+          Handel
+        </label>
+        <div class="kern-label kern-label--small radio-hint">
+Sie kaufen oder verkaufen Produkte, die sie nicht selbst produziert oder verarbeitet haben.
+        </div>
+      </div>
+    </div>
+    <div class="kern-form-check">
+      <input
+        class="kern-form-check__radio"
+        id="taetigkeitsbereich-handwerk"
+        type="radio"
+        value="handwerk"
+        name="taetigkeitsbereich"
+{{#if (compare session.taetigkeitsbereich "handwerk")}}checked{{/if}}
+      />
+      <div>
+        <label class="kern-label" for="taetigkeitsbereich-handwerk">
+Handwerk
+        </label>
+        <div class="kern-label kern-label--small radio-hint">
+Sie führen handwerkliche Tätigkeiten nach der Handwerksordnung aus.
+        </div>
+      </div>
+    </div>
+    <div class="kern-form-check">
+      <input
+        class="kern-form-check__radio"
+        id="taetigkeitsbereich-sonstiges"
+        type="radio"
+        value="sonstiges"
+        name="taetigkeitsbereich"
+{{#if (compare session.taetigkeitsbereich "sonstiges")}}checked{{/if}}
+      />
+      <div>
+        <label class="kern-label" for="taetigkeitsbereich-sonstiges">
+Sonstiges
+        </label>
+        <div class="kern-label kern-label--small radio-hint">
+Fällt nicht in den Bereich Industrie, Handel oder Handwerk.
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+{{/question}}

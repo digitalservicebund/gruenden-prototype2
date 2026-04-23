@@ -31,7 +31,11 @@
           >{{session.strasse}} {{session.hausnummer}} <br />
           {{session.plz}} {{session.ort}}</span
         >
-        {{/summary-list-row}} 
+        {{/summary-list-row}} {{#> summary-list-row
+        key="Steuer-Identifikationsnummer" action=(join
+        "/person/steuer-id?edit=true&redirect=" redirectPath) }}
+        <span>{{session.steuerid}}</span>
+        {{/summary-list-row}}
       </dl>
     </div>
 
@@ -53,9 +57,25 @@
             </span>
           {{/unless}}
         {{/summary-list-row}}
-        {{#> summary-list-row key="Tätigkeitsbereich" action=(join "/unternehmen/taetigkeitsbereich?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Tätigkeit" action=(join "/unternehmen/taetigkeit?edit=true&redirect=" redirectPath) }}
           <span>
-            {{session.taetigkeitsbereich}}
+            {{session.taetigkeit}}
+          </span>
+        {{/summary-list-row}}
+        {{#> summary-list-row key="Beginn der Tätigkeit" action=(join "/unternehmen/taetigkeit-begonnen?edit=true&redirect=" redirectPath) }}
+          <span>
+            {{session.taetigkeitBeginnTag}}.
+            {{session.taetigkeitBeginnMonat}}.
+            {{session.taetigkeitBeginnJahr}}
+          </span>
+        {{/summary-list-row}}
+        {{#> summary-list-row key="Umsatzsteuer-Identifikationsnummer" action=(join "/unternehmen/ustid-abfrage?edit=true&redirect=" redirectPath) }}
+          <span>
+            {{#if existingUstid}} Ich habe bereits eine
+            Umsatzsteuer-Identifikationsnummer. {{else}} {{#if newUstid}}
+            Ich möchte eine Umsatzsteuer-Identifikationsnummer beantragen.
+            {{else}} Ich möchte keine Umsatzsteuer-Identifikationsnummer
+            beantragen. {{/if}} {{/if}}
           </span>
         {{/summary-list-row}}
       </dl>
@@ -80,6 +100,19 @@
             {{#if kleinunternehmenVerwenden}}Ja{{else}}Nein{{/if}}
           </span>
         {{/summary-list-row}}
+        
+        {{#unless kleinunternehmenVerwenden}}
+          {{#> summary-list-row key="Umsatzsteuer dieses Jahr" action=(join "/umsatz/umsatzsteuer?edit=true&redirect=" redirectPath) }}
+            <span>
+              {{session.ustDiesesJahr}}
+            </span>
+          {{/summary-list-row}}
+          {{#> summary-list-row key="Umsatzsteuer nächstes Jahr" action=(join "/umsatz/umsatzsteuer?edit=true&redirect=" redirectPath) }}
+            <span>
+              {{session.ustNaechstesJahr}}
+            </span>
+          {{/summary-list-row}}
+        {{/unless}}
       </dl>
     </div>
     <div class="kern-stack kern-gap-md">
@@ -95,6 +128,13 @@
           <span>
             {{session.gewinnNaechstesJahr}}
           </span>
+        {{/summary-list-row}}
+        {{#> summary-list-row key="Sonstige Einkünfte" action=(join "/einkuenfte/auswahl?edit=true&redirect=" redirectPath) }}
+          <ul class="kern-list kern-list-bullet">
+            {{#each session.einkuenfte}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
         {{/summary-list-row}}
       </dl>
     </div>
