@@ -1,4 +1,4 @@
-{{#is step "quick"}}
+{{#is currentSection "quick"}}
 <div class="kern-flex kern-flex-wrap kern-gap-md kern-align-items-center">
   <div class="steps steps--active">
     <span class="steps__counter"> 1 </span>
@@ -19,7 +19,7 @@
     <span class="steps__label">Antrag absenden</span>
   </div>
 </div>
-{{/is}} {{#is step "kombi"}}
+{{/is}} {{#is currentSection "kombi"}}
 <div class="kern-flex kern-flex-wrap kern-gap-md kern-align-items-center">
   <div class="steps steps--done">
     <span class="steps__counter">
@@ -45,7 +45,7 @@
     <span class="steps__label">Antrag absenden</span>
   </div>
 </div>
-{{/is}} {{#is step "absenden"}}
+{{/is}} {{#is currentSection "absenden"}}
 <div class="kern-flex kern-flex-wrap kern-gap-md kern-align-items-center">
   <div class="steps steps--done">
     <span class="steps__counter">

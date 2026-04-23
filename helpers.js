@@ -10,7 +10,7 @@ export function join() {
 }
 
 export function is(a, b, options) {
-  if (a == b) {
+  if (a === b) {
     return options.fn(this);
   }
   return options.inverse(this);
