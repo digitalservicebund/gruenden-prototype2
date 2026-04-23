@@ -1286,10 +1286,22 @@ app.get("/antrag-senden", (req, res) => {
 });
 
 app.get("/antrag-gesendet", (req, res) => {
+  const event = new Date();
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  };
+
   res.render("antrag-gesendet", {
     pageName: "Antrag gesendet",
     start: true,
     session: req.session,
+    date: event.toLocaleDateString("de-DE", options),
   });
 });
 
