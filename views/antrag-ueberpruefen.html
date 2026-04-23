@@ -21,11 +21,9 @@
         {{/summary-list-row}} {{#> summary-list-row key="Geburtsort" action=(join
         "/person/geburtsort?edit=true&redirect=" redirectPath) }}
         <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
-        {{/summary-list-row}} {{#> summary-list-row key="Staatsangehörigkeit"
-        action=(join "/person/staatsangehoerigkeit?edit=true&redirect="
-        redirectPath) }}
-        <span>{{session.staatsangehoerigkeitbool}}</span>
-        {{/summary-list-row}} {{#> summary-list-row key="Adresse" action=(join
+        {{/summary-list-row}} 
+
+        {{#> summary-list-row key="Adresse" action=(join
         "/person/adresse?edit=true&redirect=" redirectPath) }}
         <span
           >{{session.strasse}} {{session.hausnummer}} <br />

@@ -1,35 +1,39 @@
 {{#> question edit=edit step=1 max=1 section="Gewinne und Einkünfte" title="Wie
 hoch sind Ihre voraussichtliche Gewinne?" action="/gewinn/eingabe"}} {{#*inline
 "intro"}}
-<div class="kern-form-input">
-  <label class="kern-label" for="gewinn-dieses-jahr">Gewinn dieses Jahr</label>
-  <div class="kern-input-group">
-    <input
-      class="kern-form-input__input"
-      id="gewinn-dieses-jahr"
-      name="gewinnDiesesJahr"
-      type="text"
-      inputmode="numeric"
-      value="{{ session.gewinnDiesesJahr }}"
-    />
-    <span class="kern-input-group-text">Euro</span>
+<div class="kern-stack">
+  <div class="kern-form-input">
+    <label class="kern-label" for="gewinn-dieses-jahr"
+      >Gewinn dieses Jahr</label
+    >
+    <div class="kern-input-group">
+      <input
+        class="kern-form-input__input"
+        id="gewinn-dieses-jahr"
+        name="gewinnDiesesJahr"
+        type="text"
+        inputmode="numeric"
+        value="{{ session.gewinnDiesesJahr }}"
+      />
+      <span class="kern-input-group-text">Euro</span>
+    </div>
   </div>
-</div>
 
-<div class="kern-form-input">
-  <label class="kern-label" for="gewinn-naechstes-jahr"
-    >Gewinn nächstes Jahr</label
-  >
-  <div class="kern-input-group">
-    <input
-      class="kern-form-input__input"
-      id="gewinn-naechstes-jahr"
-      name="gewinnNaechstesJahr"
-      type="text"
-      inputmode="numeric"
-      value="{{ session.gewinnNaechstesJahr }}"
-    />
-    <span class="kern-input-group-text">Euro</span>
+  <div class="kern-form-input">
+    <label class="kern-label" for="gewinn-naechstes-jahr"
+      >Gewinn nächstes Jahr</label
+    >
+    <div class="kern-input-group">
+      <input
+        class="kern-form-input__input"
+        id="gewinn-naechstes-jahr"
+        name="gewinnNaechstesJahr"
+        type="text"
+        inputmode="numeric"
+        value="{{ session.gewinnNaechstesJahr }}"
+      />
+      <span class="kern-input-group-text">Euro</span>
+    </div>
   </div>
 </div>
 {{/inline}} {{/question}}
