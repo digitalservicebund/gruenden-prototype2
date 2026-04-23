@@ -265,7 +265,14 @@ app.get("/vorab-check/neugruendung", (req, res) => {
 });
 
 app.post("/vorab-check/rechtsform", (req, res) => {
-  res.redirect("/vorab-check/antrag-moeglich");
+  req.session.rechtsform = req.body.rechtsform;
+  var rechtsform = req.session.rechtsform;
+
+  if (rechtsform == "einzelunternehmen") {
+    res.redirect("/vorab-check/antrag-moeglich");
+  } else {
+    res.redirect("/vorab-check/antrag-nicht-moeglich");
+  }
 });
 
 app.get("/vorab-check/rechtsform", (req, res) => {
