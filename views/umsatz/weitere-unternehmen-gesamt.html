@@ -1,51 +1,39 @@
-<div class="kern-stack">
-  {{> progress step=2 max=3 section="Umsätze"}}
-  <div>
-    <h2 class="kern-heading-x-large">
-      Liegt Ihr voraussichtlicher Gesamtumsatz aus allen Tätigkeiten unter
-      25.000 €?
-    </h2>
-  </div>
+{{#> question edit=edit step=2 max=3 section="Umsätze" title="Liegt Ihr
+voraussichtlicher Gesamtumsatz aus allen Tätigkeiten unter 25.000 €?"
+action="/umsatz/weitere-unternehmen-gesamt"}} {{#*inline "intro"}}
+<p class="kern-body">
+  Für die Kleinunternehmerregelung zählt Ihr Gesamtumsatz, den Sie als
+  natürliche Person erzielen. Dazu gehören Gewerbebetriebe und freiberufliche
+  Tätigkeiten.
+</p>
+{{/inline}}
 
-  <form
-    class="kern-stack kern-gap-xl"
-    action="/umsatz/weitere-unternehmen-gesamt"
-    method="post"
-  >
-    <fieldset class="kern-fieldset">
-      <legend class="kern-label kern-sr-only">
-        Gesamter Umsatz unter 25.000 Euro
-      </legend>
-      <div class="kern-fieldset__body">
-        <div class="kern-form-check">
-          <input
-            class="kern-form-check__radio"
-            id="weiterunternehmengesamt-ja"
-            type="radio"
-            value="ja"
-            checked
-            name="weitereUnternehmenGesamtBool"
-          /><label class="kern-label" for="weiterunternehmengesamt-ja"
-            >Ja</label
-          >
-        </div>
-        <div class="kern-form-check">
-          <input
-            class="kern-form-check__radio"
-            id="weiterunternehmengesamt-nein"
-            type="radio"
-            value="nein"
-            name="weitereUnternehmenGesamtBool"
-          /><label class="kern-label" for="weiterunternehmengesamt-nein"
-            >Nein</label
-          >
-        </div>
-        <div class="kern-btn-wrapper">
-          <button class="kern-btn kern-btn--primary">
-            <span class="kern-label">Weiter</span>
-          </button>
-        </div>
-      </div>
-    </fieldset>
-  </form>
-</div>
+<fieldset class="kern-fieldset">
+  <legend class="kern-label kern-sr-only">
+    Gesamter Umsatz unter 25.000 Euro
+  </legend>
+  <div class="kern-fieldset__body">
+    <div class="kern-form-check">
+      <input
+        class="kern-form-check__radio"
+        id="weiterunternehmengesamt-ja"
+        type="radio"
+        value="ja"
+        checked
+        name="weitereUnternehmenGesamtBool"
+      /><label class="kern-label" for="weiterunternehmengesamt-ja">Ja</label>
+    </div>
+    <div class="kern-form-check">
+      <input
+        class="kern-form-check__radio"
+        id="weiterunternehmengesamt-nein"
+        type="radio"
+        value="nein"
+        name="weitereUnternehmenGesamtBool"
+      /><label class="kern-label" for="weiterunternehmengesamt-nein"
+        >Nein</label
+      >
+    </div>
+  </div>
+</fieldset>
+{{/question}}

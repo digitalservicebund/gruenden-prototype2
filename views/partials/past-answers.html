@@ -46,25 +46,25 @@
   </div>
   {{/if}}
 
-  {{#if session.unternehmenStrasse}}
+  {{#if session.taetigkeit}}
     <div class="kern-stack">
       <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
 
       <dl class="summary-list">
         {{#if session.unternehmenStrasse}}
           {{#> summary-list-row key="Adresse" action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
-            {{#unless adresseAbweichend}}
-            <span>
-              {{session.strasse}} {{session.hausnummer}} <br />
-              {{session.plz}} {{session.ort}}
-            </span>
-            {{else}}
+            {{#is session.adresseAbweichend "ja"}}
               <span>
               {{session.unternehmenStrasse}} {{session.unternehmenHausnummer}}
               <br />
               {{session.unternehmenPlz}} {{session.unternehmenOrt}}
               </span>
-            {{/unless}}
+            {{else}}
+              <span>
+                {{session.strasse}} {{session.hausnummer}} <br />
+                {{session.plz}} {{session.ort}}
+              </span>
+            {{/is}}
           {{/summary-list-row}}
         {{/if}}
         {{#if session.taetigkeit}}
@@ -83,14 +83,27 @@
           </span>
         {{/summary-list-row}}
         {{/if}}
-        {{#if session.existingUstid}}
+        {{#if session.gewerbeart }}
+        {{#> summary-list-row key="Nebenberuflich gründen" action=(join "/unternehmen/gewerbeart?edit=true&redirect=" redirectPath) }}
+            {{#is session.gewerbeart "nebengewerbe"}}
+              <span>
+              Ja, ich möchte nebenberuflich gründen.
+              </span>
+            {{else}}
+              <span>
+              Nein, ich gründe hauptberuflich. 
+              </span>
+            {{/is}}
+        {{/summary-list-row}}
+        {{/if}}
+        {{#if session.ustidexistingbool}}
         {{#> summary-list-row key="Umsatzsteuer-Identifikationsnummer" action=(join "/unternehmen/ustid-abfrage?edit=true&redirect=" redirectPath) }}
           <span>
-            {{#if existingUstid}} Ich habe bereits eine
-            Umsatzsteuer-Identifikationsnummer. {{else}} {{#if newUstid}}
+            {{#is session.ustidexistingbool "ja"}} Ich habe bereits eine
+            Umsatzsteuer-Identifikationsnummer. {{else}} {{#is session.ustidbool "ja"}}
             Ich möchte eine Umsatzsteuer-Identifikationsnummer beantragen.
             {{else}} Ich möchte keine Umsatzsteuer-Identifikationsnummer
-            beantragen. {{/if}} {{/if}}
+            beantragen. {{/is}} {{/is}}
           </span>
         {{/summary-list-row}}
         {{/if}}

@@ -1,49 +1,35 @@
-<div class="kern-stack">
-  {{> progress step=2 max=3 section="Umsätze"}}
-  <div>
-    <h2 class="kern-heading-x-large">
-      Haben Sie aktuell weitere Unternehmen auf Ihren Namen?
-    </h2>
-    <p class="kern-body">
-      Für die Kleinunternehmerregelung zählt Ihr Gesamtumsatz, den Sie als
-      natürliche Person erzielen. Dazu gehören Gewerbebetriebe und
-      freiberufliche Tätigkeiten.
-    </p>
-  </div>
+{{#> question edit=edit step=2 max=3 section="Umsätze" title="Haben Sie aktuell
+weitere Unternehmen auf Ihren Namen?" action="/umsatz/weitere-unternehmen"}}
+{{#*inline "intro"}}
+<p class="kern-body">
+  Für die Kleinunternehmerregelung zählt Ihr Gesamtumsatz, den Sie als
+  natürliche Person erzielen. Dazu gehören Gewerbebetriebe und freiberufliche
+  Tätigkeiten.
+</p>
+{{/inline}}
 
-  <form
-    class="kern-stack kern-gap-xl"
-    action="/umsatz/weitere-unternehmen"
-    method="post"
-  >
-    <fieldset class="kern-fieldset">
-      <legend class="kern-label kern-sr-only">Weitere Unternehmen</legend>
-      <div class="kern-fieldset__body">
-        <div class="kern-form-check">
-          <input
-            class="kern-form-check__radio"
-            id="weitereunternehmen-ja"
-            type="radio"
-            value="ja"
-            name="weitereunternehmenbool"
-          /><label class="kern-label" for="weitereunternehmen-ja">Ja</label>
-        </div>
-        <div class="kern-form-check">
-          <input
-            class="kern-form-check__radio"
-            id="weitereunternehmen-nein"
-            type="radio"
-            value="nein"
-            checked
-            name="weitereunternehmenbool"
-          /><label class="kern-label" for="weitereunternehmen-nein">Nein</label>
-        </div>
-        <div class="kern-btn-wrapper">
-          <button class="kern-btn kern-btn--primary">
-            <span class="kern-label">Weiter</span>
-          </button>
-        </div>
-      </div>
-    </fieldset>
-  </form>
-</div>
+<fieldset class="kern-fieldset">
+  <legend class="kern-label kern-sr-only">Weitere Unternehmen</legend>
+  <div class="kern-fieldset__body">
+    <div class="kern-form-check">
+      <input
+        class="kern-form-check__radio"
+        id="weitereunternehmen-ja"
+        type="radio"
+        value="ja"
+        name="weitereunternehmenbool"
+      /><label class="kern-label" for="weitereunternehmen-ja">Ja</label>
+    </div>
+    <div class="kern-form-check">
+      <input
+        class="kern-form-check__radio"
+        id="weitereunternehmen-nein"
+        type="radio"
+        value="nein"
+        checked
+        name="weitereunternehmenbool"
+      /><label class="kern-label" for="weitereunternehmen-nein">Nein</label>
+    </div>
+  </div>
+</fieldset>
+{{/question}}

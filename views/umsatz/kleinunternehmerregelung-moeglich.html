@@ -1,25 +1,9 @@
-<div class="kern-stack">
-  {{> progress step=2 max=3 section="Umsätze"}}
-  <div>
-    <h2 class="kern-heading-x-large">
-      Prüfen Sie, ob Sie die Kleinunternehmerregelung nutzen können
-    </h2>
-    <p class="kern-body">
-      Bei Umsätzen bis zu 25.000 € pro Jahr ist es grundsätzlich möglich, die
-      Kleinunternehmerregelung zu nutzen. In diesem Fall berechnen Sie keine
-      Umsatzsteuer auf Ihren Rechnungen.
-    </p>
-  </div>
-
-  <form
-    class="kern-stack kern-gap-xl"
-    action="/umsatz/kleinunternehmerregelung-moeglich"
-    method="post"
-  >
-    <div class="kern-btn-wrapper">
-      <button class="kern-btn kern-btn--primary">
-        <span class="kern-label">Weiter</span>
-      </button>
-    </div>
-  </form>
-</div>
+{{#> question edit=edit step=2 max=3 section="Umsätze" title="Prüfen Sie, ob Sie
+die Kleinunternehmerregelung nutzen können"
+action="/umsatz/kleinunternehmerregelung-moeglich"}} {{#*inline "intro"}}
+<p class="kern-body">
+  Bei Umsätzen bis zu 25.000 € pro Jahr ist es grundsätzlich möglich, die
+  Kleinunternehmerregelung zu nutzen. In diesem Fall berechnen Sie keine
+  Umsatzsteuer auf Ihren Rechnungen.
+</p>
+{{/inline}} {{/question}}
