@@ -1,11 +1,12 @@
 <div class="kern-stack kern-gap-xl">
 
-  {{#if session.vorname}}
   <div class="kern-stack">
-    <h3 class="kern-heading-medium">Persönliche Angaben</h3>
+    {{#if session.vorname}}
+      <h3 class="kern-heading-medium">Persönliche Angaben</h3>
+    {{/if}}
     <dl class="summary-list">
       {{#if session.vorname}}
-        {{#> summary-list-row key="Name" action=(join "/person/name?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Name" summary-action=(join "/person/name?edit=true&redirect=" redirectPath) }}
         <span
           >{{session.vorname}} {{session.nachname}} {{#if session.geburtsname}},
           geb. {{session.geburtsname}}{{/if}}</span
@@ -13,24 +14,24 @@
         {{/summary-list-row}}
       {{/if}}
       {{#if session.tag}}
-        {{#> summary-list-row key="Geburtstag" action=(join "/person/geburtstag?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Geburtstag" summary-action=(join "/person/geburtstag?edit=true&redirect=" redirectPath) }}
         <span>{{session.tag}}.{{session.monat}}.{{session.jahr}}</span>
         {{/summary-list-row}}
       {{/if}}
       {{#if session.geburtsort}}
-        {{#> summary-list-row key="Geburtsort" action=(join "/person/geburtsort?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Geburtsort" summary-action=(join "/person/geburtsort?edit=true&redirect=" redirectPath) }}
         <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
         {{/summary-list-row}} 
       {{/if}}
       {{#if session.staatsangehoerigkeitbool}}
         {{#> summary-list-row key="Staatsangehörigkeit"
-        action=(join "/person/staatsangehoerigkeit?edit=true&redirect=" redirectPath)}}
+        summary-action=(join "/person/staatsangehoerigkeit?edit=true&redirect=" redirectPath)}}
         <span>{{session.staatsangehoerigkeitbool}}</span>
         {{/summary-list-row}}
       {{/if}}
       {{#if session.strasse}}
         {{#> summary-list-row key="Adresse"
-        action=(join "/person/adresse?edit=true&redirect=" redirectPath) }}
+        summary-action=(join "/person/adresse?edit=true&redirect=" redirectPath) }}
         <span
           >{{session.strasse}} {{session.hausnummer}} <br />
           {{session.plz}} {{session.ort}}</span
@@ -38,52 +39,54 @@
         {{/summary-list-row}}
       {{/if}}
       {{#if session.steuerid}}
-        {{#> summary-list-row key="Steuer-Identifikationsnummer" action=(join "/person/steuer-id?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Steuer-Identifikationsnummer" summary-action=(join "/person/steuer-id?edit=true&redirect=" redirectPath) }}
         <span>{{session.steuerid}}</span>
         {{/summary-list-row}}
       {{/if}}
     </dl>
   </div>
-  {{/if}}
 
 
-  {{#is session.adresseAbweichend "ja"}}
     <div class="kern-stack">
-      <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
+      {{#if session.unternehmenStrasse}}
+        <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
+      {{else if (compare session.adresseAbweichend "nein")}}
+        <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
+      {{/if}}
 
       <dl class="summary-list">
         {{#if session.unternehmenStrasse}}
-          {{#> summary-list-row key="Adresse" action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
-            {{#is session.adresseAbweichend "ja"}}
+          {{#> summary-list-row key="Adresse" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
               <span>
               {{session.unternehmenStrasse}} {{session.unternehmenHausnummer}}
               <br />
               {{session.unternehmenPlz}} {{session.unternehmenOrt}}
               </span>
-            {{else}}
+          {{/summary-list-row}}
+        {{else if (compare session.adresseAbweichend "nein")}}
+          {{#> summary-list-row key="Adresse" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
               <span>
                 {{session.strasse}} {{session.hausnummer}} <br />
                 {{session.plz}} {{session.ort}}
               </span>
-            {{/is}}
           {{/summary-list-row}}
         {{/if}}
         {{#if session.taetigkeit}}
-          {{#> summary-list-row key="Tätigkeit" action=(join "/unternehmen/taetigkeit?edit=true&redirect=" redirectPath) }}
+          {{#> summary-list-row key="Tätigkeit" summary-action=(join "/unternehmen/taetigkeit?edit=true&redirect=" redirectPath) }}
             <span>
               {{session.taetigkeit}}
             </span>
           {{/summary-list-row}}
         {{/if}}
         {{#if session.taetigkeitsbereich}}
-        {{#> summary-list-row key="Tätigkeitsbereich" action=(join "/unternehmen/taetigkeitsbereich?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Tätigkeitsbereich" summary-action=(join "/unternehmen/taetigkeitsbereich?edit=true&redirect=" redirectPath) }}
           <span style="text-transform: capitalize;">
             {{session.taetigkeitsbereich}}
           </span>
         {{/summary-list-row}}
         {{/if}}
         {{#if session.taetigkeitBeginnTag}}
-        {{#> summary-list-row key="Beginn der Tätigkeit" action=(join "/unternehmen/taetigkeit-begonnen?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Beginn der Tätigkeit" summary-action=(join "/unternehmen/taetigkeit-begonnen?edit=true&redirect=" redirectPath) }}
           <span>
             {{session.taetigkeitBeginnTag}}.
             {{session.taetigkeitBeginnMonat}}.
@@ -92,7 +95,7 @@
         {{/summary-list-row}}
         {{/if}}
         {{#if session.gewerbeart }}
-        {{#> summary-list-row key="Nebenberuflich gründen" action=(join "/unternehmen/gewerbeart?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Nebenberuflich gründen" summary-action=(join "/unternehmen/gewerbeart?edit=true&redirect=" redirectPath) }}
             {{#is session.gewerbeart "nebengewerbe"}}
               <span>
               Ja, ich möchte nebenberuflich gründen.
@@ -105,7 +108,7 @@
         {{/summary-list-row}}
         {{/if}}
         {{#if session.ustidexistingbool}}
-        {{#> summary-list-row key="Umsatzsteuer-Identifikationsnummer" action=(join "/unternehmen/ustid-abfrage?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Umsatzsteuer-Identifikationsnummer" summary-action=(join "/unternehmen/ustid-abfrage?edit=true&redirect=" redirectPath) }}
           <span>
             {{#is session.ustidexistingbool "ja"}} Ich habe bereits eine
             Umsatzsteuer-Identifikationsnummer. {{else}} {{#is session.ustidbool "ja"}}
@@ -117,116 +120,50 @@
         {{/if}}
       </dl>
     </div>
-  {{else}}
-  {{#if session.unternehmenStrasse}}
-    <div class="kern-stack">
-      <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
-
-      <dl class="summary-list">
-        {{#if session.unternehmenStrasse}}
-          {{#> summary-list-row key="Adresse" action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
-            {{#is session.adresseAbweichend "ja"}}
-              <span>
-              {{session.unternehmenStrasse}} {{session.unternehmenHausnummer}}
-              <br />
-              {{session.unternehmenPlz}} {{session.unternehmenOrt}}
-              </span>
-            {{else}}
-              <span>
-                {{session.strasse}} {{session.hausnummer}} <br />
-                {{session.plz}} {{session.ort}}
-              </span>
-            {{/is}}
-          {{/summary-list-row}}
-        {{/if}}
-        {{#if session.taetigkeit}}
-          {{#> summary-list-row key="Tätigkeit" action=(join "/unternehmen/taetigkeit?edit=true&redirect=" redirectPath) }}
-            <span>
-              {{session.taetigkeit}}
-            </span>
-          {{/summary-list-row}}
-        {{/if}}
-        {{#if session.taetigkeitsbereich}}
-        {{#> summary-list-row key="Tätigkeitsbereich" action=(join "/unternehmen/taetigkeitsbereich?edit=true&redirect=" redirectPath) }}
-          <span>
-            {{session.taetigkeitsbereich}}
-          </span>
-        {{/summary-list-row}}
-        {{/if}}
-        {{#if session.taetigkeitBeginnTag}}
-        {{#> summary-list-row key="Beginn der Tätigkeit" action=(join "/unternehmen/taetigkeit-begonnen?edit=true&redirect=" redirectPath) }}
-          <span>
-            {{session.taetigkeitBeginnTag}}.
-            {{session.taetigkeitBeginnMonat}}.
-            {{session.taetigkeitBeginnJahr}}
-          </span>
-        {{/summary-list-row}}
-        {{/if}}
-        {{#if session.gewerbeart }}
-        {{#> summary-list-row key="Nebenberuflich gründen" action=(join "/unternehmen/gewerbeart?edit=true&redirect=" redirectPath) }}
-            {{#is session.gewerbeart "nebengewerbe"}}
-              <span>
-              Ja, ich möchte nebenberuflich gründen.
-              </span>
-            {{else}}
-              <span>
-              Nein, ich gründe hauptberuflich. 
-              </span>
-            {{/is}}
-        {{/summary-list-row}}
-        {{/if}}
-        {{#if session.ustidexistingbool}}
-        {{#> summary-list-row key="Umsatzsteuer-Identifikationsnummer" action=(join "/unternehmen/ustid-abfrage?edit=true&redirect=" redirectPath) }}
-          <span>
-            {{#is session.ustidexistingbool "ja"}} Ich habe bereits eine
-            Umsatzsteuer-Identifikationsnummer. {{else}} {{#is session.ustidbool "ja"}}
-            Ich möchte eine Umsatzsteuer-Identifikationsnummer beantragen.
-            {{else}} Ich möchte keine Umsatzsteuer-Identifikationsnummer
-            beantragen. {{/is}} {{/is}}
-          </span>
-        {{/summary-list-row}}
-        {{/if}}
-      </dl>
-    </div>
-  {{/if}}
-  {{/is}}
 
     {{# if session.umsatzDiesesJahr}}
     <div class="kern-stack kern-gap-md">
       <h3 class="kern-heading-medium">Umsätze</h3>
 
       <dl class="summary-list">
-        {{#> summary-list-row key="Umsätze dieses Jahr" action=(join "/umsatz/eingabe?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Umsätze dieses Jahr" summary-action=(join "/umsatz/eingabe?edit=true&redirect=" redirectPath) }}
           <span>
             {{session.umsatzDiesesJahr}}
           </span>
         {{/summary-list-row}}
-        {{#> summary-list-row key="Umsätze nächstes Jahr" action=(join "/umsatz/eingabe?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Umsätze nächstes Jahr" summary-action=(join "/umsatz/eingabe?edit=true&redirect=" redirectPath) }}
           <span>
             {{session.umsatzNaechstesJahr}}
           </span>
         {{/summary-list-row}}
-        {{#if session.kleinunternehmenBool}}
-          {{#> summary-list-row key="Kleinunternehmerregelung" action=(join "/umsatz/umsatzsteuer?edit=true&redirect=" redirectPath) }}
+
+        {{#if (compare session.kleinunternehmerMoeglich "ja")}}
+          {{#> summary-list-row key="Kleinunternehmerregelung" summary-action=(join "/umsatz/kleinunternehmerregelung?edit=true&redirect=" redirectPath) }}
             <span>
               {{#if (compare session.kleinunternehmenBool "ja")}}Ja{{else}}Nein{{/if}}
+            </span>
+          {{/summary-list-row}}
+        {{else}}
+          {{#> summary-list-row key="Kleinunternehmerregelung" }}
+            <span>
+              Nicht möglich
             </span>
           {{/summary-list-row}}
         {{/if}}
       </dl>
     </div>
   {{/if}}
-            {{# if session.gewinnDiesesJahr}}
+  {{# if session.gewinnDiesesJahr}}
     <div class="kern-stack kern-gap-md">
       <h3 class="kern-heading-medium">Gewinn &amp; Einkünfte</h3>
 
       <dl class="summary-list">
-        {{#> summary-list-row key="Gewinn dieses Jahr" action=(join "/gewinn/eingabe?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Gewinn dieses Jahr" summary-action=(join "/gewinn/eingabe?edit=true&redirect=" redirectPath) }}
           <span>
             {{session.gewinnDiesesJahr}}
           </span>
         {{/summary-list-row}}
-        {{#> summary-list-row key="Gewinn nächstes Jahr" action=(join "/gewinn/eingabe?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Gewinn nächstes Jahr" summary-action=(join "/gewinn/eingabe?edit=true&redirect=" redirectPath) }}
           <span>
             {{session.gewinnNaechstesJahr}}
           </span>
@@ -239,13 +176,13 @@
       <h3 class="kern-heading-medium">Kontaktdaten</h3>
 
       <dl class="summary-list">
-        {{#> summary-list-row key="Telefon" action=(join "/kontakt/telefon?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Telefon" summary-action=(join "/kontakt/telefon?edit=true&redirect=" redirectPath) }}
           <span>
             {{ session.kontaktTelefon}}
           </span>
         {{/summary-list-row}}
         {{# if session.kontaktEmail}}
-          {{#> summary-list-row key="Email" action=(join "/kontakt/email?edit=true&redirect=" redirectPath) }}
+          {{#> summary-list-row key="Email" summary-action=(join "/kontakt/email?edit=true&redirect=" redirectPath) }}
             <span>
               {{ session.kontaktEmail}}
             </span>

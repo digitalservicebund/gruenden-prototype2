@@ -18,7 +18,7 @@ weitere Unternehmen auf Ihren Namen?" action="/umsatz/weitere-unternehmen"}}
         type="radio"
         value="ja"
         name="weitereunternehmenbool"
-        {{#is weitereunternehmenbool "ja"}}checked{{/is}}
+        {{#is session.weitereunternehmenbool "ja"}}checked{{/is}}
       /><label class="kern-label" for="weitereunternehmen-ja">Ja</label>
     </div>
     <div class="kern-form-check">
@@ -28,7 +28,7 @@ weitere Unternehmen auf Ihren Namen?" action="/umsatz/weitere-unternehmen"}}
         type="radio"
         value="nein"
         name="weitereunternehmenbool"
-        {{#is weitereunternehmenbool "nein"}}checked{{/is}}
+        {{#is session.weitereunternehmenbool "nein"}}checked{{/is}}
       /><label class="kern-label" for="weitereunternehmen-nein">Nein</label>
     </div>
   </div>

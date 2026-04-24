@@ -15,7 +15,7 @@ action="/vorab-check/neugruendung"}} {{#*inline "intro"}}
       type="radio"
       value="ja"
       name="neugruendungbool"
-      checked
+      {{#is session.neugruendungbool "ja"}}checked{{/is}}
     /><label class="kern-label" for="neugruendung-ja"
       >Ja, ich gründe das Unternehmen neu</label
     >
@@ -27,6 +27,7 @@ action="/vorab-check/neugruendung"}} {{#*inline "intro"}}
       type="radio"
       value="nein"
       name="neugruendungbool"
+      {{#is session.neugruendungbool "nein"}}checked{{/is}}
     /><label class="kern-label" for="neugruendung-nein"
       >Nein, das Unternehmen gibt es schon</label
     >

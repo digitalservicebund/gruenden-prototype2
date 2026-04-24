@@ -28,6 +28,7 @@ action="/unternehmen/gewerbeart"}}
         type="radio"
         value="nebengewerbe"
         name="gewerbeart"
+        {{#is session.gewerbeart "nebengewerbe"}}checked{{/is}}
       />
         <label class="kern-label" for="nebengewerbe">Ja, ich möchte nebenberuflich gründen</label>
     </div>
@@ -38,6 +39,7 @@ action="/unternehmen/gewerbeart"}}
         type="radio"
         value="hauptgewerbe"
         name="gewerbeart"
+        {{#is session.gewerbeart "hauptgewerbe"}}checked{{/is}}
       />
         <label class="kern-label" for="hauptgewerbe">Nein, ich gründe hauptberuflich</label>
     </div>

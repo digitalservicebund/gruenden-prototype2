@@ -648,7 +648,12 @@ app.get("/unternehmen/taetigkeitsbereich", (req, res) => {
 
 app.post("/unternehmen/gewerbeart", (req, res) => {
   req.session.gewerbeart = req.body.gewerbeart;
-  res.redirect("/unternehmen/status");
+
+  if (req.query.edit) {
+    res.redirect(req.query.redirect);
+  } else {
+    res.redirect("/unternehmen/status");
+  }
 });
 
 app.get("/unternehmen/gewerbeart", (req, res) => {

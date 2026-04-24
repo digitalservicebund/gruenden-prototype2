@@ -25,7 +25,7 @@ action="/umsatz/kleinunternehmerregelung"}} {{#*inline "intro"}}
         value="ja"
         checked
         name="kleinunternehmenBool"
-        {{#is kleinunternehmenBool "ja"}}checked{{/is}}
+        {{#is session.kleinunternehmenBool "ja"}}checked{{/is}}
       /><label class="kern-label" for="kleinunternehmen-ja">Ja</label>
     </div>
     <div class="kern-form-check">
@@ -35,7 +35,7 @@ action="/umsatz/kleinunternehmerregelung"}} {{#*inline "intro"}}
         type="radio"
         value="nein"
         name="kleinunternehmenBool"
-        {{#is kleinunternehmenBool "nein"}}checked{{/is}}
+        {{#is session.kleinunternehmenBool "nein"}}checked{{/is}}
       /><label class="kern-label" for="kleinunternehmen-nein">Nein</label>
     </div>
   </div>
