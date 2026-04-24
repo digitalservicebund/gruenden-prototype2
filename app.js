@@ -138,7 +138,7 @@ function treeForCurrentState(session, current) {
       name: "Umsätze",
       href: "/umsatz/start",
       active: current.startsWith("/umsatz"),
-      started: session.umsatzDiesesJahr || session.ustDiesesJahr,
+      started: session.umsatzDiesesJahr,
       done: session.umsatzDiesesJahr && session.umsatzNaechstesJahr,
       items: [
         {
@@ -742,10 +742,24 @@ app.post("/umsatz/eingabe", (req, res) => {
     req.session.umsatzDiesesJahr &&
     Number(req.session.umsatzDiesesJahr) <= 25000;
 
-  if (kleinunternehmerMoeglich) {
-    res.redirect("/umsatz/kleinunternehmerregelung-moeglich");
+  if (req.query.edit) {
+    if (kleinunternehmerMoeglich) {
+      res.redirect(
+        "/umsatz/kleinunternehmerregelung-moeglich?edit=true&redirect=" +
+          req.query.redirect,
+      );
+    } else {
+      res.redirect(
+        "/umsatz/kleinunternehmerregelung-nicht-moeglich?edit=true&redirect=" +
+          req.query.redirect,
+      );
+    }
   } else {
-    res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
+    if (kleinunternehmerMoeglich) {
+      res.redirect("/umsatz/kleinunternehmerregelung-moeglich");
+    } else {
+      res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
+    }
   }
 });
 
@@ -761,7 +775,14 @@ app.get("/umsatz/eingabe", (req, res) => {
 });
 
 app.post("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
-  res.redirect("/umsatz/kleinunternehmerregelung-verzicht");
+  if (req.query.edit) {
+    res.redirect(
+      "/umsatz/kleinunternehmerregelung-verzicht?edit=true&redirect=" +
+        req.query.redirect,
+    );
+  } else {
+    res.redirect("/umsatz/kleinunternehmerregelung-verzicht");
+  }
 });
 
 app.get("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
@@ -779,7 +800,11 @@ app.get("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
 });
 
 app.post("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
-  res.redirect("/umsatz/status");
+  if (req.query.edit) {
+    res.redirect(req.query.redirect);
+  } else {
+    res.redirect("/umsatz/status");
+  }
 });
 
 app.get("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
@@ -812,10 +837,23 @@ app.post("/umsatz/kleinunternehmerregelung-verzicht", (req, res) => {
 
   var verzicht = req.session.verzichtBool && req.session.verzichtBool == "ja";
 
-  if (verzicht) {
-    res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
+  if (req.query.edit) {
+    if (verzicht) {
+      res.redirect(
+        "/umsatz/kleinunternehmerregelung-nicht-moeglich?edit=true&redirect=" +
+          req.query.redirect,
+      );
+    } else {
+      res.redirect(
+        "/umsatz/weitere-unternehmen?edit=true&redirect=" + req.query.redirect,
+      );
+    }
   } else {
-    res.redirect("/umsatz/weitere-unternehmen");
+    if (verzicht) {
+      res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
+    } else {
+      res.redirect("/umsatz/weitere-unternehmen");
+    }
   }
 });
 
@@ -840,10 +878,24 @@ app.post("/umsatz/weitere-unternehmen", (req, res) => {
     req.session.weitereunternehmenbool &&
     req.session.weitereunternehmenbool == "ja";
 
-  if (weitereUnternehmen) {
-    res.redirect("/umsatz/weitere-unternehmen-gesamt");
+  if (req.query.edit) {
+    if (weitereUnternehmen) {
+      res.redirect(
+        "/umsatz/weitere-unternehmen-gesamt?edit=true&redirect=" +
+          req.query.redirect,
+      );
+    } else {
+      res.redirect(
+        "/umsatz/kleinunternehmerregelung?edit=true&redirect=" +
+          req.query.redirect,
+      );
+    }
   } else {
-    res.redirect("/umsatz/kleinunternehmerregelung");
+    if (weitereUnternehmen) {
+      res.redirect("/umsatz/weitere-unternehmen-gesamt");
+    } else {
+      res.redirect("/umsatz/kleinunternehmerregelung");
+    }
   }
 });
 
@@ -866,10 +918,24 @@ app.post("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
     req.session.weitereUnternehmenGesamtBool &&
     req.session.weitereUnternehmenGesamtBool == "ja";
 
-  if (umsatzGesamt) {
-    res.redirect("/umsatz/kleinunternehmerregelung");
+  if (req.query.edit) {
+    if (umsatzGesamt) {
+      res.redirect(
+        "/umsatz/kleinunternehmerregelung?edit=true&redirect=" +
+          req.query.redirect,
+      );
+    } else {
+      res.redirect(
+        "/umsatz/kleinunternehmerregelung-nicht-moeglich?edit=true&redirect=" +
+          req.query.redirect,
+      );
+    }
   } else {
-    res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
+    if (umsatzGesamt) {
+      res.redirect("/umsatz/kleinunternehmerregelung");
+    } else {
+      res.redirect("/umsatz/kleinunternehmerregelung-nicht-moeglich");
+    }
   }
 });
 
@@ -890,7 +956,11 @@ app.get("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
 app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
   req.session.kleinunternehmenBool = req.body.kleinunternehmenBool;
 
-  res.redirect("/umsatz/status");
+  if (req.query.edit) {
+    res.redirect(req.query.redirect);
+  } else {
+    res.redirect("/umsatz/status");
+  }
 });
 
 app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
@@ -1246,14 +1316,12 @@ app.get("/kontakt/status", (req, res) => {
 
 app.get("/antrag-ueberpruefen", (req, res) => {
   var adresseAbweichend = req.session.adresseAbweichend == "ja";
-  var kleinunternehmenVerwenden = req.session.kleinunternehmenBool == "ja";
   var existingUstid = req.session.ustidexistingbool === "ja";
   var newUstid = req.session.ustidbool === "ja";
 
   res.render("antrag-ueberpruefen", {
     adresseAbweichend: adresseAbweichend,
     existingUstid: existingUstid,
-    kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     newUstid: newUstid,
     pageName: "Antrag überprüfen",
     redirectPath: req.baseUrl + req.path,

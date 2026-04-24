@@ -20,6 +20,7 @@ action="/umsatz/kleinunternehmerregelung-verzicht"}} {{#*inline "intro"}}
         type="radio"
         value="ja"
         name="verzichtBool"
+        {{#is verzichtBool "ja"}}checked{{/is}}
       /><label class="kern-label" for="verzicht-ja">Ja</label>
     </div>
     <div class="kern-form-check">
@@ -28,8 +29,8 @@ action="/umsatz/kleinunternehmerregelung-verzicht"}} {{#*inline "intro"}}
         id="verzicht-nein"
         type="radio"
         value="nein"
-        checked
         name="verzichtBool"
+        {{#is verzichtBool "nein"}}checked{{/is}}
       /><label class="kern-label" for="verzicht-nein">Nein</label>
     </div>
   </div>

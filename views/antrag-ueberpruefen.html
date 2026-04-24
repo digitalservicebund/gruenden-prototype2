@@ -52,7 +52,7 @@
           {{/unless}}
         {{/summary-list-row}}
         {{#> summary-list-row key="Tätigkeitsbereich" action=(join "/unternehmen/taetigkeitsbereich?edit=true&redirect=" redirectPath) }}
-          <span>
+          <span style="text-transform: capitalize;">
             {{session.taetigkeitsbereich}}
           </span>
         {{/summary-list-row}}
@@ -73,9 +73,9 @@
             {{session.umsatzNaechstesJahr}}
           </span>
         {{/summary-list-row}}
-        {{#> summary-list-row key="Kleinunternehmerregelung" action=(join "/umsatz/umsatzsteuer?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Kleinunternehmerregelung" action=(join "/umsatz/eingabe?edit=true&redirect=" redirectPath) }}
           <span>
-            {{#if kleinunternehmenVerwenden}}Ja{{else}}Nein{{/if}}
+            {{#if (compare req.session.kleinunternehmenBool "ja")}}Ja{{else}}Nein{{/if}}
           </span>
         {{/summary-list-row}}
       </dl>

@@ -21,6 +21,7 @@ action="/umsatz/weitere-unternehmen-gesamt"}} {{#*inline "intro"}}
         value="ja"
         checked
         name="weitereUnternehmenGesamtBool"
+        {{#is weitereUnternehmenGesamtBool "ja"}}checked{{/is}}
       /><label class="kern-label" for="weiterunternehmengesamt-ja">Ja</label>
     </div>
     <div class="kern-form-check">
@@ -30,6 +31,7 @@ action="/umsatz/weitere-unternehmen-gesamt"}} {{#*inline "intro"}}
         type="radio"
         value="nein"
         name="weitereUnternehmenGesamtBool"
+        {{#is weitereUnternehmenGesamtBool "nein"}}checked{{/is}}
       /><label class="kern-label" for="weiterunternehmengesamt-nein"
         >Nein</label
       >

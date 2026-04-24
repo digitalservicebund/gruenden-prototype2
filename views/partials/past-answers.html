@@ -77,7 +77,7 @@
         {{/if}}
         {{#if session.taetigkeitsbereich}}
         {{#> summary-list-row key="Tätigkeitsbereich" action=(join "/unternehmen/taetigkeitsbereich?edit=true&redirect=" redirectPath) }}
-          <span>
+          <span style="text-transform: capitalize;">
             {{session.taetigkeitsbereich}}
           </span>
         {{/summary-list-row}}
