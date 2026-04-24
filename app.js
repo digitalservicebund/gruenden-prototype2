@@ -278,7 +278,6 @@ app.get("/vorab-check/rechtsform", (req, res) => {
 app.get("/vorab-check/antrag-moeglich", (req, res) => {
   res.render("vorab-check/antrag-moeglich", {
     pageName: "Vorab-Check für Kombi-Antrag",
-    start: true,
     pageTree: treeForCurrentState(req.session, "/vorab-check/antrag-moeglich"),
     session: req.session,
     currentSection: "quick",
@@ -288,7 +287,6 @@ app.get("/vorab-check/antrag-moeglich", (req, res) => {
 app.get("/vorab-check/antrag-nicht-moeglich", (req, res) => {
   res.render("vorab-check/antrag-nicht-moeglich", {
     pageName: "Vorab-Check für Kombi-Antrag",
-    start: true,
     pageTree: treeForCurrentState(
       req.session,
       "/vorab-check/antrag-nicht-moeglich",
@@ -729,7 +727,6 @@ app.get("/umsatz/start", (req, res) => {
   res.render("umsatz/start", {
     session: req.session,
     currentSection: "kombi",
-    start: true,
     pageTree: treeForCurrentState(req.session, "/umsatz/start"),
   });
 });
@@ -1015,7 +1012,6 @@ app.get("/gewinn/start", (req, res) => {
     redirect: req.query.redirect,
     redirectPath: req.baseUrl + req.path,
     currentSection: "kombi",
-    start: true,
     pageTree: treeForCurrentState(req.session, "/gewinn/start"),
   });
 });
@@ -1332,7 +1328,6 @@ app.get("/antrag-ueberpruefen", (req, res) => {
     newUstid: newUstid,
     pageName: "Antrag überprüfen",
     redirectPath: req.baseUrl + req.path,
-    start: true,
     pageTree: treeForCurrentState(req.session, "/antrag-ueberpruefen"),
     session: req.session,
     currentSection: "kombi",
@@ -1342,7 +1337,6 @@ app.get("/antrag-ueberpruefen", (req, res) => {
 app.get("/antrag-senden", (req, res) => {
   res.render("antrag-senden", {
     pageName: "Antrag absenden",
-    start: true,
     session: req.session,
     currentSection: "absenden",
   });
