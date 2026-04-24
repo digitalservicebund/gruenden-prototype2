@@ -1351,7 +1351,7 @@ app.get("/antrag-gesendet", (req, res) => {
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
-    second: "numeric",
+    timeZone: "+02:00",
   };
 
   res.render("antrag-gesendet", {
