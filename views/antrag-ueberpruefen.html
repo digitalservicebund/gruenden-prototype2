@@ -73,11 +73,20 @@
             {{session.umsatzNaechstesJahr}}
           </span>
         {{/summary-list-row}}
-        {{#> summary-list-row key="Kleinunternehmerregelung" action=(join "/umsatz/eingabe?edit=true&redirect=" redirectPath) }}
-          <span>
-            {{#if (compare req.session.kleinunternehmenBool "ja")}}Ja{{else}}Nein{{/if}}
-          </span>
-        {{/summary-list-row}}
+
+        {{#if (compare session.kleinunternehmerMoeglich "ja")}}
+          {{#> summary-list-row key="Kleinunternehmerregelung" action=(join "/umsatz/kleinunternehmerregelung?edit=true&redirect=" redirectPath) }}
+            <span>
+              {{#if (compare session.kleinunternehmenBool "ja")}}Ja{{else}}Nein{{/if}}
+            </span>
+          {{/summary-list-row}}
+        {{else}}
+          {{#> summary-list-row key="Kleinunternehmerregelung" }}
+            <span>
+              Nicht möglich
+            </span>
+          {{/summary-list-row}}
+        {{/if}}
       </dl>
     </div>
     <div class="kern-stack kern-gap-md">

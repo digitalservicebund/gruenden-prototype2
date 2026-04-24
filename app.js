@@ -775,6 +775,8 @@ app.get("/umsatz/eingabe", (req, res) => {
 });
 
 app.post("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
+  req.session.kleinunternehmerMoeglich = req.body.kleinunternehmerMoeglich;
+
   if (req.query.edit) {
     res.redirect(
       "/umsatz/kleinunternehmerregelung-verzicht?edit=true&redirect=" +
@@ -800,6 +802,8 @@ app.get("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
 });
 
 app.post("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
+  req.session.kleinunternehmerMoeglich = req.body.kleinunternehmerMoeglich;
+
   if (req.query.edit) {
     res.redirect(req.query.redirect);
   } else {
@@ -954,6 +958,7 @@ app.get("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
 });
 
 app.post("/umsatz/kleinunternehmerregelung", (req, res) => {
+  req.session.kleinunternehmerMoeglich = req.body.kleinunternehmerMoeglich;
   req.session.kleinunternehmenBool = req.body.kleinunternehmenBool;
 
   if (req.query.edit) {
@@ -1316,12 +1321,14 @@ app.get("/kontakt/status", (req, res) => {
 
 app.get("/antrag-ueberpruefen", (req, res) => {
   var adresseAbweichend = req.session.adresseAbweichend == "ja";
+  var kleinunternehmenVerwenden = req.session.kleinunternehmenBool == "ja";
   var existingUstid = req.session.ustidexistingbool === "ja";
   var newUstid = req.session.ustidbool === "ja";
 
   res.render("antrag-ueberpruefen", {
     adresseAbweichend: adresseAbweichend,
     existingUstid: existingUstid,
+    kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     newUstid: newUstid,
     pageName: "Antrag überprüfen",
     redirectPath: req.baseUrl + req.path,
