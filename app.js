@@ -1025,7 +1025,12 @@ app.post("/gewinn/eingabe", (req, res) => {
   req.session.gewinnDiesesJahr = req.body.gewinnDiesesJahr;
   req.session.gewinnNaechstesJahr = req.body.gewinnNaechstesJahr;
   req.session.gewinnStarted = true;
-  res.redirect("/gewinn/status");
+
+  if (req.query.edit) {
+    res.redirect(req.query.redirect);
+  } else {
+    res.redirect("/gewinn/status");
+  }
 });
 
 app.get("/gewinn/eingabe", (req, res) => {
