@@ -201,16 +201,17 @@ aside {
 /* ----------------------------------- */
 
 .counter {
-  align-items: center;
+  width: var(--kern-metric-dimension-large);
+  height: var(--kern-metric-dimension-large);
   background: var(--kern-color-layout-background-default);
   border-radius: var(--kern-metric-border-radius-circle);
   border: 1px solid var(--kern-color-layout-border);
+  color: var(--kern-color-layout-text-default);
   display: inline-flex;
+  justify-content: center;
+  align-items: center;
   font-size: var(--kern-typography-font-size-static-medium);
   font-weight: var(--kern-typography-font-weight-semi-bold);
-  height: var(--kern-metric-dimension-large);
-  justify-content: center;
-  width: var(--kern-metric-dimension-large);
 }
 
 .counter--success {
