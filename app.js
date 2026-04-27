@@ -79,10 +79,8 @@ function treeForCurrentState(session, current) {
       name: "Unternehmen und Tätigkeit",
       href: "/unternehmen/start",
       active: current.startsWith("/unternehmen"),
-      started: session.adresseAbweichend || session.taetigkeit,
-      done:
-        (session.adresseAbweichend || session.unternehmenStrasse) &&
-        session.gewerbeart,
+      started: session.adresseAbweichend || session.taetigkeitsbereich,
+      done: session.gewerbeart,
 
       items: [
         {
