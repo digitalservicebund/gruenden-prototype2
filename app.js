@@ -1283,7 +1283,11 @@ app.get("/kontakt/start", (req, res) => {
 
 app.post("/kontakt/telefon", (req, res) => {
   req.session.kontaktTelefon = req.body.kontaktTelefon;
-  res.redirect("/kontakt/email");
+  if (req.query.edit) {
+    res.redirect(req.query.redirect);
+  } else {
+    res.redirect("/kontakt/email");
+  }
 });
 
 app.get("/kontakt/telefon", (req, res) => {
@@ -1299,7 +1303,11 @@ app.get("/kontakt/telefon", (req, res) => {
 
 app.post("/kontakt/email", (req, res) => {
   req.session.kontaktEmail = req.body.kontaktEmail;
-  res.redirect("/kontakt/status");
+  if (req.query.edit) {
+    res.redirect(req.query.redirect);
+  } else {
+    res.redirect("/kontakt/status");
+  }
 });
 
 app.get("/kontakt/email", (req, res) => {
