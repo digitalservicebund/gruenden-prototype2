@@ -256,7 +256,7 @@ aside {
 }
 
 .timeline li .timeline__content {
-  padding-block-end: var(--kern-metric-space-default);
+  padding-block-end: var(--kern-metric-space-large);
 }
 
 .timeline li:last-child .timeline__content {
