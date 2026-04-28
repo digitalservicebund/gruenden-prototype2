@@ -33,7 +33,7 @@ function treeForCurrentState(session, current) {
       href: "/person/start",
       active: current.startsWith("/person"),
       started: session.vorname || session.jahr,
-      done: session.vorname && session.strasse,
+      done: session.vorname && session.geburtstag,
       items: [
         {
           name: "Name",
