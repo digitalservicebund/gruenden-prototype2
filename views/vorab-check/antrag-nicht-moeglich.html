@@ -1,15 +1,25 @@
 <div class="kern-stack container--clamp gap-2xl">
   <div class="kern-stack">
     {{#> banner variant="danger"}}
-    <h1 class="kern-heading-x-large">Online-Antrag nicht möglich</h1>
-    <p class="kern-body">Dieser Service unterstützt Ihr Vorhaben noch nicht.</p>
+    <h1 class="kern-heading-x-large">Kombi-Antrag nicht möglich</h1>
+    {{#is session.neugruendungbool "nein"}}
+      <p class="kern-body">
+        Der Onlinedienst ist nur für Neugründungen verfügbar.
+      </p>
+    {{else}}
+      {{#isnt session.rechtsform "einzelunternehmen"}}
+      <p class="kern-body">
+        Der Onlinedienst ist nur für Einzelunternehmen verfügbar.
+      </p>
+      {{/isnt}}
+    {{/is}}
     {{/banner }}
     <div>
       <p class="kern-body">
         Wir arbeiten noch an Schneller Gründen. Daher sind noch nicht alle
         Funktionen verfügbar. Schritt für Schritt kommen neue Funktionen dazu.
-        Wann welche Funktionen verfügbar sein werden, finden Sie in der
-        öffentlichen Roadmap.
+        Ab wann welche Funktionen verfügbar sind, finden Sie in der öffentlichen
+        Roadmap.
       </p>
     </div>
   </div>
@@ -17,7 +27,8 @@
     <div>
       <h2 class="kern-heading-large">Das können Sie jetzt tun</h2>
       <p class="kern-body">
-        Sie können Ihr Gewerbe bei Ihrem Gewerbeamt anmelden.
+        Wenden Sie sich direkt an Ihr Gewerbeamt. Melden Sie Ihr Gewerbe dort
+        an.
       </p>
     </div>
     <article class="kern-card">

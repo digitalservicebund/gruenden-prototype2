@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded());
 function treeForCurrentState(session, current) {
   return [
     {
-      name: "Persönliche Angaben",
+      name: "Persönliche Daten",
       href: "/person/start",
       active: current.startsWith("/person"),
       started: session.vorname || session.jahr,
@@ -168,7 +168,7 @@ function treeForCurrentState(session, current) {
       ],
     },
     {
-      name: "Gewinne und Einkünfte",
+      name: "Gewinn",
       href: "/gewinn/start",
       active:
         current.startsWith("/gewinn") || current.startsWith("/einkuenfte"),
@@ -191,7 +191,7 @@ function treeForCurrentState(session, current) {
       ],
     },
     {
-      name: "Kontakt",
+      name: "Kontaktdaten",
       href: "/kontakt/start",
       active: current.startsWith("/kontakt"),
       started: session.kontaktTelefon || session.kontaktEmail,
@@ -306,7 +306,7 @@ app.get("/antrag", (req, res) => {
 
 app.get("/person/start", (req, res) => {
   res.render("person/start", {
-    pageName: "Persönliche Angaben",
+    pageName: "Persönliche Daten",
     pageTree: treeForCurrentState(req.session, "/person/start"),
     session: req.session,
     currentSection: "kombi",

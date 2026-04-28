@@ -2,7 +2,7 @@
 
   <div class="kern-stack">
     {{#if session.vorname}}
-      <h3 class="kern-heading-medium">Persönliche Angaben</h3>
+      <h3 class="kern-heading-medium">Persönliche Daten</h3>
     {{/if}}
     <dl class="summary-list">
       {{#if session.vorname}}
@@ -155,7 +155,7 @@
   {{/if}}
   {{# if session.gewinnDiesesJahr}}
     <div class="kern-stack kern-gap-md">
-      <h3 class="kern-heading-medium">Gewinn &amp; Einkünfte</h3>
+      <h3 class="kern-heading-medium">Gewinn</h3>
 
       <dl class="summary-list">
         {{#> summary-list-row key="Gewinn dieses Jahr" summary-action=(join "/gewinn/eingabe?edit=true&redirect=" redirectPath) }}
