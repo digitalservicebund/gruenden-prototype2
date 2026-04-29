@@ -8,6 +8,7 @@ Unternehmen haben?" action="/vorab-check/rechtsform"}}
       type="radio"
       value="einzelunternehmen"
       name="rechtsform"
+      {{#is session.rechtsform "einzelunternehmen"}}checked{{/is}}
     /><label class="kern-label" for="rechtsform-einzelunternehmen"
       >Einzelunternehmen</label
     >
@@ -19,6 +20,7 @@ Unternehmen haben?" action="/vorab-check/rechtsform"}}
       type="radio"
       value="gmbh"
       name="rechtsform"
+      {{#is session.rechtsform "gmbh"}}checked{{/is}}
     /><label class="kern-label" for="rechtsform-gmbh"
       >GmbH – Gesellschaft mit beschränkter Haftung</label
     >
@@ -30,6 +32,7 @@ Unternehmen haben?" action="/vorab-check/rechtsform"}}
       type="radio"
       value="gbr"
       name="rechtsform"
+      {{#is session.rechtsform "gbr"}}checked{{/is}}
     /><label class="kern-label" for="rechtsform-gbr"
       >GbR – Gesellschaft bürgerlichen Rechts</label
     >
@@ -41,6 +44,7 @@ Unternehmen haben?" action="/vorab-check/rechtsform"}}
       type="radio"
       value="ohg"
       name="rechtsform"
+      {{#is session.rechtsform "ohg"}}checked{{/is}}
     /><label class="kern-label" for="rechtsform-ohg"
       >OHG – Offene Handelsgesellschaft</label
     >
@@ -52,6 +56,7 @@ Unternehmen haben?" action="/vorab-check/rechtsform"}}
       type="radio"
       value="ug"
       name="rechtsform"
+      {{#is session.rechtsform "ug"}}checked{{/is}}
     /><label class="kern-label" for="rechtsform-ug"
       >UG – Unternehmergesellschaft</label
     >
@@ -63,6 +68,7 @@ Unternehmen haben?" action="/vorab-check/rechtsform"}}
       type="radio"
       value="kg"
       name="rechtsform"
+      {{#is session.rechtsform "kg"}}checked{{/is}}
     /><label class="kern-label" for="rechtsform-kg"
       >KG – Kommanditgesellschaft</label
     >
@@ -74,6 +80,7 @@ Unternehmen haben?" action="/vorab-check/rechtsform"}}
       type="radio"
       value="ag"
       name="rechtsform"
+      {{#is session.rechtsform "ag"}}checked{{/is}}
     /><label class="kern-label" for="rechtsform-ag"
       >AG – Aktiengesellschaft</label
     >
