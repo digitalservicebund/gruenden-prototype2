@@ -341,8 +341,9 @@ app.post("/person/name", (req, res) => {
 app.get("/person/name", (req, res) => {
   res.render("person/name", {
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageName: "Wie heißen Sie?",
     pageTree: treeForCurrentState(req.session, "/person/name"),
     session: req.session,
@@ -365,8 +366,9 @@ app.post("/person/geburtstag", (req, res) => {
 app.get("/person/geburtstag", (req, res) => {
   res.render("person/geburtstag", {
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageName: "Wann wurden Sie geboren?",
     pageTree: treeForCurrentState(req.session, "/person/geburtstag"),
     session: req.session,
@@ -388,8 +390,9 @@ app.post("/person/geburtsort", (req, res) => {
 app.get("/person/geburtsort", (req, res) => {
   res.render("person/geburtsort", {
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageName: "Wo wurden Sie geboren?",
     pageTree: treeForCurrentState(req.session, "/person/geburtsort"),
     session: req.session,
@@ -409,9 +412,9 @@ app.get("/person/geburtsort", (req, res) => {
 //
 // app.get("/person/staatsangehoerigkeit", (req, res) => {
 //   res.render("person/staatsangehoerigkeit", {
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageName: "Haben Sie eine deutsche Staatsangehörigkeit?",
 //     pageTree: treeForCurrentState(req.session, "/person/staatsangehoerigkeit"),
 //     session: req.session,
@@ -434,8 +437,9 @@ app.post("/person/adresse", (req, res) => {
 app.get("/person/adresse", (req, res) => {
   res.render("person/adresse", {
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageName: "Wo wohnen Sie?",
     pageTree: treeForCurrentState(req.session, "/person/adresse"),
     session: req.session,
@@ -454,9 +458,9 @@ app.get("/person/adresse", (req, res) => {
 //
 // app.get("/person/steuer-id", (req, res) => {
 //   res.render("person/steuer-id", {
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageName: "Wie lautet Ihre Steuer-Identifikationsnummer?",
 //     pageTree: treeForCurrentState(req.session, "/person/steuer-id"),
 //     session: req.session,
@@ -511,8 +515,9 @@ app.get("/unternehmen/adresse-abweichend", (req, res) => {
   res.render("unternehmen/adresse-abweichend", {
     adresseAbweichend: req.session.adresseAbweichend == "ja",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(
       req.session,
       "/unternehmen/adresse-abweichend",
@@ -537,8 +542,9 @@ app.post("/unternehmen/adresse-eingabe", function (req, res) {
 app.get("/unternehmen/adresse-eingabe", (req, res) => {
   res.render("unternehmen/adresse-eingabe", {
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/unternehmen/adresse-eingabe"),
     session: req.session,
     currentSection: "kombi",
@@ -556,9 +562,9 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
 //
 // app.get("/unternehmen/taetigkeit", (req, res) => {
 //   res.render("unternehmen/taetigkeit", {
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(req.session, "/unternehmen/taetigkeit"),
 //     session: req.session,
 //     currentSection: "kombi",
@@ -577,8 +583,9 @@ app.post("/unternehmen/taetigkeitsbereich", (req, res) => {
 app.get("/unternehmen/taetigkeitsbereich", (req, res) => {
   res.render("unternehmen/taetigkeitsbereich", {
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(
       req.session,
       "/unternehmen/taetigkeitsbereich",
@@ -602,9 +609,9 @@ app.get("/unternehmen/taetigkeitsbereich", (req, res) => {
 // app.get("/unternehmen/taetigkeit-begonnen", (req, res) => {
 //   var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
 //   res.render("unternehmen/taetigkeit-begonnen", {
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(
 //       req.session,
 //       "/unternehmen/taetigkeit-begonnen",
@@ -631,9 +638,9 @@ app.get("/unternehmen/taetigkeitsbereich", (req, res) => {
 //   var taetigkeitBegonnen = req.session.taetigkeitBegonnen == "ja";
 //
 //   res.render("unternehmen/taetigkeit-beginn", {
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(
 //       req.session,
 //       "/unternehmen/taetigkeit-begonnen",
@@ -657,9 +664,10 @@ app.post("/unternehmen/gewerbeart", (req, res) => {
 app.get("/unternehmen/gewerbeart", (req, res) => {
   res.render("unternehmen/gewerbeart", {
     edit: req.query.edit,
+    answers: req.query.answers,
     pageTree: treeForCurrentState(req.session, "/unternehmen/gewerbeart"),
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     session: req.session,
     currentSection: "kombi",
   });
@@ -688,9 +696,9 @@ app.get("/unternehmen/gewerbeart", (req, res) => {
 //
 // app.get("/unternehmen/ustid-abfrage", (req, res) => {
 //   res.render("unternehmen/ustid-abfrage", {
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     session: req.session,
 //     currentSection: "kombi",
 //     pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
@@ -708,9 +716,9 @@ app.get("/unternehmen/gewerbeart", (req, res) => {
 //
 // app.get("/unternehmen/ustid", (req, res) => {
 //   res.render("unternehmen/ustid", {
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(req.session, "/unternehmen/ustid-abfrage"),
 //     session: req.session,
 //     currentSection: "kombi",
@@ -768,8 +776,9 @@ app.get("/umsatz/eingabe", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/umsatz/eingabe"),
   });
 });
@@ -792,8 +801,9 @@ app.get("/umsatz/kleinunternehmerregelung-moeglich", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(
       req.session,
       "/umsatz/kleinunternehmerregelung-moeglich",
@@ -824,8 +834,9 @@ app.get("/umsatz/kleinunternehmerregelung-nicht-moeglich", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(
       req.session,
       "/umsatz/kleinunternehmerregelung-nicht-moeglich",
@@ -866,8 +877,9 @@ app.get("/umsatz/kleinunternehmerregelung-verzicht", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(
       req.session,
       "/umsatz/kleinunternehmerregelung-verzicht",
@@ -908,8 +920,9 @@ app.get("/umsatz/weitere-unternehmen", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/umsatz/weitere-unternehmen"),
   });
 });
@@ -948,8 +961,9 @@ app.get("/umsatz/weitere-unternehmen-gesamt", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(
       req.session,
       "/umsatz/weitere-unternehmen-gesamt",
@@ -973,8 +987,9 @@ app.get("/umsatz/kleinunternehmerregelung", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(
       req.session,
       "/umsatz/kleinunternehmerregelung",
@@ -1001,8 +1016,9 @@ app.get("/umsatz/status", (req, res) => {
     pageName: "Ihr Kombi-Antrag Status",
     session: req.session,
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     currentSection: "kombi",
     pageTree: treeForCurrentState(req.session, "/umsatz/status"),
   });
@@ -1012,8 +1028,9 @@ app.get("/gewinn/start", (req, res) => {
   res.render("gewinn/start", {
     session: req.session,
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     currentSection: "kombi",
     pageTree: treeForCurrentState(req.session, "/gewinn/start"),
   });
@@ -1036,8 +1053,9 @@ app.get("/gewinn/eingabe", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/gewinn/eingabe"),
   });
 });
@@ -1046,9 +1064,9 @@ app.get("/gewinn/eingabe", (req, res) => {
 //   res.render("einkuenfte/start", {
 //     session: req.session,
 //     currentSection: "kombi",
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //   });
 // });
 //
@@ -1084,9 +1102,9 @@ app.get("/gewinn/eingabe", (req, res) => {
 //     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
 //     session: req.session,
 //     currentSection: "kombi",
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //   });
 // });
 //
@@ -1116,9 +1134,9 @@ app.get("/gewinn/eingabe", (req, res) => {
 //   res.render("einkuenfte/landwirtschaft", {
 //     session: req.session,
 //     currentSection: "kombi",
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
 //   });
 // });
@@ -1146,9 +1164,9 @@ app.get("/gewinn/eingabe", (req, res) => {
 //   res.render("einkuenfte/vermietung", {
 //     session: req.session,
 //     currentSection: "kombi",
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
 //   });
 // });
@@ -1175,9 +1193,9 @@ app.get("/gewinn/eingabe", (req, res) => {
 //   res.render("einkuenfte/selbststaendig", {
 //     session: req.session,
 //     currentSection: "kombi",
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
 //   });
 // });
@@ -1203,9 +1221,9 @@ app.get("/gewinn/eingabe", (req, res) => {
 //   res.render("einkuenfte/nicht-selbststaendig", {
 //     session: req.session,
 //     currentSection: "kombi",
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
 //   });
 // });
@@ -1228,9 +1246,9 @@ app.get("/gewinn/eingabe", (req, res) => {
 //   res.render("einkuenfte/kapital", {
 //     session: req.session,
 //     currentSection: "kombi",
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
 //   });
 // });
@@ -1245,9 +1263,9 @@ app.get("/gewinn/eingabe", (req, res) => {
 //   res.render("einkuenfte/sonstige", {
 //     session: req.session,
 //     currentSection: "kombi",
-//     edit: req.query.edit,
+//     edit: req.query.edit,answers: req.query.answers,
 //     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path,
+//     redirectPath: req.baseUrl + req.path + "?answers=true",
 //     pageTree: treeForCurrentState(req.session, "/einkuenfte/auswahl"),
 //   });
 // });
@@ -1259,8 +1277,9 @@ app.get("/gewinn/status", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
   });
 });
 
@@ -1273,8 +1292,9 @@ app.get("/kontakt/start", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/kontakt/start"),
   });
 });
@@ -1293,8 +1313,9 @@ app.get("/kontakt/telefon", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/kontakt/telefon"),
   });
 });
@@ -1313,8 +1334,9 @@ app.get("/kontakt/email", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/kontakt/email"),
   });
 });
@@ -1324,8 +1346,9 @@ app.get("/kontakt/status", (req, res) => {
     pageName: "Ihr Kombi-Antrag Status",
     session: req.session,
     edit: req.query.edit,
+    answers: req.query.answers,
     redirect: req.query.redirect,
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     currentSection: "kombi",
     pageTree: treeForCurrentState(req.session, "/kontakt/status"),
   });
@@ -1343,7 +1366,7 @@ app.get("/antrag-ueberpruefen", (req, res) => {
     kleinunternehmenVerwenden: kleinunternehmenVerwenden,
     newUstid: newUstid,
     pageName: "Antrag überprüfen",
-    redirectPath: req.baseUrl + req.path,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/antrag-ueberpruefen"),
     session: req.session,
     currentSection: "kombi",

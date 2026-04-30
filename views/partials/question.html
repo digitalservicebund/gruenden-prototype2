@@ -32,7 +32,11 @@
   session.vorname }}
   <div
     class="container--summary kern-stack kern-gap-lg"
+    {{#if answers }}
+    x-data="{ open: true }"
+    {{else}}
     x-data="{ open: false }"
+    {{/if}}
   >
     <button class="kern-link" x-on:click="open = ! open">
       <span
