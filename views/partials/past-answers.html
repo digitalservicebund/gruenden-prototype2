@@ -30,7 +30,7 @@
         {{/summary-list-row}}
       {{/if}}
       {{#if session.strasse}}
-        {{#> summary-list-row key="Adresse"
+        {{#> summary-list-row key="Persönliche Adresse"
         summary-action=(join "/person/adresse?edit=true&redirect=" redirectPath) }}
         <span
           >{{session.strasse}} {{session.hausnummer}} <br />
@@ -64,7 +64,7 @@
               </span>
           {{/summary-list-row}}
         {{else if (compare session.adresseAbweichend "nein")}}
-          {{#> summary-list-row key="Adresse" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
+          {{#> summary-list-row key="Adresse des Unternehmens" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
               <span>
                 {{session.strasse}} {{session.hausnummer}} <br />
                 {{session.plz}} {{session.ort}}

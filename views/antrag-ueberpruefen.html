@@ -22,7 +22,7 @@
         <span>{{session.geburtsort}}, {{session.geburtsland}}</span>
         {{/summary-list-row}} 
 
-        {{#> summary-list-row key="Adresse" summary-action=(join
+        {{#> summary-list-row key="Persönliche Adresse" summary-action=(join
         "/person/adresse?edit=true&redirect=" redirectPath) }}
         <span
           >{{session.strasse}} {{session.hausnummer}} <br />
@@ -36,10 +36,11 @@
       <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
 
       <dl class="summary-list">
-        {{#> summary-list-row key="Adresse Unternehmen" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Adresse des Unternehmens" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
           {{#unless adresseAbweichend}}
           <span>
-            Mein Unternehmen befindet sich an meiner privaten Adresse
+            {{session.strasse}} {{session.hausnummer}} <br />
+            {{session.plz}} {{session.ort}}
           </span>
           {{else}}
             <span>
