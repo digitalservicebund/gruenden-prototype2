@@ -36,11 +36,10 @@
       <h3 class="kern-heading-medium">Unternehmen &amp; Tätigkeit</h3>
 
       <dl class="summary-list">
-        {{#> summary-list-row key="Adresse" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
+        {{#> summary-list-row key="Adresse Unternehmen" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
           {{#unless adresseAbweichend}}
           <span>
-            {{session.strasse}} {{session.hausnummer}} <br />
-            {{session.plz}} {{session.ort}}
+            Mein Unternehmen befindet sich an meiner privaten Adresse
           </span>
           {{else}}
             <span>
