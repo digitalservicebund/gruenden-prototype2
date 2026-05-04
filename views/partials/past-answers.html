@@ -56,7 +56,7 @@
 
       <dl class="summary-list">
         {{#if session.unternehmenStrasse}}
-          {{#> summary-list-row key="Adresse" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
+          {{#> summary-list-row key="Adresse des Unternehmens" summary-action=(join "/unternehmen/adresse-abweichend?edit=true&redirect=" redirectPath) }}
               <span>
               {{session.unternehmenStrasse}} {{session.unternehmenHausnummer}}
               <br />
