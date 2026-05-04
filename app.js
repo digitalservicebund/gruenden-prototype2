@@ -743,6 +743,14 @@ app.get("/umsatz/start", (req, res) => {
 });
 
 app.post("/umsatz/eingabe", (req, res) => {
+  const kleinunternehmerNachBearbeiten =
+    Number(req.session.umsatzDiesesJahr) >= 25000 &&
+    Number(req.body.umsatzDiesesJahr) <= 25000;
+
+  const kleinunternehmerVorUndNachBearbeiten =
+    Number(req.session.umsatzDiesesJahr) <= 25000 &&
+    Number(req.body.umsatzDiesesJahr) <= 25000;
+
   req.session.umsatzDiesesJahr = req.body.umsatzDiesesJahr;
   req.session.umsatzNaechstesJahr = req.body.umsatzNaechstesJahr;
 
@@ -751,7 +759,14 @@ app.post("/umsatz/eingabe", (req, res) => {
     Number(req.session.umsatzDiesesJahr) <= 25000;
 
   if (req.query.edit) {
-    if (kleinunternehmerMoeglich) {
+    if (kleinunternehmerVorUndNachBearbeiten) {
+      res.redirect(req.query.redirect);
+    } else if (kleinunternehmerNachBearbeiten) {
+      res.redirect(
+        "/umsatz/kleinunternehmerregelung-moeglich?edit=true&redirect=" +
+          req.query.redirect,
+      );
+    } else if (kleinunternehmerMoeglich) {
       res.redirect(
         "/umsatz/kleinunternehmerregelung-moeglich?edit=true&redirect=" +
           req.query.redirect,
