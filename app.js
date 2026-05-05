@@ -473,6 +473,8 @@ app.get("/person/status", (req, res) => {
     session: req.session,
     currentSection: "kombi",
     pageTree: treeForCurrentState(req.session, "/person/status"),
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageName: "Ihr Kombi-Antrag Status",
   });
 });
@@ -730,6 +732,8 @@ app.get("/unternehmen/status", (req, res) => {
     pageName: "Ihr Kombi-Antrag Status",
     pageTree: treeForCurrentState(req.session, "/unternehmen/status"),
     session: req.session,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     currentSection: "kombi",
   });
 });
