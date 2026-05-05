@@ -472,6 +472,7 @@ app.get("/person/status", (req, res) => {
   res.render("person/status", {
     session: req.session,
     currentSection: "kombi",
+    answers: req.query.answers,
     pageTree: treeForCurrentState(req.session, "/person/status"),
     redirect: req.query.redirect,
     redirectPath: req.baseUrl + req.path + "?answers=true",
@@ -732,6 +733,7 @@ app.get("/unternehmen/status", (req, res) => {
     pageName: "Ihr Kombi-Antrag Status",
     pageTree: treeForCurrentState(req.session, "/unternehmen/status"),
     session: req.session,
+    answers: req.query.answers,
     redirect: req.query.redirect,
     redirectPath: req.baseUrl + req.path + "?answers=true",
     currentSection: "kombi",
