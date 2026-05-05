@@ -19,6 +19,31 @@
           <div>{{> back url=url}}</div>
           {{/unless}}
           <main id="content">{{{body}}}</main>
+  {{#isnt currentSection "quick"}} {{#unless start}} {{#unless edit}} {{#if
+  session.vorname }}
+  <div
+    class="container--summary kern-stack kern-gap-lg"
+    {{#if answers }}
+    x-data="{ open: true }"
+    {{else}}
+    x-data="{ open: false }"
+    {{/if}}
+  >
+    <button class="kern-link" x-on:click="open = ! open">
+      <span
+        class="kern-icon"
+        x-bind:class="open ? 'kern-icon--arrow-up' : 'kern-icon--arrow-down'"
+        aria-hidden="true"
+      ></span>
+      <span
+        x-text="open ? 'Bisherige Antworten ausblenden' : 'Bisherige Antworten einblenden'"
+        >Bisherige Antworten einblenden</span
+      >
+    </button>
+
+    <div id="past-answers" x-show="open">{{>past-answers}}</div>
+  </div>
+  {{/if }}{{/unless}} {{/unless}} {{/isnt}}
         </div>
       </div>
     </div>

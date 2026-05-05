@@ -1384,6 +1384,7 @@ app.get("/antrag-ueberpruefen", (req, res) => {
     redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/antrag-ueberpruefen"),
     session: req.session,
+    start: true,
     currentSection: "kombi",
   });
 });
@@ -1392,6 +1393,7 @@ app.get("/antrag-senden", (req, res) => {
   res.render("antrag-senden", {
     pageName: "Antrag absenden",
     session: req.session,
+    start: true,
     currentSection: "absenden",
   });
 });
