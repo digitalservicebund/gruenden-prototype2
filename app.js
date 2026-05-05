@@ -744,6 +744,9 @@ app.get("/umsatz/start", (req, res) => {
   res.render("umsatz/start", {
     session: req.session,
     currentSection: "kombi",
+    answers: req.query.answers,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
     pageTree: treeForCurrentState(req.session, "/umsatz/start"),
   });
 });
