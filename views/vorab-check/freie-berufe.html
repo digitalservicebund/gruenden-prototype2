@@ -1,0 +1,46 @@
+{{#> question edit=edit step=3 max=5 title="Gehört Ihre Tätigkeit zu den freien Berufen?"
+action="/vorab-check/freie-berufe"}} {{#*inline "intro"}}
+<p class="kern-body">
+Freie Berufe stehen im Einkommensteuergesetzes in Paragraf 18. Dazu gehören zum Beispiel Ärztinnen, Anwälte, Architektinnen oder Journalisten.
+</p>
+{{/inline}}
+
+<div class="kern-fieldset__body">
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="freieberufe-ja"
+      type="radio"
+      value="ja"
+      name="freieberufebool"
+      {{#is session.freieberufebool "ja"}}checked{{/is}}
+    /><label class="kern-label" for="freieberufe-ja"
+      >Ja, meine Tätigkeit gehört zu den freien Berufen</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="freieberufe-nein"
+      type="radio"
+      value="nein"
+      name="freieberufebool"
+      {{#is session.freieberufebool "nein"}}checked{{/is}}
+    /><label class="kern-label" for="freieberufe-nein"
+      >Nein, meine Tätigkeit gehört nicht zu den freien Berufen</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="freieberufe-vielleicht"
+      type="radio"
+      value="vielleicht"
+      name="freieberufebool"
+      {{#is session.freieberufebool "vielleicht"}}checked{{/is}}
+    /><label class="kern-label" for="freieberufe-vielleicht"
+      >Ich weiß es nicht</label
+    >
+  </div>
+</div>
+{{/question}}

@@ -258,7 +258,7 @@ app.post("/vorab-check/rechtsform", (req, res) => {
   var rechtsform = req.session.rechtsform;
 
   if (rechtsform == "einzelunternehmen") {
-    res.redirect("/vorab-check/antrag-moeglich");
+    res.redirect("/vorab-check/freie-berufe");
   } else {
     res.redirect("/vorab-check/antrag-nicht-moeglich");
   }
@@ -268,6 +268,66 @@ app.get("/vorab-check/rechtsform", (req, res) => {
   res.render("vorab-check/rechtsform", {
     pageName: "Rechtsform",
     pageTree: treeForCurrentState(req.session, "/vorab-check/rechtsform"),
+    session: req.session,
+    currentSection: "quick",
+  });
+});
+
+app.post("/vorab-check/freie-berufe", (req, res) => {
+  req.session.freieberufebool = req.body.freieberufebool;
+  var freieberufe = req.session.freieberufebool;
+
+  if (freieberufe == "nein") {
+    res.redirect("/vorab-check/branche");
+  } else {
+    res.redirect("/vorab-check/antrag-nicht-moeglich");
+  }
+});
+
+app.get("/vorab-check/freie-berufe", (req, res) => {
+  res.render("vorab-check/freie-berufe", {
+    pageName: "Gründen Sie das Unternehmen neu?",
+    pageTree: treeForCurrentState(req.session, "/vorab-check/freie-berufe"),
+    session: req.session,
+    currentSection: "quick",
+  });
+});
+
+app.post("/vorab-check/branche", (req, res) => {
+  req.session.branche = req.body.branche;
+  var branche = req.session.branche;
+
+  if (branche == "landwirtschaft") {
+    res.redirect("/vorab-check/antrag-nicht-moeglich");
+  } else {
+    res.redirect("/vorab-check/erlaubnis");
+  }
+});
+
+app.get("/vorab-check/branche", (req, res) => {
+  res.render("vorab-check/branche", {
+    pageName: "branche",
+    pageTree: treeForCurrentState(req.session, "/vorab-check/branche"),
+    session: req.session,
+    currentSection: "quick",
+  });
+});
+
+app.post("/vorab-check/erlaubnis", (req, res) => {
+  req.session.erlaubnisbool = req.body.erlaubnisbool;
+  var erlaubnis = req.session.erlaubnisbool;
+
+  if (erlaubnis == "nein") {
+    res.redirect("/vorab-check/antrag-moeglich");
+  } else {
+    res.redirect("/vorab-check/antrag-nicht-moeglich");
+  }
+});
+
+app.get("/vorab-check/erlaubnis", (req, res) => {
+  res.render("vorab-check/erlaubnis", {
+    pageName: "Gründen Sie das Unternehmen neu?",
+    pageTree: treeForCurrentState(req.session, "/vorab-check/erlaubnis"),
     session: req.session,
     currentSection: "quick",
   });
@@ -509,7 +569,7 @@ app.post("/unternehmen/adresse-abweichend", (req, res) => {
     if (adresseAbweichend) {
       res.redirect("/unternehmen/adresse-eingabe");
     } else {
-      res.redirect("/unternehmen/taetigkeitsbereich");
+      res.redirect("/unternehmen/taetigkeit");
     }
   }
 });
@@ -538,7 +598,7 @@ app.post("/unternehmen/adresse-eingabe", function (req, res) {
   if (req.query.edit) {
     res.redirect(req.query.redirect);
   } else {
-    res.redirect("/unternehmen/taetigkeitsbereich");
+    res.redirect("/unternehmen/taetigkeit");
   }
 });
 
@@ -554,25 +614,26 @@ app.get("/unternehmen/adresse-eingabe", (req, res) => {
   });
 });
 
-// app.post("/unternehmen/taetigkeit", (req, res) => {
-//   req.session.taetigkeit = req.body.taetigkeit;
-//   if (req.query.edit) {
-//     res.redirect(req.query.redirect);
-//   } else {
-//     res.redirect("/unternehmen/taetigkeit-begonnen");
-//   }
-// });
-//
-// app.get("/unternehmen/taetigkeit", (req, res) => {
-//   res.render("unternehmen/taetigkeit", {
-//     edit: req.query.edit,answers: req.query.answers,
-//     redirect: req.query.redirect,
-//     redirectPath: req.baseUrl + req.path + "?answers=true",
-//     pageTree: treeForCurrentState(req.session, "/unternehmen/taetigkeit"),
-//     session: req.session,
-//     currentSection: "kombi",
-//   });
-// });
+app.post("/unternehmen/taetigkeit", (req, res) => {
+  req.session.taetigkeit = req.body.taetigkeit;
+  if (req.query.edit) {
+    res.redirect(req.query.redirect);
+  } else {
+    res.redirect("/unternehmen/gewerbeart");
+  }
+});
+
+app.get("/unternehmen/taetigkeit", (req, res) => {
+  res.render("unternehmen/taetigkeit", {
+    edit: req.query.edit,
+    answers: req.query.answers,
+    redirect: req.query.redirect,
+    redirectPath: req.baseUrl + req.path + "?answers=true",
+    pageTree: treeForCurrentState(req.session, "/unternehmen/taetigkeit"),
+    session: req.session,
+    currentSection: "kombi",
+  });
+});
 
 app.post("/unternehmen/taetigkeitsbereich", (req, res) => {
   req.session.taetigkeitsbereich = req.body.taetigkeitsbereich;

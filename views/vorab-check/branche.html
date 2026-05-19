@@ -1,0 +1,88 @@
+{{#> question edit=edit step=4 max=5 title="Welche Art von Unternehmen gründen Sie?" action="/vorab-check/branche"}}
+<div class="kern-fieldset__body">
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="branche-handwerk"
+      type="radio"
+      value="handwerk"
+      name="branche"
+      {{#is session.branche "handwerk"}}checked{{/is}}
+    /><label class="kern-label" for="branche-handwerk"
+      >Handwerk</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="branche-gastronomie"
+      type="radio"
+      value="gastronomie"
+      name="branche"
+      {{#is session.branche "gastronomie"}}checked{{/is}}
+    /><label class="kern-label" for="branche-gastronomie"
+      >Tourismus und Gastronomie</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="branche-industrie"
+      type="radio"
+      value="industrie"
+      name="branche"
+      {{#is session.branche "industrie"}}checked{{/is}}
+    /><label class="kern-label" for="branche-industrie"
+      >Industrie</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="branche-handel"
+      type="radio"
+      value="handel"
+      name="branche"
+      {{#is session.branche "handel"}}checked{{/is}}
+    /><label class="kern-label" for="branche-handel"
+      >Handel</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="branche-transport"
+      type="radio"
+      value="transport"
+      name="branche"
+      {{#is session.branche "transport"}}checked{{/is}}
+    /><label class="kern-label" for="branche-transport"
+      >Transport und Lagerei</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="branche-landwirtschaft"
+      type="radio"
+      value="landwirtschaft"
+      name="branche"
+      {{#is session.branche "landwirtschaft"}}checked{{/is}}
+    /><label class="kern-label" for="branche-landwirtschaft"
+      >Landwirtschaft</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="branche-sonstiges"
+      type="radio"
+      value="sonstiges"
+      name="branche"
+      {{#is session.branche "sonstiges"}}checked{{/is}}
+    /><label class="kern-label" for="branche-sonstiges"
+      >Etwas anderes</label
+    >
+  </div>
+</div>
+{{/question}}

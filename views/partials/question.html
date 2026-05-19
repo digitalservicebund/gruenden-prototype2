@@ -1,5 +1,5 @@
-<div class="kern-stack kern-gap-xl">
-  <div class="kern-stack container--clamp">
+<div class="kern-stack kern-gap-xl container--clamp">
+  <div class="kern-stack">
     {{#unless edit}} {{> progress step=step max=max section=section}}
     {{/unless}}
     <div>
@@ -16,22 +16,22 @@
       </h1>
       {{#> intro}}{{/intro}}
     </div>
-    <form
-      class="kern-stack kern-gap-xl"
-      action="{{action}}{{#if edit}}?edit=true{{/if}}{{#if redirect}}&redirect={{redirect}}{{/if}}"
-      method="post"
-    >
-      <div class="kern-fieldset__body">{{> @partial-block }}</div>
-      <div class="kern-btn-wrapper kern-gap-lg">
-        <button class="kern-btn kern-btn--primary">
-          <span class="kern-label">Weiter</span>
-        </button>
-        <!-- {{#if edit}} -->
-        <!-- <button class="kern-btn kern-btn--secondary"> -->
-        <!--   <span class="kern-label">Abbrechen</span> -->
-        <!-- </button> -->
-        <!-- {{/if}} -->
-      </div>
-    </form>
   </div>
+  <form
+    class="kern-stack kern-gap-xl"
+    action="{{action}}{{#if edit}}?edit=true{{/if}}{{#if redirect}}&redirect={{redirect}}{{/if}}"
+    method="post"
+  >
+    <div class="kern-fieldset__body">{{> @partial-block }}</div>
+    <div class="kern-btn-wrapper kern-gap-lg">
+      <button class="kern-btn kern-btn--primary">
+        <span class="kern-label">Weiter</span>
+      </button>
+      <!-- {{#if edit}} -->
+      <!-- <button class="kern-btn kern-btn--secondary"> -->
+      <!--   <span class="kern-label">Abbrechen</span> -->
+      <!-- </button> -->
+      <!-- {{/if}} -->
+    </div>
+  </form>
 </div>

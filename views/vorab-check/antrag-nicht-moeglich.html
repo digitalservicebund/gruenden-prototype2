@@ -13,6 +13,16 @@
       </p>
       {{/isnt}}
     {{/is}}
+    {{#is session.freieberufebool "ja"}}
+    <p class="kern-body">
+      Da Ihre Tätigkeit zu den freien Berufen gehört, müssen Sie kein Gewerbe anmelden. Der Fragebogen zur steuerlichen Erfassung reicht aus. Das geht gerade noch nicht online mit diesem Antrag.
+    </p>
+    {{/is}}
+    {{#is session.freieberufebool "vielleicht"}}
+    <p class="kern-body">
+      Klären Sie, ob Ihre Tätigkeit zu den freien Berufen gehört. Wenn Sie einen freien Beruf ausüben, dann müssen Sie kein Gewerbe anmelden.
+    </p>
+    {{/is}}
     {{/banner }}
     <div>
       <p class="kern-body">

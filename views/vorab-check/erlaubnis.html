@@ -1,0 +1,53 @@
+{{#> question edit=edit step=5 max=5 title="Brauchen Sie eine Erlaubnis für Ihr Unternehmen?"
+action="/vorab-check/erlaubnis"}} {{#*inline "intro"}}
+<p class="kern-body">
+Manche Unternehmen sind erlaubnispflichtig. Ob Sie eine Erlaubnis brauchen, hängt von verschiedenen Dingen ab. 
+</p>
+<p class="kern-body">
+Beispiele:
+</p>
+<ul class="kern-list kern-list--bullet">
+<li>Restaurants brauchen eine Schankerlaubnis</li>
+<li>Im Handwerk brauchen Sie einen Meisterbrief</li>
+</ul>
+{{/inline}}
+
+<div class="kern-fieldset__body">
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="erlaubnis-ja"
+      type="radio"
+      value="ja"
+      name="erlaubnisbool"
+      {{#is session.erlaubnisbool "ja"}}checked{{/is}}
+    /><label class="kern-label" for="erlaubnis-ja"
+      >Ja, ich brauche eine Erlaubnis</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="erlaubnis-nein"
+      type="radio"
+      value="nein"
+      name="erlaubnisbool"
+      {{#is session.erlaubnisbool "nein"}}checked{{/is}}
+    /><label class="kern-label" for="erlaubnis-nein"
+      >Nein, ich brauche keine Erlaubnis</label
+    >
+  </div>
+  <div class="kern-form-check">
+    <input
+      class="kern-form-check__radio"
+      id="erlaubnis-vielleicht"
+      type="radio"
+      value="vielleicht"
+      name="erlaubnisbool"
+      {{#is session.erlaubnisbool "vielleicht"}}checked{{/is}}
+    /><label class="kern-label" for="erlaubnis-vielleicht"
+      >Ich weiß es nicht</label
+    >
+  </div>
+</div>
+{{/question}}
