@@ -165,7 +165,7 @@ aside {
 }
 
 .steps__label {
-  font-size: var(--kern-typography-font-size-static-medium);
+  font-size: var(--kern-typography-font-size-medium-static);
 }
 
 /* <banner> */
@@ -210,7 +210,7 @@ aside {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--kern-typography-font-size-static-medium);
+  font-size: var(--kern-typography-font-size-medium-static);
   font-weight: var(--kern-typography-font-weight-semi-bold);
 }
 
