@@ -68,7 +68,7 @@ class KernKopfzeile extends HTMLElement {
             <style>
             /* Gescopetes CSS für die Web Component */
             .kern-kopfzeile {
-                background: var(--kern-color-layout-background-hued, #F7F7F9);
+                background: var(--kern-color-layout-layer-surface-contextual, #F3F4F7);
                 padding: var(--kern-component-kopfzeile-padding, 5px) var(--kern-metric-space-none, 0px);
             }
 
@@ -111,7 +111,7 @@ class KernKopfzeile extends HTMLElement {
             }
 
             .kern-kopfzeile__label {
-                color: var(--kern-color-layout-text-default, #171A2B);
+                color: var(--kern-color-layout-text-default-contextual, #131525);
                 font-family: var(--kern-component-kopfzeile-font-family, "Fira Sans");
                 font-style: normal;
                 font-weight: 400;
