@@ -976,7 +976,7 @@ iframe:not([tabindex="-1"]):focus:focus-visible,
  * @@VERSION@@
  * @brief Styles für die Layers und das Kontextuelle Verhalten der Komponenten.
  */
-body,
+[class*=kern-]:not([class*=kern-level-]),
 .kern-level-0 {
   --kern-color-layout-text-default-contextual: var(--kern-color-layout-text-default);
   --kern-color-layout-text-muted-contextual: var(--kern-color-layout-text-muted);
