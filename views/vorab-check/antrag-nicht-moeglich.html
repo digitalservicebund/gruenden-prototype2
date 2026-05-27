@@ -3,27 +3,31 @@
     {{#> banner variant="danger"}}
     <h1 class="kern-heading-x-large">Kombi-Antrag nicht möglich</h1>
     {{#is session.neugruendungbool "nein"}}
-      <p class="kern-body">
-        Der Onlinedienst ist nur für Neugründungen verfügbar.
-      </p>
-    {{else}}
-      {{#isnt session.rechtsform "einzelunternehmen"}}
-      <p class="kern-body">
-        Der Onlinedienst ist nur für Einzelunternehmen verfügbar.
-      </p>
-      {{/isnt}}
-    {{/is}}
-    {{#is session.freieberufebool "ja"}}
     <p class="kern-body">
-      Da Ihre Tätigkeit zu den freien Berufen gehört, müssen Sie kein Gewerbe anmelden. Der Fragebogen zur steuerlichen Erfassung reicht aus. Das geht gerade noch nicht online mit diesem Antrag.
+      Der Onlinedienst ist nur für Neugründungen verfügbar.
     </p>
-    {{/is}}
-    {{#is session.freieberufebool "vielleicht"}}
+    {{else}} {{#isnt session.rechtsform "einzelunternehmen"}}
     <p class="kern-body">
-      Klären Sie, ob Ihre Tätigkeit zu den freien Berufen gehört. Wenn Sie einen freien Beruf ausüben, dann müssen Sie kein Gewerbe anmelden.
+      Der Onlinedienst ist nur für Einzelunternehmen verfügbar.
     </p>
-    {{/is}}
-    {{/banner }}
+    {{/isnt}} {{/is}} {{#is session.freieberufebool "ja"}}
+    <p class="kern-body">
+      Da Ihre Tätigkeit zu den freien Berufen gehört, müssen Sie kein Gewerbe
+      anmelden. Der Fragebogen zur steuerlichen Erfassung reicht aus. Das geht
+      gerade noch nicht online mit diesem Antrag.
+    </p>
+    {{/is}} {{#is session.freieberufebool "vielleicht"}}
+    <p class="kern-body">
+      Klären Sie, ob Ihre Tätigkeit zu den freien Berufen gehört. Wenn Sie einen
+      freien Beruf ausüben, dann müssen Sie kein Gewerbe anmelden.
+    </p>
+    {{/is}} {{#is session.branche "landwirtschaft"}}
+    <p class="kern-body">
+      Für landwirtschaftliche Tätigkeiten müssen Sie kein Gewerbe anmelden. Der
+      Fragebogen zur steuerlichen Erfassung reicht aus. Kontaktieren Sie dafür
+      Ihr Finanzamt.
+    </p>
+    {{/is}} {{/banner }}
     <div>
       <p class="kern-body">
         Wir arbeiten noch an Schneller Gründen. Daher sind noch nicht alle
@@ -33,32 +37,32 @@
       </p>
     </div>
   </div>
-  <div class="kern-stack">
-    <div>
-      <h2 class="kern-heading-large">Das können Sie jetzt tun</h2>
-      <p class="kern-body">
-        Wenden Sie sich direkt an Ihr Gewerbeamt. Melden Sie Ihr Gewerbe dort
-        an.
-      </p>
-    </div>
-    <article class="kern-card">
-      <div class="kern-card__container">
-        <header class="kern-card__header">
-          <hgroup>
-            <p class="kern-preline">Ihr Gewerbeamt</p>
-            <h2 class="kern-title">
-              Ordnungsamt Friedrichshain-Kreuzberg Gewerbe
-            </h2>
-          </hgroup>
-        </header>
-        <section class="kern-card__body">
-          <p class="kern-body">Juliusstraße 67 <br />12051 Berlin</p>
-          <p class="kern-body">+4930902396699</p>
-          <a href="#" class="kern-link">
-            ordnungsamt@bezirksamt-neukoelln.de
-          </a>
-        </section>
-      </div>
-    </article>
-  </div>
+  <!-- <div class="kern-stack"> -->
+  <!--   <div> -->
+  <!--     <h2 class="kern-heading-large">Das können Sie jetzt tun</h2> -->
+  <!--     <p class="kern-body"> -->
+  <!--       Wenden Sie sich direkt an Ihr Gewerbeamt. Melden Sie Ihr Gewerbe dort -->
+  <!--       an. -->
+  <!--     </p> -->
+  <!--   </div> -->
+  <!--   <article class="kern-card"> -->
+  <!--     <div class="kern-card__container"> -->
+  <!--       <header class="kern-card__header"> -->
+  <!--         <hgroup> -->
+  <!--           <p class="kern-preline">Ihr Gewerbeamt</p> -->
+  <!--           <h2 class="kern-title"> -->
+  <!--             Ordnungsamt Friedrichshain-Kreuzberg Gewerbe -->
+  <!--           </h2> -->
+  <!--         </hgroup> -->
+  <!--       </header> -->
+  <!--       <section class="kern-card__body"> -->
+  <!--         <p class="kern-body">Juliusstraße 67 <br />12051 Berlin</p> -->
+  <!--         <p class="kern-body">+4930902396699</p> -->
+  <!--         <a href="#" class="kern-link"> -->
+  <!--           ordnungsamt@bezirksamt-neukoelln.de -->
+  <!--         </a> -->
+  <!--       </section> -->
+  <!--     </div> -->
+  <!--   </article> -->
+  <!-- </div> -->
 </div>
