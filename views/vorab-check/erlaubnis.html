@@ -1,15 +1,81 @@
 {{#> question edit=edit step=5 max=5 section="Vorab-Check" title="Brauchen Sie eine Erlaubnis für Ihr Unternehmen?"
-action="/vorab-check/erlaubnis"}} {{#*inline "intro"}}
-<p class="kern-body">
-Manche Unternehmen sind erlaubnispflichtig. Ob Sie eine Erlaubnis brauchen, hängt von verschiedenen Dingen ab. 
-</p>
-<p class="kern-body">
-Beispiele:
-</p>
-<ul class="kern-list kern-list--bullet">
-<li>Restaurants brauchen eine Schankerlaubnis</li>
-<li>Im Handwerk brauchen Sie einen Meisterbrief</li>
-</ul>
+action="/vorab-check/erlaubnis"}}
+{{#*inline "intro"}}
+{{#is session.branche "handwerk"}}
+  <p class="kern-body">
+    In manchen Handwerken können Sie nur mit Meisterbrief gründen oder ein Unternehmen führen. 
+  </p>
+  <p class="kern-body">
+    Prüfen Sie, ob Ihr Handwerk dazugehört:
+  </p>
+  <a class="kern-link" href="https://www.existenzgruendungsportal.de/_noch_neu_einordnen/DE/Gruendung-vorbereiten/Entscheidung/Ihre-Branche/Handwerk/inhalt">
+<span class="kern-icon kern-icon--open-in-new" aria-hidden="true"></span>
+Zulassungsvorraussetzungen im Handwerk</a>
+  <a class="kern-link" href="https://www.existenzgruendungsportal.de/Redaktion/DE/Downloads/DE/Checklisten_BMWi/Gruendungswege/04_uebersicht-Analge-A-B-Handwerksordnung.pdf?__blob=publicationFile">
+<span class="kern-icon kern-icon--open-in-new" aria-hidden="true"></span>
+Übersicht über zulassungspflichtige und zulassungsfreie Handwerke</a>
+{{/is}}
+{{#is session.branche "gastronomie"}}
+  <p class="kern-body">
+    Manche Unternehmen sind erlaubnispflichtig. Ob Sie eine Erlaubnis brauchen, hängt von verschiedenen Dingen ab.
+  </p>
+  <p class="kern-body">
+  Zum Beispiel:
+  </p>
+  <ul class="kern-list kern-list--bullet">
+  <li>Was für ein Unternehmen Sie gründen</li>
+  <li>Ob Sie Alkohol verkaufen</li>
+  </ul>
+{{/is}}
+{{#is session.branche "industrie"}}
+  <p class="kern-body">
+    Manche Unternehmen sind erlaubnispflichtig. Ob Sie eine Erlaubnis brauchen, hängt von verschiedenen Dingen ab.
+  </p>
+  <p class="kern-body">
+  Zum Beispiel:
+  </p>
+  <ul class="kern-list kern-list--bullet">
+  <li>Welche Produkte Sie herstellen</li>
+  <li>Welche Art von Rohstoffen Sie verwenden</li>
+  </ul>
+{{/is}}
+{{#is session.branche "handel"}}
+  <p class="kern-body">
+    Manche Unternehmen sind erlaubnispflichtig. Ob Sie eine Erlaubnis brauchen, hängt von verschiedenen Dingen ab.
+  </p>
+  <p class="kern-body">
+  Zum Beispiel:
+  </p>
+  <ul class="kern-list kern-list--bullet">
+  <li>Welche Waren Sie anbieten</li>
+  <li>Woher Sie die Waren beziehen</li>
+  </ul>
+{{/is}}
+{{#is session.branche "transport"}}
+  <p class="kern-body">
+    Manche Unternehmen sind erlaubnispflichtig. Ob Sie eine Erlaubnis brauchen, hängt von verschiedenen Dingen ab. 
+  </p>
+  <p class="kern-body">
+  Zum Beispiel:
+  </p>
+  <ul class="kern-list kern-list--bullet">
+  <li>Was Sie lagern</li>
+  <li>Wen oder was Sie befördern</li>
+  <li>Welches Fahrzeug Sie nutzen</li>
+  </ul>
+{{/is}}
+{{#is session.branche "sonstiges"}}
+  <p class="kern-body">
+    Manche Unternehmen sind erlaubnispflichtig. Ob Sie eine Erlaubnis brauchen, hängt von verschiedenen Dingen ab. 
+  </p>
+  <p class="kern-body">
+  Zum Beispiel:
+  </p>
+  <ul class="kern-list kern-list--bullet">
+  <li>Restaurants brauchen eine Schankerlaubnis</li>
+  <li>Im Handwerk brauchen Sie einen Meisterbrief</li>
+  </ul>
+{{/is}}
 {{/inline}}
 
 <div class="kern-fieldset__body">
